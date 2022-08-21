@@ -1,21 +1,38 @@
 {
-  "name": "yafuz-frontend",
+  "name": "yafuz",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "config/*",
+    "lib/*"
   ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "prettier-lint": "prettier --check .",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install",
+    "test": ""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && turbo run lint --location=global && prettier --write . && git add -A ."
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "eslint --fix"
+    ]
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "turbo": "latest",
+    "typescript": "^4.7.4"
   },
   "engines": {
     "npm": ">=7.0.0",
