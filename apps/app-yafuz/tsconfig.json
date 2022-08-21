@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve"
+  },
+  "extends": "tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "paths": {
+    "view/*": ["view/*"],
+    "context/*": ["shared/context/*"],
+    "hooks/*": ["shared/hooks/*"],
+    "services/*": ["shared/services/*"],
+    "utils/*": ["shared/utils/*"]
+  }
+}
