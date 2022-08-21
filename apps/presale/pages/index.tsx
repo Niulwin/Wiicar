@@ -1,14 +1,21 @@
-import Link from 'next/link';
-import { Button } from 'ui';
+import { LanguagesSupport, useI18n, useTranslate } from 'core';
+import { NextPage } from 'next';
 
-export default function Web() {
+const Home: NextPage = () => {
+  const { changeLanguage, language } = useI18n();
+  console.log(language);
+
   return (
-    <div>
-      <h1>tryluck</h1>
-      <Link href="/">Enlace 1</Link>
-      <Link href="hello1">Enlace 2</Link>
-      <br />
-      <Button />
-    </div>
+    <>
+      <button onClick={() => changeLanguage(LanguagesSupport.English)}>
+        Change language to English
+      </button>
+      <button onClick={() => changeLanguage(LanguagesSupport.Spanish)}>
+        Change language to Spanish
+      </button>
+      <h1>{useTranslate('login.login')}</h1>
+      <h1>{useTranslate('login.sign_up')}</h1>
+    </>
   );
-}
+};
+export default Home;

@@ -1,12 +1,8 @@
-const withTM = require('next-transpile-modules')(['ui']);
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withTM = require('next-transpile-modules')(['ui', 'core']);
 
 module.exports = withTM({
   reactStrictMode: true,
-  compiler: {
-    styledComponents: true,
-},
   compress: true,
-  performance: true,
-  optimizeFonts: true,
-  
+  optimizeFonts: true
 });

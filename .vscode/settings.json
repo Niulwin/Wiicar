@@ -18,5 +18,5 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["yafuz"]
+  "cSpell.words": ["presale", "yafuz"]
 }
