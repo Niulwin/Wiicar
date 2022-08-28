@@ -10,6 +10,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel --filter=app-yafuz --filter=presale",
+    "start": "turbo run start --parallel --filter=app-yafuz --filter=presale",
     "lint": "turbo run lint",
     "prettier-lint": "prettier --check .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
