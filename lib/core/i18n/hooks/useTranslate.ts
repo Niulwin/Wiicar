@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-export const useTranslate = (key: string) => {
+export const useTranslate = () => {
   const { t } = useTranslation();
-  return t(key);
+
+  return (key: string) => t(key);
 };

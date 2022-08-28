@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  yafuz_frontend:
+    container_name: yafuz_frontend
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    volumes:
+      - ./:/app/
+      - /app/node_modules/
+    restart: on-failure
+# networks:
+#   app-network:
+#     driver: bridge
