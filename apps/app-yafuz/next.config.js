@@ -4,5 +4,8 @@ const withTM = require('next-transpile-modules')(['ui', 'core']);
 module.exports = withTM({
   reactStrictMode: true,
   compress: true,
-  optimizeFonts: true
+  optimizeFonts: true,
+  compiler: {
+    styledComponents: true
+  }
 });

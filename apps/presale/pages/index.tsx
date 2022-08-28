@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <button onClick={() => changeLanguage(LanguagesSupport.English)}>
-        Change language to English
+        Change language to English2
       </button>
       <button onClick={() => changeLanguage(LanguagesSupport.Spanish)}>
         Change language to Spanish
