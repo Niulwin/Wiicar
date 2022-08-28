@@ -1,13 +1,11 @@
 import { FC, Fragment } from 'react';
-import { TitleComponent } from '../Layout/common/TitleComponent';
+import { Typography } from 'ui';
 
 export const ProfileView: FC = () => {
   return (
     <Fragment>
-      <TitleComponent
-        title="¡Buenos días, Angelo!"
-        subTitle="Aqui se ve reflejado la informacion del usuario"
-      />
+      <Typography fSize="24px" text="¡Buenos días, Angelo!" />
+      <Typography text="¿Tienes alguna pregunta? Visita nuestro centro de ayuda o escríbenos." />
     </Fragment>
   );
 };

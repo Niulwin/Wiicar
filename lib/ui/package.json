@@ -29,5 +29,7 @@
     "tsconfig": "*",
     "typescript": "^4.5.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "antd": "^4.22.7"
+  }
 }

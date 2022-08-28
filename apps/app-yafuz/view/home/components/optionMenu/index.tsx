@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import { CardComponent } from '../../../Layout/common/CardOption';
+import { CardOption } from 'ui';
 import { Container, ContentOptions } from './styled';
 
 const OptionMenu = [
@@ -35,7 +35,7 @@ export const SectionMenu = () => {
       <Typography variant="subtitle1">Accesos directos</Typography>
       <ContentOptions>
         {OptionMenu.map((x: any, i: number) => (
-          <CardComponent icon={x?.icon} title={x?.title} key={`Test${i}`} />
+          <CardOption icon={x?.icon} title={x?.title} key={`Test${i}`} />
         ))}
       </ContentOptions>
     </Container>

@@ -1,3 +1,6 @@
+import React, { MouseEvent, ReactNode } from 'react';
+
 export type TButtonProps = {
-  title: string;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  children?: ReactNode;
 };

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Button } from './';
+import { Button } from '.';
 
 export default {
   title: 'atoms/Button',
@@ -11,5 +11,6 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  title: 'Press me'
+  onClick: () => null,
+  children: <div></div>
 };

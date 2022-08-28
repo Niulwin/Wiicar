@@ -6,8 +6,6 @@ import { ThemeGlobal } from '../styles/theme.context';
 // Layouts
 import { NextPage } from 'next';
 import { FC, ReactNode, useEffect, useState } from 'react';
-import { LayoutAuth } from '../view/Layout/LayoutAuth';
-import { LayoutMain } from '../view/Layout/LayoutMain';
 
 //Styled
 import 'antd/dist/antd.css';
@@ -15,6 +13,7 @@ import 'antd/dist/antd.css';
 //Icons
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { LayoutAuth, LayoutMain } from 'core';
 
 // Library
 library.add(fas);

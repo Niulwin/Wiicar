@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import { Card } from '../../../Layout/common/Card';
+import { Card } from 'ui';
 import { Container, ContentOptions, Img, Text } from './styled';
 
 const GuidePaySections = [

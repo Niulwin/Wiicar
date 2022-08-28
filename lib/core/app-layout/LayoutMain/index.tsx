@@ -1,28 +1,25 @@
 // Modules
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
+import { Header, SideBar } from './components';
 
 // Components and Types
-import { Header } from './Header/Header.container';
-import { SideBar } from './SideBar/SideBar.container';
-import { TLayout } from './types';
 
 // Utils, Styles
 import { ChildrenBox, Container } from './styled';
 
-export const LayoutMain: FC<TLayout> = ({ children }: TLayout) => {
+export const LayoutMain: FC<{ children: ReactNode }> = ({
+  children
+}: {
+  children: ReactNode;
+}) => {
   // Declaration of variables and states
-  const [showAside, setShowAside] = useState(false);
+  const [showAside] = useState(true);
 
   return (
     <Container>
-      {/* <Main> */}
       <Header />
-      <SideBar
-        showAside={showAside}
-        handleClick={() => setShowAside(!showAside)}
-      />
+      <SideBar showAside={showAside} />
       <ChildrenBox>{children}</ChildrenBox>
-      {/* </Main> */}
     </Container>
   );
 };

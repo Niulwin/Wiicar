@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
-import { TableCustom } from '../../../Layout/common/Table';
-import { Card, Container, ContentOptions } from './styled';
+import { Card, Table } from 'ui';
+import { Container, ContentOptions } from './styled';
 
 const dataSource = [
   {
@@ -69,20 +69,10 @@ export const InfoTable = () => {
       <Typography variant="subtitle1">Compras y ventas</Typography>
       <ContentOptions>
         <Card>
-          <TableCustom
-            loading={false}
-            columns={columnsx}
-            data={dataSource}
-            style={{ width: '100%' }}
-          />
+          <Table loading={false} columns={columnsx} dataSource={dataSource} />
         </Card>
         <Card>
-          <TableCustom
-            loading={false}
-            columns={columnsx}
-            data={dataSource}
-            style={{ width: '100%' }}
-          />
+          <Table loading={false} columns={columnsx} dataSource={dataSource} />
         </Card>
       </ContentOptions>
     </Container>
