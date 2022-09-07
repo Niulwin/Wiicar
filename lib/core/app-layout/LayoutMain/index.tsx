@@ -1,5 +1,5 @@
 // Modules
-import { FC, ReactNode, useState } from 'react';
+import { FC, useState } from 'react';
 import { Header, SideBar } from './components';
 
 // Components and Types
@@ -7,10 +7,10 @@ import { Header, SideBar } from './components';
 // Utils, Styles
 import { ChildrenBox, Container } from './styled';
 
-export const LayoutMain: FC<{ children: ReactNode }> = ({
+export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
   children
 }: {
-  children: ReactNode;
+  children: JSX.Element | JSX.Element[];
 }) => {
   // Declaration of variables and states
   const [showAside] = useState(true);

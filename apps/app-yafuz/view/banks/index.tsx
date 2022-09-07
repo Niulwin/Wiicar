@@ -74,7 +74,13 @@ export const BanksView: FC = () => {
       </Button>
       <Card>
         <Typography fSize="18px" text="Bancos" />
-        <Table loading={true} columns={columns} dataSource={dataSource} />
+        <Table
+          loading={true}
+          columns={columns}
+          dataSource={dataSource}
+          className={''}
+          data={[]}
+        />
       </Card>
     </Content>
   );

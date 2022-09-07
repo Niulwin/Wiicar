@@ -73,7 +73,13 @@ export const MyAccountsView: FC = () => {
       </Button>
       <Card>
         <Typography fSize="18px" text="Cuentas bancarias" />
-        <Table loading={true} columns={columns} dataSource={dataSource} />
+        <Table
+          loading={true}
+          columns={columns}
+          dataSource={dataSource}
+          className={''}
+          data={[]}
+        />
       </Card>
     </Content>
   );

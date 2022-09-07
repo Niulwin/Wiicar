@@ -69,10 +69,22 @@ export const InfoTable = () => {
       <Typography variant="subtitle1">Compras y ventas</Typography>
       <ContentOptions>
         <Card>
-          <Table loading={false} columns={columnsx} dataSource={dataSource} />
+          <Table
+            loading={false}
+            columns={columnsx}
+            dataSource={dataSource}
+            className={''}
+            data={[]}
+          />
         </Card>
         <Card>
-          <Table loading={false} columns={columnsx} dataSource={dataSource} />
+          <Table
+            loading={false}
+            columns={columnsx}
+            dataSource={dataSource}
+            className={''}
+            data={[]}
+          />
         </Card>
       </ContentOptions>
     </Container>
