@@ -1,14 +1,14 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { nanoid } from 'nanoid';
 
-// ROLES (1: Gerencia), (2: Comercial) (3: Planner),
 const ID = nanoid(20);
 
 export interface RoutesInterface {
-  key?: any;
+  key: string;
   path?: string;
   name?: string;
-  icon?: string;
-  subModule?: any[];
+  icon: IconProp;
+  // subModule?: any[];
 }
 export const routes: RoutesInterface[] = [
   {

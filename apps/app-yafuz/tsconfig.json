@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "view/*": ["view/*"],
+      "pages/*": ["pages/*"],
+      "styles/*": ["styles/*"]
+    }
   },
   "extends": "tsconfig/nextjs.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
-  "paths": {
-    "view/*": ["view/*"]
-  }
+  "exclude": ["node_modules"]
 }

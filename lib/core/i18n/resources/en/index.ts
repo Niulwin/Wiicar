@@ -1,8 +1,10 @@
+import { global } from './global';
 import { login } from './login';
 
 const englishTranslation = {
   translation: {
-    login
+    login,
+    global
   }
 };
 

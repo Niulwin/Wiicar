@@ -48,7 +48,7 @@ export const OptionMenu = styled.div`
   border-radius: 4px;
   cursor: pointer;
 `;
-export const NavLink = styled.div<{ show?: boolean; isActive?: any }>`
+export const NavLink = styled.div<{ show?: boolean; active?: boolean }>`
   display: flex;
   width: 100%;
   align-items: center;
@@ -57,7 +57,7 @@ export const NavLink = styled.div<{ show?: boolean; isActive?: any }>`
   gap: ${({ show }) => (show ? '15px' : '0')};
   transition: 0.3s;
   color: #fff;
-  background-color: ${({ isActive }) => (isActive ? '#7367f0' : 'transparent')};
+  background-color: ${({ active }) => (active ? '#7367f0' : 'transparent')};
   height: 40px;
   padding: 10px 15px 10px 20px;
   cursor: pointer;
@@ -65,10 +65,10 @@ export const NavLink = styled.div<{ show?: boolean; isActive?: any }>`
     padding: 10px 15px 10px 25px;
   }
 `;
-export const TextNav = styled.span<any>`
+export const TextNav = styled.span<{ active: boolean; showAside: boolean }>`
   display: flex;
   font-size: 12px;
-  color: ${({ isActive }) => (isActive ? '#fff' : '#6e6b7b')};
+  color: ${({ active }) => (active ? '#fff' : '#6e6b7b')};
   justify-content: flex-start;
   align-items: center;
   white-space: nowrap;
@@ -78,10 +78,10 @@ export const TextNav = styled.span<any>`
   visibility: ${({ showAside }) => (showAside ? 'visible' : 'hidden')};
   transition: 0.3s all ease-in;
 `;
-export const Icon = styled(FontAwesomeIcon)<{ isActive?: boolean }>`
+export const Icon = styled(FontAwesomeIcon)<{ active?: boolean }>`
   display: flex;
   font-size: 15px;
-  color: ${({ isActive }) => (isActive ? '#fff' : '#6e6b7b')};
+  color: ${({ active }) => (active ? '#fff' : '#6e6b7b')};
 `;
 export const RowOption = styled.div`
   display: flex;

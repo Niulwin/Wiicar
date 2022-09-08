@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import { getModulesRoutes } from '../../../route';
+import { RoutesInterface } from '../../../route/routes';
 import {
   ContainerAside,
   Content,
@@ -12,25 +13,31 @@ import {
   TextNav
 } from './styled';
 
-export const SideBar: FC<any> = ({ showAside }: any) => {
+export const SideBar: FC<{ showAside: boolean }> = ({
+  showAside
+}: {
+  showAside: boolean;
+}) => {
   //Hooks
   const router = useRouter();
 
   //Route
   const ModuleRoutes = getModulesRoutes();
 
-  const [isOpenCategories, setIsOpenCategories] = useState<any>({});
+  const [isOpenCategories, setIsOpenCategories] = useState<
+    Record<string, boolean>
+  >({});
 
-  const handleOpenOption = (key: keyof typeof isOpenCategories) => {
+  const handleOpenOption = (key: string) => {
     setIsOpenCategories({ [key]: !isOpenCategories[key] });
   };
 
   return (
     <ContainerAside show={showAside}>
       <Content>
-        {ModuleRoutes.map((x: any, i: number) => (
+        {ModuleRoutes.map((x: RoutesInterface, i: number) => (
           <OptionMenu
-            onClick={() => handleOpenOption(x?.key as any)}
+            onClick={() => handleOpenOption(x.key)}
             key={`routes${i}`}
           >
             <Link passHref href={x?.path || ''}>
@@ -40,15 +47,12 @@ export const SideBar: FC<any> = ({ showAside }: any) => {
                   title={!showAside ? x?.name : ''}
                 >
                   <NavigationLink
-                    isActive={router.pathname === x.path}
+                    active={router.pathname === x.path}
                     show={showAside}
                   >
-                    <Icon
-                      isActive={router.pathname === x.path}
-                      icon={x?.icon}
-                    />
+                    <Icon active={router.pathname === x.path} icon={x?.icon} />
                     <TextNav
-                      isActive={router.pathname === x.path}
+                      active={router.pathname === x.path}
                       showAside={showAside}
                     >
                       {x?.name}

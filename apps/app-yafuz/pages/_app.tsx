@@ -1,48 +1,46 @@
 //Imports
+import { config, library } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import 'antd/dist/antd.css';
+import { LayoutAuth, LayoutMain, SafeHydrate } from 'core';
+import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import '../styles/styles.css';
+import { FC } from 'react';
+import 'styles/global.css';
 import { ThemeGlobal } from '../styles/theme.context';
 
-// Layouts
-import { NextPage } from 'next';
-import { FC, ReactNode, useEffect, useState } from 'react';
-
-//Styled
-import 'antd/dist/antd.css';
-
-//Icons
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { LayoutAuth, LayoutMain } from 'core';
-
-// Library
+// Icons
+config.autoAddCss = false;
 library.add(fas);
 
 //layouts
-const layouts: any = {
-  L1: LayoutMain,
-  L2: LayoutAuth
+type TLayouts = {
+  L1: FC<{ children: JSX.Element | JSX.Element[]; sidebars: boolean }>;
+  L2: FC<{ children: JSX.Element | JSX.Element[]; sidebars: boolean }>;
 };
-
 type TAppPropsWithCustomProps = AppProps & {
   Component: NextPage & {
     layout: string;
     sidebars: boolean;
   };
 };
-
-const SafeHydrate: FC<{ children: ReactNode }> = ({ children }) => {
-  const [hydrate, SetHydrate] = useState<any>(null);
-
-  useEffect(() => {
-    SetHydrate(children);
-  }, [children]);
-
-  return <div suppressHydrationWarning>{hydrate}</div>;
+const layouts: TLayouts = {
+  L1: LayoutMain,
+  L2: LayoutAuth
 };
 
-function MyApp({ Component, pageProps, router }: TAppPropsWithCustomProps) {
-  const CurrentLayout = layouts[Component?.layout || 'L1'];
+/**
+ * My App Component
+ * @param {TAppPropsWithCustomProps} props MyApp properties
+ * @returns {JSX.Element | JSX.Element[]} Component
+ */
+function MyApp({
+  Component,
+  pageProps,
+  router
+}: TAppPropsWithCustomProps): JSX.Element | JSX.Element[] {
+  const CurrentLayout = layouts[(Component?.layout || 'L1') as keyof TLayouts];
 
   return (
     <SafeHydrate>

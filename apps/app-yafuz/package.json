@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 8081",
+    "dev": "next dev --port 3081",
     "build": "next build",
-    "start": "next start --port 8081",
+    "start": "next start --port 3081",
     "lint": "next lint"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "antd": "^4.22.7",
     "axios": "^0.27.2",
     "core": "*",
+    "ethers": "^5.7.0",
     "i18next": "^21.9.1",
     "next": "^12.2.5",
     "numeral": "^2.0.6",
