@@ -50,7 +50,10 @@ export const SideBar: FC<{ showAside: boolean }> = ({
                     active={router.pathname === x.path}
                     show={showAside}
                   >
-                    <Icon active={router.pathname === x.path} icon={x?.icon} />
+                    <Icon
+                      active={router.pathname === x.path ? 'true' : 'false'}
+                      icon={x?.icon}
+                    />
                     <TextNav
                       active={router.pathname === x.path}
                       showAside={showAside}

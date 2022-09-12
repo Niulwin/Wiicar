@@ -1,6 +1,5 @@
 import { useMutation } from 'core';
 import { ReactElement, useEffect } from 'react';
-import { BanksView } from '../../view/banks';
 
 function Banks(): ReactElement {
   const { mutate, data, error } = useMutation<{ address_wallet: string }>(
@@ -9,11 +8,11 @@ function Banks(): ReactElement {
   );
 
   useEffect(() => {
-    mutate({ address_wallet: 'sldakjfljsldkjfkajs' });
-  }, []);
+    mutate({ address_wallet: 'sldakjfljsldkjfkaj' });
+  }, [mutate]);
 
-  // console.log('hola', error);
-  return <BanksView />;
+  console.log('hola', data?.data);
+  return <div />;
 }
 
 export default Banks;

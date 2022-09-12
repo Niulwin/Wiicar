@@ -2,8 +2,7 @@
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import 'antd/dist/antd.css';
-import { LayoutAuth, LayoutMain, SafeHydrate } from 'core';
+import { LayoutAuth, LayoutMain, QueryClientProvider, SafeHydrate } from 'core';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
@@ -44,11 +43,13 @@ function MyApp({
 
   return (
     <SafeHydrate>
-      <ThemeGlobal>
-        <CurrentLayout sidebars={Component.sidebars}>
-          <Component router={router} {...pageProps} />
-        </CurrentLayout>
-      </ThemeGlobal>
+      <QueryClientProvider>
+        <ThemeGlobal>
+          <CurrentLayout sidebars={Component.sidebars}>
+            <Component router={router} {...pageProps} />
+          </CurrentLayout>
+        </ThemeGlobal>
+      </QueryClientProvider>
     </SafeHydrate>
   );
 }

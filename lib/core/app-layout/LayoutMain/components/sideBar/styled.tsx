@@ -78,7 +78,7 @@ export const TextNav = styled.span<{ active: boolean; showAside: boolean }>`
   visibility: ${({ showAside }) => (showAside ? 'visible' : 'hidden')};
   transition: 0.3s all ease-in;
 `;
-export const Icon = styled(FontAwesomeIcon)<{ active?: boolean }>`
+export const Icon = styled(FontAwesomeIcon)<{ active?: 'true' | 'false' }>`
   display: flex;
   font-size: 15px;
   color: ${({ active }) => (active ? '#fff' : '#6e6b7b')};
