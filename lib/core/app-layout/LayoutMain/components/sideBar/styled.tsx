@@ -10,7 +10,8 @@ export const ContainerAside = styled.div<TContainerAside>`
   flex-direction: column;
   align-items: center;
   padding: 0.3rem;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.background.main};
+  border-right: 1px solid ${({ theme }) => theme.colors.border.main};
   justify-content: space-between;
   transition: 0.3s;
   width: ${({ show }) => (show ? '230px' : '55px')};
@@ -44,7 +45,6 @@ export const OptionMenu = styled.div`
   flex-direction: column;
   justify-content: center;
   transition: 0.3s;
-  color: #fff;
   border-radius: 4px;
   cursor: pointer;
 `;
@@ -52,12 +52,11 @@ export const NavLink = styled.div<{ show?: boolean; active?: boolean }>`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: center;
   border-radius: 4px;
   gap: ${({ show }) => (show ? '15px' : '0')};
   transition: 0.3s;
-  color: #fff;
-  background-color: ${({ active }) => (active ? '#7367f0' : 'transparent')};
+  background-color: ${({ active, theme }) =>
+    active ? theme.colors.secondary.main : 'transparent'};
   height: 40px;
   padding: 10px 15px 10px 20px;
   cursor: pointer;
@@ -65,23 +64,11 @@ export const NavLink = styled.div<{ show?: boolean; active?: boolean }>`
     padding: 10px 15px 10px 25px;
   }
 `;
-export const TextNav = styled.span<{ active: boolean; showAside: boolean }>`
-  display: flex;
-  font-size: 12px;
-  color: ${({ active }) => (active ? '#fff' : '#6e6b7b')};
-  justify-content: flex-start;
-  align-items: center;
-  white-space: nowrap;
-  height: 100%;
-  width: ${({ showAside }) => (showAside ? '100%' : '0px')};
-  overflow: hidden;
-  visibility: ${({ showAside }) => (showAside ? 'visible' : 'hidden')};
-  transition: 0.3s all ease-in;
-`;
 export const Icon = styled(FontAwesomeIcon)<{ active?: 'true' | 'false' }>`
   display: flex;
   font-size: 15px;
-  color: ${({ active }) => (active ? '#fff' : '#6e6b7b')};
+  color: ${({ active, theme }) =>
+    active === 'true' ? theme.colors.text.light : theme.colors.text.secondary};
 `;
 export const RowOption = styled.div`
   display: flex;

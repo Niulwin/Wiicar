@@ -3,13 +3,61 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  padding: 1rem;
+  width: 100vw;
+  background-color: ${({ theme }) => theme.colors.background.main};
+`;
+
+export const Body = styled.div`
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
   height: 100%;
+  min-width: 400px;
+  margin-top: 4rem;
   gap: 20px;
 `;
+
+export const ButtonBack = styled.button`
+  display: flex;
+  justify-self: start;
+  align-self: flex-start;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  border-radius: 5px;
+  background-color: transparent;
+  width: 85px;
+  height: 40px;
+  border: 1px solid ${({ theme }) => theme.colors.text.secondary};
+  cursor: pointer;
+  :hover {
+    background-color: #697af818;
+  }
+`;
+
+export const ButtonMetamask = styled.div`
+  width: 70%;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  border: 1px solid ${({ theme }) => theme.colors.border.main};
+  :hover {
+    border: 1px solid #fff;
+  }
+  background-color: ${({ theme }) => theme.colors.text.light};
+`;
+export const ImgInfo = styled.img`
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+`;
+
 export const BoxInput = styled.div`
   display: flex;
   position: relative;

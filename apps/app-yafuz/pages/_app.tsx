@@ -3,26 +3,31 @@ import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { LayoutAuth, LayoutMain, QueryClientProvider, SafeHydrate } from 'core';
+import AuthProvider from 'core/auth/AuthContext';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import 'styles/global.css';
-import { ThemeGlobal } from '../styles/theme.context';
+import { DefaultTheme } from 'ui';
 
 // Icons
 config.autoAddCss = false;
 library.add(fas);
 
 //layouts
+type TFCLayouts = {
+  layout: string;
+  children: JSX.Element | JSX.Element[];
+  sidebars: boolean;
+  hiddenSidebars: boolean;
+  hiddenLogin: boolean;
+};
 type TLayouts = {
-  L1: FC<{ children: JSX.Element | JSX.Element[]; sidebars: boolean }>;
-  L2: FC<{ children: JSX.Element | JSX.Element[]; sidebars: boolean }>;
+  L1: FC<Omit<TFCLayouts, 'layout'>>;
+  L2: FC<Omit<TFCLayouts, 'layout'>>;
 };
 type TAppPropsWithCustomProps = AppProps & {
-  Component: NextPage & {
-    layout: string;
-    sidebars: boolean;
-  };
+  Component: NextPage & Omit<TFCLayouts, 'children'>;
 };
 const layouts: TLayouts = {
   L1: LayoutMain,
@@ -44,11 +49,17 @@ function MyApp({
   return (
     <SafeHydrate>
       <QueryClientProvider>
-        <ThemeGlobal>
-          <CurrentLayout sidebars={Component.sidebars}>
-            <Component router={router} {...pageProps} />
-          </CurrentLayout>
-        </ThemeGlobal>
+        <AuthProvider>
+          <DefaultTheme>
+            <CurrentLayout
+              hiddenLogin={Component.hiddenLogin}
+              sidebars={Component.sidebars}
+              hiddenSidebars={Component.hiddenSidebars}
+            >
+              <Component router={router} {...pageProps} />
+            </CurrentLayout>
+          </DefaultTheme>
+        </AuthProvider>
       </QueryClientProvider>
     </SafeHydrate>
   );

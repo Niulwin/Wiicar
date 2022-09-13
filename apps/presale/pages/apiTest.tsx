@@ -11,7 +11,6 @@ function Banks(): ReactElement {
     mutate({ address_wallet: 'sldakjfljsldkjfkaj' });
   }, [mutate]);
 
-  console.log('hola', data?.data);
   return <div />;
 }
 

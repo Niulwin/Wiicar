@@ -16,10 +16,8 @@
     "core": "*",
     "ui": "*",
     "ethers": "^5.7.0",
-    "i18next": "^21.9.1",
     "next": "^12.2.5",
     "numeral": "^2.0.6",
-    "prueba": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.5"
