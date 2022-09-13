@@ -2,15 +2,15 @@ import { Tooltip } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-import { getModulesRoutes } from '../../../route';
-import { RoutesInterface } from '../../../route/routes';
+import { Typography } from 'ui';
+import { useTranslate } from '../../../../i18n/hooks';
+import { routes, RoutesInterface } from '../../../route';
 import {
   ContainerAside,
   Content,
   Icon,
   NavLink as NavigationLink,
-  OptionMenu,
-  TextNav
+  OptionMenu
 } from './styled';
 
 export const SideBar: FC<{ showAside: boolean }> = ({
@@ -18,11 +18,8 @@ export const SideBar: FC<{ showAside: boolean }> = ({
 }: {
   showAside: boolean;
 }) => {
-  //Hooks
   const router = useRouter();
-
-  //Route
-  const ModuleRoutes = getModulesRoutes();
+  const translate = useTranslate();
 
   const [isOpenCategories, setIsOpenCategories] = useState<
     Record<string, boolean>
@@ -35,7 +32,7 @@ export const SideBar: FC<{ showAside: boolean }> = ({
   return (
     <ContainerAside show={showAside}>
       <Content>
-        {ModuleRoutes.map((x: RoutesInterface, i: number) => (
+        {routes.map((x: RoutesInterface, i: number) => (
           <OptionMenu
             onClick={() => handleOpenOption(x.key)}
             key={`routes${i}`}
@@ -44,19 +41,26 @@ export const SideBar: FC<{ showAside: boolean }> = ({
               <a style={{ textDecoration: 'none', width: '100%' }}>
                 <Tooltip
                   placement="rightBottom"
-                  title={!showAside ? x?.name : ''}
+                  title={!showAside ? x.name : ''}
                 >
                   <NavigationLink
                     active={router.pathname === x.path}
                     show={showAside}
                   >
-                    <Icon active={router.pathname === x.path} icon={x?.icon} />
-                    <TextNav
-                      active={router.pathname === x.path}
-                      showAside={showAside}
+                    <Icon
+                      active={router.pathname === x.path ? 'true' : 'false'}
+                      icon={x?.icon}
+                    />
+                    <Typography
+                      variant="caption"
+                      color={
+                        router.pathname === x.path ? 'light' : 'textPrimary'
+                      }
+                      // active={router.pathname === x.path}
+                      // showAside={showAside}
                     >
-                      {x?.name}
-                    </TextNav>
+                      {translate(x.name)}
+                    </Typography>
                   </NavigationLink>
                 </Tooltip>
               </a>

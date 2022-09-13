@@ -11,15 +11,17 @@ export const useLogin = () => {
   const handleSessionWithMetamask = async () => {
     setError(undefined);
 
-    if (window.ethereum) {
-      const resp = await window.ethereum.request({
-        method: 'eth_requestAccounts'
-      });
-
-      accountChangeHandler(resp[0]);
-    } else {
+    if (!window.ethereum) {
       setError(t('login.install_metamask'));
+      throw new Error(t('login.install_metamask'));
     }
+
+    const resp = await window.ethereum.request({
+      method: 'eth_requestAccounts'
+    });
+
+    accountChangeHandler(resp[0]);
+    return resp;
   };
 
   const accountChangeHandler = (newAccount: string) => {

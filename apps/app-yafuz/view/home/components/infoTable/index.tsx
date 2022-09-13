@@ -1,5 +1,4 @@
-import Typography from '@mui/material/Typography';
-import { Card, Table } from 'ui';
+import { Card, Table, Typography } from 'ui';
 import { Container, ContentOptions } from './styled';
 
 const dataSource = [
@@ -66,7 +65,7 @@ const columnsx = [
 export const InfoTable = () => {
   return (
     <Container>
-      <Typography variant="subtitle1">Compras y ventas</Typography>
+      <Typography text="Compras y ventas" />
       <ContentOptions>
         <Card>
           <Table

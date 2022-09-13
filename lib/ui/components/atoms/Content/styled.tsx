@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ justify?: string }>`
+export const Container = styled.div<{
+  direction?: 'row' | 'column';
+  justify?:
+    | 'flex-start'
+    | 'center'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around';
+  align?: 'flex-start' | 'center' | 'flex-end';
+  noPadding?: boolean;
+}>`
   display: flex;
-  gap: 10px;
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-direction: ${({ direction }) => direction || 'column'};
+  justify-content: ${({ justify }) => justify || 'flex-start'};
+  align-items: ${({ align }) => align || 'flex-start'};
   width: 100%;
-  overflow-y: auto;
-  padding: 1rem 2rem;
-  background-color: #f8f7fa;
+  padding: ${({ noPadding }) => (noPadding ? 0 : '1rem')};
+  margin-bottom: 20px;
 `;

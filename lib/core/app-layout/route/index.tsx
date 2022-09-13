@@ -1,3 +1,1 @@
-import { routes } from './routes';
-
-export const getModulesRoutes = () => routes;
+export * from './appYafuzRouter';

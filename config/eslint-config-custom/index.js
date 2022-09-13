@@ -6,6 +6,7 @@ module.exports = {
   ],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
-    'react/jsx-key': 'off'
+    'react/jsx-key': 'off',
+    'react-hooks/exhaustive-deps': [0]
   }
 };
