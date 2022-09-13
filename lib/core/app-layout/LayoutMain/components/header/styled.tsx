@@ -5,13 +5,13 @@ export const Head = styled.header`
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: #7367f0;
+  background-color: ${({ theme }) => theme.colors.background.main};
   padding: 0rem 2rem;
   flex-direction: row;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.main};
   align-items: center;
   justify-content: space-between;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: 0.3s;
 `;
 export const Section = styled.div<{ width?: string; justify?: string }>`
   display: flex;
@@ -21,26 +21,15 @@ export const Section = styled.div<{ width?: string; justify?: string }>`
   justify-content: ${({ justify }) => justify || 'flex-end'};
   width: ${({ width }) => width || '100%'};
 `;
-export const BoxOptions = styled.div`
+export const FlexContainer = styled.div`
   display: flex;
-  gap: 15px;
-  width: auto;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
 `;
-export const InfoUser = styled.div`
-  display: flex;
-  height: 40px;
-  width: auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-export const TextInfo = styled.span`
+
+export const TextInfo = styled.div`
   width: 100%;
-  font-size: 13px;
+  font-size: 12px;
   color: #fff;
   text-align: end;
 `;

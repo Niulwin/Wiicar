@@ -13,7 +13,6 @@ const Template: ComponentStory<typeof Typography> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  text: 'is a title',
-  fSize: '',
-  color: ''
+  variant: 'body1',
+  children: 'Hola mundo'
 };

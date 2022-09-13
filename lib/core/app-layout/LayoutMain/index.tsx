@@ -1,24 +1,36 @@
-// Modules
-import { FC, useState } from 'react';
+import Image from 'next/image';
+import { FC, useEffect, useState } from 'react';
+import { useAuth } from '../../auth';
 import { Header, SideBar } from './components';
-
-// Components and Types
-
-// Utils, Styles
-import { ChildrenBox, Container } from './styled';
+import { ChildrenBox, Container, Logo } from './styled';
 
 export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
-  children
+  children,
+  hiddenSidebars,
+  hiddenLogin
 }: {
   children: JSX.Element | JSX.Element[];
+  hiddenSidebars?: boolean;
+  hiddenLogin?: boolean;
 }) => {
-  // Declaration of variables and states
   const [showAside] = useState(true);
+  const { isSession, currentUser, ...res } = useAuth();
+
+  useEffect(() => {
+    res.getCurrentUser();
+  }, []);
 
   return (
-    <Container>
-      <Header />
-      <SideBar showAside={showAside} />
+    <Container hiddenSidebars={hiddenSidebars}>
+      <Logo>
+        <Image src="/logo.svg" alt="logo" width={90} height={100} />
+      </Logo>
+      <Header
+        isSession={isSession}
+        currentUser={currentUser}
+        hiddenLogin={hiddenLogin}
+      />
+      {!hiddenSidebars && <SideBar showAside={showAside} />}
       <ChildrenBox>{children}</ChildrenBox>
     </Container>
   );

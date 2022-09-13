@@ -1,5 +1,4 @@
-import Typography from '@mui/material/Typography';
-import { Card } from 'ui';
+import { Card, Typography } from 'ui';
 import { Container, ContentOptions, Img, Text } from './styled';
 
 const GuidePaySections = [
@@ -38,7 +37,7 @@ const GuidePaySections = [
 export const GuidePay = () => {
   return (
     <Container>
-      <Typography variant="subtitle1">Como funciona P2P</Typography>
+      <Typography text="Como funciona P2P" />
       <ContentOptions>
         {GuidePaySections.map((x: any, i: number) => (
           <Card justify="flex-start" mHeight="250px" key={`Card${i}`}>

@@ -1,19 +1,37 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-export const ContentButton = styled.div`
+export const ContentButton = styled.div<{
+  variant?: 'text' | 'contained' | 'outlined';
+  background?: 'primary' | 'secondary';
+}>`
   display: flex;
   width: auto;
-  align-self: flex-end;
-  justify-self: end;
   height: auto;
-  padding: 8px 12px;
+  padding: 4px 8px;
+  margin: 4px;
   text-align: center;
-  gap: 10px;
-  justify-content: center;
   align-items: center;
-  flex-direction: row;
-  background-color: #fff;
+  background-color: ${({ variant, theme, background }) =>
+    variant === 'contained'
+      ? theme.colors[background || 'primary'].main
+      : 'transparent'};
   border-radius: 5px;
-  box-shadow: 0px 2px 16px rgb(20 9 51 / 8%);
   cursor: pointer;
+  border: ${({ variant, theme, background }) =>
+    variant === 'outlined'
+      ? `1px solid ${theme.colors[background || 'primary'].main}`
+      : 'none'};
+  &:hover {
+    ${({ theme, background, variant }) =>
+      variant === 'contained'
+        ? `opacity: .8;`
+        : `background-color: ${theme.colors[background || 'primary'].main}22;`};
+  }
+`;
+export const Icon = styled(FontAwesomeIcon)<{
+  color?: 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'light';
+}>`
+  color: ${({ color, theme }) => theme.colors.text[color || 'textPrimary']};
+  margin-right: 5px;
 `;

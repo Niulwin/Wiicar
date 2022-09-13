@@ -1,4 +1,5 @@
 import { colors, createTheme, ThemeProvider } from '@mui/material';
+import { QueryClientProvider } from 'core';
 import type { AppProps } from 'next/app';
 
 const theme = createTheme({
@@ -13,7 +14,9 @@ export default function AppYafuz({
 }: AppProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <QueryClientProvider>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

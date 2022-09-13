@@ -1,6 +1,10 @@
 * {
   font-family: Roboto;
   box-sizing: border-box;
+  font-size: 100%;
+}
+html {
+  font-size: 100%;
 }
 
 body {
@@ -16,15 +20,15 @@ code {
 }
 
 .tableStyleOne .ant-table-thead > tr > th {
-  font-size: 15px !important;
+  font-size: 12px !important;
   font-weight: 600;
 }
 
 .ant-table-column-title {
-  font-size: 15px !important;
+  font-size: 12px !important;
   font-weight: 600;
 }
 
 .ant-table-tbody > tr > td {
-  font-size: 15px !important;
+  font-size: 12px !important;
 }
