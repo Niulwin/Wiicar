@@ -17,7 +17,7 @@ export const useConfig = ({
         name: '#',
         width: 40,
         fixed: true,
-        render: (_row, index) => {
+        render: (_row: any, index: number) => {
           return index + 1;
         }
       },
