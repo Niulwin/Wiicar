@@ -17,7 +17,7 @@ export const useConfig = ({
         name: '#',
         width: 40,
         fixed: true,
-        render: (_row: IMethodPayments, index) => {
+        render: (_row: IMethodPayments, index: number) => {
           return index + 1;
         }
       },

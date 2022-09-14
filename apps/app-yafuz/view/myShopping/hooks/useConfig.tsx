@@ -23,7 +23,7 @@ export const useConfig = ({
         name: '#',
         width: 40,
         fixed: true,
-        render: (_row, index) => {
+        render: (_row: ISales, index: number) => {
           return index + 1;
         }
       },
