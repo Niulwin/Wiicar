@@ -1,4 +1,4 @@
-import { useI18n } from 'core';
+import { IMethodPayments, useI18n } from 'core';
 import { useEffect, useState } from 'react';
 import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
 
@@ -17,7 +17,7 @@ export const useConfig = ({
         name: '#',
         width: 40,
         fixed: true,
-        render: (_row, index) => {
+        render: (_row: IMethodPayments, index) => {
           return index + 1;
         }
       },
