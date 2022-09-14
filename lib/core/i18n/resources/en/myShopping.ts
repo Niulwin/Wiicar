@@ -1,6 +1,6 @@
 export const my_shopping = {
   action_creator: 'Continue buying',
-  name: 'User',
+  buyer: 'Buyer',
   method_payment: 'Payment Method',
   price: 'Price',
   quantity: 'Quantity',

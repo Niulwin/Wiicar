@@ -28,7 +28,7 @@ export const useConfig = ({
         }
       },
       {
-        name: translate('my_shopping.name'),
+        name: translate('my_shopping.buyer'),
         width: 20,
         render: (row: ISales) => {
           return `${row?.user?.nombre} ${row?.user?.apellidos}`;

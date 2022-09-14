@@ -19,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "turbo run lint"
+      "pre-commit": "lint-staged && prettier --write . && git add -a ."
     }
   },
   "lint-staged": {
