@@ -11,8 +11,9 @@ export const Section = styled.div<{ mHeight?: string; justify?: string }>`
   gap: 15px;
   align-items: center;
   flex-direction: column;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.background.main};
   border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.colors.border.main};
   box-shadow: 0px 2px 16px rgb(20 9 51 / 8%);
   cursor: pointer;
 `;

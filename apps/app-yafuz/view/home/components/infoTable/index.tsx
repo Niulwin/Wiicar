@@ -1,7 +1,14 @@
-import { Card, Table, Typography } from 'ui';
-import { Container, ContentOptions } from './styled';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Card, Table, TTableColumns, Typography } from 'ui';
+import { Container } from './styled';
 
-const dataSource = [
+type TDataSource = {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+};
+const dataSource: TDataSource[] = [
   {
     key: '1',
     name: 'Mike',
@@ -34,58 +41,54 @@ const dataSource = [
   }
 ];
 
-const columnsx = [
+const columns: TTableColumns[] = [
   {
-    title: 'Usuario',
-    dataIndex: 'name',
-    key: 'name'
+    name: '',
+    width: 40,
+    fixed: true,
+    render: () => {
+      return <FontAwesomeIcon size="2x" icon="user-circle" />;
+    }
   },
   {
-    title: 'Metodo de pago',
-    dataIndex: 'age',
-    key: 'age'
+    name: 'User',
+    accessor: 'name',
+    width: 20
   },
   {
-    title: 'Cantidad',
-    dataIndex: 'address',
-    key: 'address'
+    name: 'Metodo de pago',
+    accessor: 'age',
+    width: 20
   },
   {
-    title: 'Precio',
-    dataIndex: 'address',
-    key: 'address'
+    name: 'Cantidad',
+    accessor: 'address',
+    width: 20
   },
   {
-    title: 'Total',
-    dataIndex: 'address',
-    key: 'address'
+    name: 'Precio',
+    accessor: 'address',
+    width: 20
+  },
+  {
+    name: 'Precio',
+    accessor: 'address',
+    width: 20
   }
 ];
 
 export const InfoTable = () => {
   return (
     <Container>
-      <Typography text="Compras y ventas" />
-      <ContentOptions>
-        <Card>
-          <Table
-            loading={false}
-            columns={columnsx}
-            dataSource={dataSource}
-            className={''}
-            data={[]}
-          />
-        </Card>
-        <Card>
-          <Table
-            loading={false}
-            columns={columnsx}
-            dataSource={dataSource}
-            className={''}
-            data={[]}
-          />
-        </Card>
-      </ContentOptions>
+      <Typography variant="caption">Compras y ventas</Typography>
+      <Card>
+        <Table<TDataSource>
+          loading={false}
+          columns={columns}
+          data={dataSource}
+          pagination
+        />
+      </Card>
     </Container>
   );
 };

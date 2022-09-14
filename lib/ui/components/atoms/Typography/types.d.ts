@@ -17,6 +17,15 @@ export type TypographyVariant = {
 export type TTypography = {
   children: JSX.Element | JSX.Element[] | string;
   variant: keyof TypographyVariant;
-  color?: 'textPrimary' | 'textSecondary' | 'primary' | 'secondary' | 'light';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'textPrimary'
+    | 'textSecondary'
+    | 'light'
+    | 'error'
+    | 'success'
+    | 'info'
+    | 'disabled';
   align?: 'center' | 'left' | 'right';
 };

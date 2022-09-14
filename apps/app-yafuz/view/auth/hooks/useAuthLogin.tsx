@@ -12,7 +12,7 @@ export const useAuthLogin = () => {
   const onSuccess = ({ token }: { token: string }) => {
     message.success(t('login.successful'));
     setLoading(false);
-    signIn({ authorization: token }, () => (location.href = '/banks'));
+    signIn({ authorization: token }, () => (location.href = '/'));
   };
 
   const { mutate: loginMutate } = useMutation<

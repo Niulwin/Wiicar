@@ -31,7 +31,7 @@ const OptionMenu = [
 export const SectionMenu = () => {
   return (
     <Container>
-      <Typography text="Accesos directos" />
+      <Typography variant="caption">Accesos directos</Typography>
       <ContentOptions>
         {OptionMenu.map((x: typeof OptionMenu[0], i: number) => (
           <CardOption icon={x?.icon} title={x?.title} key={`Test${i}`} />

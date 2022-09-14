@@ -1,86 +1,34 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IUserMethodPayments, useTranslate } from 'core';
 import { FC } from 'react';
-import { Button, Card, Content, Table, Typography } from 'ui';
+import { Button, Content, FlexContainer, Table, Typography } from 'ui';
+import { useUserMethodPayments } from './hooks';
+import { useConfig } from './hooks/useConfig';
 
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street'
-  },
-  {
-    key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street'
-  },
-  {
-    key: '3',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street'
-  },
-  {
-    key: '4',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street'
-  },
-  {
-    key: '5',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street'
-  }
-];
-
-const columns = [
-  {
-    title: 'Usuario',
-    dataIndex: 'name',
-    key: 'name'
-  },
-  {
-    title: 'Metodo de pago',
-    dataIndex: 'age',
-    key: 'age'
-  },
-  {
-    title: 'Cantidad',
-    dataIndex: 'address',
-    key: 'address'
-  },
-  {
-    title: 'Precio',
-    dataIndex: 'address',
-    key: 'address'
-  },
-  {
-    title: 'Total',
-    dataIndex: 'address',
-    key: 'address'
-  }
-];
 export const MyAccountsView: FC = () => {
+  const { data, isLoading } = useUserMethodPayments();
+  const translate = useTranslate();
+  const { columns } = useConfig({ translate });
+
   return (
     <Content>
-      <Typography fSize="24px" text="¡Buenos días, Angelo!" />
-      <Typography text="¿Tienes alguna pregunta? Visita nuestro centro de ayuda o escríbenos." />
-      <Button onClick={() => console.log('w')}>
-        <FontAwesomeIcon icon="plus" color="#7367f0" />
-        <Typography color="#7367f0" text="Crear registro" />
-      </Button>
-      <Card>
-        <Typography fSize="18px" text="Cuentas bancarias" />
-        <Table
-          loading={true}
-          columns={columns}
-          dataSource={dataSource}
-          className={''}
-          data={[]}
+      <Content noPadding direction="row" justify="space-between" align="center">
+        <Typography variant="h6">
+          <>{translate('global.menu_options.my_accounts')} &gt;</>
+        </Typography>
+        <Button
+          color="light"
+          onClick={() => console.log('w')}
+          title={translate('offers_list.action_creator')}
+          iconLeft="plus"
         />
-      </Card>
+      </Content>
+      <FlexContainer padding="0">
+        <Table<IUserMethodPayments>
+          loading={isLoading}
+          columns={columns}
+          data={data?.data || []}
+        />
+      </FlexContainer>
     </Content>
   );
 };

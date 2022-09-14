@@ -37,7 +37,7 @@ const GuidePaySections = [
 export const GuidePay = () => {
   return (
     <Container>
-      <Typography text="Como funciona P2P" />
+      <Typography variant="caption">Como funciona P2P</Typography>
       <ContentOptions>
         {GuidePaySections.map((x: any, i: number) => (
           <Card justify="flex-start" mHeight="250px" key={`Card${i}`}>

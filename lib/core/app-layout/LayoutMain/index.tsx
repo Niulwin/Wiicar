@@ -17,8 +17,8 @@ export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
   const { isSession, currentUser, ...res } = useAuth();
 
   useEffect(() => {
-    res.getCurrentUser();
-  }, []);
+    isSession && res.getCurrentUser();
+  }, [isSession]);
 
   return (
     <Container hiddenSidebars={hiddenSidebars}>

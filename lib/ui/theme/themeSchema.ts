@@ -21,6 +21,11 @@ export type TColors = {
     textPrimary: string;
     textSecondary: string;
     light: string;
+    error: string;
+    warning: string;
+    info: string;
+    success: string;
+    disabled: string;
   };
   border: {
     main: string;
@@ -55,7 +60,12 @@ export const lightTheme: TDefaultTheme = {
       secondary: '#7367f0',
       textPrimary: '#666666',
       textSecondary: '#ffffff',
-      light: '#ffffff'
+      light: '#ffffff',
+      error: '#f44336',
+      warning: '#e57373',
+      info: '#90caf9',
+      success: '#66bb6a',
+      disabled: 'f44336'
     },
     primary: {
       main: '#f44336',
@@ -63,7 +73,7 @@ export const lightTheme: TDefaultTheme = {
     },
     secondary: {
       main: '#7367f0',
-      secondary: '#a1a1a1'
+      secondary: '#7367f0'
     },
     border: {
       main: '#f1f1f1',
@@ -74,12 +84,12 @@ export const lightTheme: TDefaultTheme = {
       secondary: '#e57373'
     },
     warning: {
-      secondary: '#e57373',
-      main: '#f44336'
+      secondary: '#ffa726',
+      main: '#ffb74d'
     },
     info: {
-      main: '#90caf9',
-      secondary: '#e3f2fd'
+      main: '#29b6f6',
+      secondary: '#4fc3f7'
     },
     success: {
       main: '#66bb6a',
@@ -100,7 +110,12 @@ export const darkTheme: TDefaultTheme = {
       secondary: '#7367f0',
       textPrimary: '#ffffff',
       textSecondary: '#1e2329',
-      light: '#ffffff'
+      light: '#ffffff',
+      error: '#f44336',
+      warning: '#f57c00',
+      info: '#90caf9',
+      success: '#388e3c',
+      disabled: 'f44336'
     },
     primary: {
       main: '#f44336',
@@ -108,23 +123,23 @@ export const darkTheme: TDefaultTheme = {
     },
     secondary: {
       main: '#7367f0',
-      secondary: '#7367f0'
+      secondary: '#35a8df'
     },
     border: {
       main: '#c2e0ff14',
       secondary: '#ffffff'
     },
     error: {
-      main: '#f44336',
-      secondary: '#d32f2f'
+      main: '#d32f2f',
+      secondary: '#f44336'
     },
     warning: {
-      secondary: '#e57373',
-      main: '#f57c00'
+      secondary: '#f57c00',
+      main: '#ffa726'
     },
     info: {
-      main: '#90caf9',
-      secondary: '#0288d1'
+      main: '#0288d1',
+      secondary: '#4fc3f7'
     },
     success: {
       main: '#388e3c',

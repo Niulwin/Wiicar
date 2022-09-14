@@ -5,6 +5,7 @@
     "paths": {
       "view/*": ["view/*"],
       "pages/*": ["pages/*"],
+      "utils/*": ["utils/*"],
       "styles/*": ["styles/*"]
     }
   },

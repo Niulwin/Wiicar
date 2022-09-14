@@ -2,6 +2,7 @@ export const global = {
   metamask: 'Metamask',
   yafuz: 'Yafuz',
   back: 'Go back',
+  actions: 'Actions',
   language: {
     Spanish: 'Spanish',
     English: 'English'

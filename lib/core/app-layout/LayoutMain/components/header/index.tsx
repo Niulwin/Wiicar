@@ -47,7 +47,9 @@ export const Header: FC<THeaderProps> = ({
                 />
               </>
             ) : (
-              <Typography variant="caption">{currentUser?.username}</Typography>
+              <Typography variant="caption">
+                {currentUser?.username || ''}
+              </Typography>
             ))}
           <Select
             options={options}

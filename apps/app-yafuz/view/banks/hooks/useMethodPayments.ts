@@ -1,9 +1,9 @@
-import { TMethodPayments, TPagination, useQuery } from 'core';
+import { IMethodPayments, TPagination, useQuery } from 'core';
 
 export const useMethodPayments = () => {
-  const { data, isLoading } = useQuery<TPagination<TMethodPayments>>(
+  const { data, isLoading } = useQuery<TPagination<IMethodPayments>>(
     'methodPayments',
-    'methodPayments'
+    'method-payments'
   );
 
   return { data: data, isLoading };

@@ -11,16 +11,25 @@ export const Button: FC<TButtonProps> = ({
   color,
   iconLeft,
   style,
-  background
+  background,
+  size
 }: TButtonProps) => {
   return (
     <ContentButton
+      size={size}
       style={style}
       variant={variant || 'contained'}
       onClick={onClick}
       background={background}
     >
-      {iconLeft && <Icon size="1x" icon={iconLeft} color={color} />}
+      {iconLeft && (
+        <Icon
+          size="1x"
+          icon={iconLeft}
+          color={color}
+          style={!title ? { margin: 0 } : { marginRight: 5 }}
+        />
+      )}
       <Typography
         color={
           color || (variant === 'contained' ? 'textSecondary' : 'textPrimary')

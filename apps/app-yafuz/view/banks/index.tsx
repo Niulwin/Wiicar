@@ -1,24 +1,12 @@
-import { useTranslate } from 'core';
+import { IMethodPayments, useTranslate } from 'core';
 import { FC } from 'react';
 import { Button, Card, Content, Table, Typography } from 'ui';
-import { useMethodPayments } from './hooks/useMethodPayments';
-
-const columns = [
-  {
-    title: 'code',
-    dataIndex: 'code',
-    key: 'code'
-  },
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name'
-  }
-];
+import { useConfig, useMethodPayments } from './hooks';
 
 export const BanksView: FC = () => {
   const translate = useTranslate();
   const { data, isLoading } = useMethodPayments();
+  const { columns } = useConfig({ translate });
 
   return (
     <Content>
@@ -27,16 +15,16 @@ export const BanksView: FC = () => {
           <>{translate('global.menu_options.my_banks')} &gt;</>
         </Typography>
         <Button
+          color="light"
           onClick={() => console.log('w')}
           title={translate('bank.action_creator')}
           iconLeft="plus"
         />
       </Content>
       <Card>
-        <Table
+        <Table<IMethodPayments>
           loading={isLoading}
           columns={columns}
-          rowKey={(row) => row.id}
           data={data?.data || []}
         />
       </Card>

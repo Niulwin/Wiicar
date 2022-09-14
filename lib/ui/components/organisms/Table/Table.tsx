@@ -1,22 +1,38 @@
-import { Table as AntTable } from 'antd';
+import { VirtualizedList } from 'wvl-virtualized-list';
 import { ContentTable } from './styled';
 import { TTable } from './types';
 
+export { InitConfigTable } from 'wvl-virtualized-list';
+
 export const Table = <T extends object>({
-  className,
   columns,
   data,
   loading,
-  ...restProps
+  onFetch,
+  onKeyDown,
+  pagination,
+  onContextMenu,
+  onClick
 }: TTable<T>) => {
   return (
     <ContentTable>
-      <AntTable
-        className={`${className || ''} tableStyleOne`}
+      <VirtualizedList
+        banner={false}
+        data={data}
         columns={columns}
-        dataSource={data || []}
+        serverSide
         loading={loading}
-        {...restProps}
+        requestAmount={40}
+        missingToMakeRequest={1}
+        onFetch={onFetch}
+        orderable
+        filterable={false}
+        noDuplicateKeys
+        identifierId="id-row"
+        onContextMenu={onContextMenu}
+        pagination={pagination}
+        onKeyDown={onKeyDown}
+        onClick={onClick}
       />
     </ContentTable>
   );

@@ -1,0 +1,1 @@
+export { useUserMethodPayments } from './useUserMethodPayments';

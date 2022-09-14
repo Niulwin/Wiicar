@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 type TProps = {
-  color?: 'textPrimary' | 'textSecondary' | 'primary' | 'secondary' | 'light';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'textPrimary'
+    | 'textSecondary'
+    | 'light'
+    | 'error'
+    | 'success'
+    | 'info'
+    | 'disabled';
   align?: 'center' | 'left' | 'right';
 };
 

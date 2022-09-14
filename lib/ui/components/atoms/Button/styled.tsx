@@ -1,17 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
+import { ButtonSize } from './types';
 
 export const ContentButton = styled.div<{
   variant?: 'text' | 'contained' | 'outlined';
-  background?: 'primary' | 'secondary';
+  background?: 'primary' | 'secondary' | 'error' | 'success' | 'info';
+  size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
 }>`
+  user-select: none;
   display: flex;
-  width: auto;
+  width: ${({ size }) => ButtonSize[size || 'auto']};
   height: auto;
   padding: 4px 8px;
   margin: 4px;
   text-align: center;
   align-items: center;
+  justify-content: center;
   background-color: ${({ variant, theme, background }) =>
     variant === 'contained'
       ? theme.colors[background || 'primary'].main
@@ -30,8 +34,16 @@ export const ContentButton = styled.div<{
   }
 `;
 export const Icon = styled(FontAwesomeIcon)<{
-  color?: 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'light';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'textPrimary'
+    | 'textSecondary'
+    | 'light'
+    | 'error'
+    | 'success'
+    | 'info';
+  isMargin?: boolean;
 }>`
   color: ${({ color, theme }) => theme.colors.text[color || 'textPrimary']};
-  margin-right: 5px;
 `;
