@@ -19,12 +19,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && turbo run lint --location=global && prettier --write . && git add -A ."
+      "pre-commit": "lint-staged && prettier --write . && git add -a ."
     }
   },
   "lint-staged": {
     "*.{ts}": [
-      "eslint --fix"
+      "turbo run lint"
     ]
   },
   "devDependencies": {
