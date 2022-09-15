@@ -1,32 +1,22 @@
-FROM node:alpine AS base
-RUN apk update && apk add git
+FROM node:16-alpine
 
-## Globally install turbo
-RUN npm i -g turbo
+ENV NODE_ENV development
 
-# Prune the workspace for the `app-yafuz` app
-FROM base as pruner
+#add turborepo
+RUN yarn global add turbo
+
+# Set working directory
 WORKDIR /app
+
+# Install app dependencies
+COPY  ["yarn.lock", "package.json", "./"]
+
+# Copy source files
 COPY . .
-RUN turbo prune --scope=app-yafuz --scope=eslint-config-custom --docker
 
-# Add pruned lockfile and package.json's of the pruned subworkspace
-FROM base AS installer
-WORKDIR /app
-COPY --from=pruner /app/out/json/ .
-COPY --from=pruner /app/out/yarn.lock ./yarn.lock
-# Install only the deps needed to build the target
+# Install app dependencies
 RUN yarn install
 
-# Copy source code of pruned subworkspace and build
-FROM base as builder
-WORKDIR /app
-COPY --from=pruner /app/.git ./.git
-COPY --from=pruner /app/out/full/ .
-COPY --from=installer /app/ .
-RUN turbo run build --scope=app-yafuz
+EXPOSE 3081
 
-# Start the app
-FROM builder as runner
-EXPOSE 3000
-RUN ['yarn', '--cwd', 'apps/app-yafuz', 'start']
+CMD ["yarn", "start"]

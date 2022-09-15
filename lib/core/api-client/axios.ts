@@ -36,10 +36,7 @@ export class AxiosClient {
    */
   public static getInstance(urlBase?: string, token?: string): AxiosClient {
     if (!AxiosClient.instance) {
-      AxiosClient.instance = new AxiosClient(
-        urlBase || '',
-        token || localStorage.getItem('session') || ''
-      );
+      AxiosClient.instance = new AxiosClient(urlBase || '', token || '');
     }
 
     return AxiosClient.instance;

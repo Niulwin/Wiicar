@@ -1,11 +1,10 @@
 version: '3.6'
 services:
-  yafuz_frontend:
-    container_name: yafuz_frontend
+  app_yafuz_frontend:
+    container_name: app_yafuz_frontend
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
-      - '3001:3001'
+      - '3080:3080'
     restart: always

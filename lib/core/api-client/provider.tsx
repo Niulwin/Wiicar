@@ -15,7 +15,10 @@ export const QueryClientProvider = ({
 }: {
   children: JSX.Element | JSX.Element[];
 }) => {
-  const client = AxiosClient.getInstance(process.env.API_URL as string);
+  const client = AxiosClient.getInstance(
+    process.env.API_URL as string,
+    localStorage.getItem('session') || ''
+  );
 
   return (
     <QueryClientContext.Provider value={{ client }}>
