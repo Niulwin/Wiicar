@@ -1,6 +1,6 @@
 import { IUserMethodPayments, useTranslate } from 'core';
 import { FC } from 'react';
-import { Button, Content, FlexContainer, Table, Typography } from 'ui';
+import { Button, Card, Content, FlexContainer, Table, Typography } from 'ui';
 import { useUserMethodPayments } from './hooks';
 import { useConfig } from './hooks/useConfig';
 
@@ -23,11 +23,13 @@ export const MyAccountsView: FC = () => {
         />
       </Content>
       <FlexContainer padding="0">
-        <Table<IUserMethodPayments>
-          loading={isLoading}
-          columns={columns}
-          data={data?.data || []}
-        />
+        <Card>
+          <Table<IUserMethodPayments>
+            loading={isLoading}
+            columns={columns}
+            data={data?.data || []}
+          />
+        </Card>
       </FlexContainer>
     </Content>
   );
