@@ -19,7 +19,13 @@ export const useQuery = <TData, TError = Record<string, unknown>>(
 
   return useReactQuery([key], () => axios.get(path).then((res) => res.data), {
     onError: (err: any) => {
-      message.warn(translate(err?.response?.data?.err_code));
+      message.warn(
+        `global.${translate(
+          err?.response?.data?.err_code ||
+            err?.message ||
+            'error.occurred_error'
+        )}`
+      );
     }
   });
 };
@@ -40,7 +46,15 @@ export const useMutation = <T, R = Record<string, unknown>>(
     (args) => axios.post<T, any>({ path, args }).then((res) => res.data),
     {
       onError: (err: any) => {
-        message.warn(translate(err?.response?.data?.err_code));
+        message.warn(
+          translate(
+            `global.${translate(
+              err?.response?.data?.err_code ||
+                err?.message ||
+                'error.occurred_error'
+            )}`
+          )
+        );
       },
       onSuccess: (resData) => options?.onSuccess(resData)
     }
@@ -62,7 +76,15 @@ export const useLazyQuery = <T, R = Record<string, unknown>>(
     () => axios.get<any>(path).then((res) => res.data),
     {
       onError: (err: any) => {
-        message.warn(translate(err?.response?.data?.err_code));
+        message.warn(
+          translate(
+            `global.${translate(
+              err?.response?.data?.err_code ||
+                err?.message ||
+                'error.occurred_error'
+            )}`
+          )
+        );
       },
       onSuccess: (resData) => options?.onSuccess(resData)
     }

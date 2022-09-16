@@ -17,6 +17,7 @@ export const global = {
     my_profile: 'My perfil'
   },
   error: {
-    occurred_error: 'Lo sentimos ha ocurrido un error'
+    occurred_error: 'Lo sentimos ha ocurrido un error',
+    session_expired: 'Su sesión ha expirado'
   }
 };
