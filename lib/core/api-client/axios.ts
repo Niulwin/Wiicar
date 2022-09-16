@@ -57,11 +57,7 @@ export class AxiosClient {
   ): Promise<
     Partial<AxiosResponse<T, any>> & { error?: boolean; message?: string }
   > {
-    try {
-      return await this.axiosClient.get(path);
-    } catch (error: any) {
-      throw { error: true, message: 'No se han podido cargar los datos' };
-    }
+    return this.axiosClient.get(path);
   }
 
   /**

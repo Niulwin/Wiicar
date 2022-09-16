@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { useAuth } from '../../auth';
-import { Header, SideBar } from './components';
+import { Header, SideBar } from '../components';
 import { ChildrenBox, Container, Logo } from './styled';
 
 export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
@@ -30,7 +30,9 @@ export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
         currentUser={currentUser}
         hiddenLogin={hiddenLogin}
       />
-      {!hiddenSidebars && <SideBar showAside={showAside} />}
+      {!hiddenSidebars && (
+        <SideBar showAside={showAside} isSession={isSession} />
+      )}
       <ChildrenBox>{children}</ChildrenBox>
     </Container>
   );
