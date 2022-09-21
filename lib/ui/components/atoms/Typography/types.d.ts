@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
 export type TypographyVariant = {
   h1: FC<TTypography>;
@@ -12,11 +12,13 @@ export type TypographyVariant = {
   body2: FC<TTypography>;
   caption: FC<TTypography>;
   caption2: FC<TTypography>;
+  caption3: FC<TTypography>;
 };
 
 export type TTypography = {
   children: JSX.Element | JSX.Element[] | string;
   variant: keyof TypographyVariant;
+  style?: CSSProperties;
   color?:
     | 'primary'
     | 'secondary'

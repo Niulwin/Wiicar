@@ -2,10 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { ButtonSize } from './types';
 
-export const ContentButton = styled.div<{
+export const ContentButton = styled.button<{
   variant?: 'text' | 'contained' | 'outlined';
   background?: 'primary' | 'secondary' | 'error' | 'success' | 'info';
   size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
+  type?: 'submit' | 'button';
 }>`
   user-select: none;
   display: flex;

@@ -27,8 +27,6 @@ export const Table = <T extends object>({
         onFetch={onFetch}
         orderable
         filterable={false}
-        noDuplicateKeys
-        identifierId="id-row"
         onContextMenu={onContextMenu}
         pagination={pagination}
         onKeyDown={onKeyDown}

@@ -1,11 +1,13 @@
-import { useI18n } from 'core';
+import { IUserMethodPayments, TPagination, useI18n } from 'core';
 import { useEffect, useState } from 'react';
 import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
 
 export const useConfig = ({
-  translate
+  translate,
+  data
 }: {
   translate: (key: string) => string;
+  data?: TPagination<IUserMethodPayments>;
 }) => {
   const { language } = useI18n();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
@@ -22,7 +24,7 @@ export const useConfig = ({
         }
       },
       {
-        name: translate('my_accounts.name'),
+        name: translate('my_accounts.code'),
         width: 25,
         accessor: 'methodPayment.code'
       },
@@ -50,7 +52,7 @@ export const useConfig = ({
         }
       }
     ]);
-  }, [theme, language]);
+  }, [theme, language, data?.total]);
 
   return { columns };
 };

@@ -3,7 +3,9 @@ import { CSSProperties, MouseEventHandler } from 'react';
 
 export type TButtonProps = {
   style?: CSSProperties;
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  loading?: boolean;
+  type?: 'submit' | 'button';
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   iconLeft?: IconProp;
   children?: JSX.Element | JSX.Element[];
   title?: string;

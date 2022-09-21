@@ -7,14 +7,18 @@ export const FlexContainer: FC<TFlexContainerProps> = ({
   justify,
   align,
   padding,
-  direction
+  direction,
+  position,
+  width
 }: TFlexContainerProps) => {
   return (
     <Flex
+      width={width}
       justify={justify}
       direction={direction}
       align={align}
       padding={padding}
+      position={position}
     >
       {children}
     </Flex>

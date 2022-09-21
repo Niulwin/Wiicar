@@ -134,3 +134,14 @@ export const TypographyCaption2 = styled.span<TProps>`
   line-height: 1.75;
   letter-spacing: 0.01071em;
 `;
+
+export const TypographyCaption3 = styled.span<TProps>`
+  text-align: ${({ align }) => align || 'left'};
+  color: ${({ theme, color }) => theme.colors.text[color || 'textPrimary']};
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 300;
+  font-size: 0.675rem;
+  line-height: 1.75;
+  letter-spacing: 0.01071em;
+`;

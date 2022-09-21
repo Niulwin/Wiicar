@@ -4,6 +4,7 @@ import {
   TypographyBody2,
   TypographyCaption,
   TypographyCaption2,
+  TypographyCaption3,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -47,6 +48,9 @@ const TypographySchema: TypographyVariant = {
   ),
   caption2: (props: TTypography) => (
     <TypographyCaption2 {...props}>{props.children}</TypographyCaption2>
+  ),
+  caption3: (props: TTypography) => (
+    <TypographyCaption3 {...props}>{props.children}</TypographyCaption3>
   )
 };
 

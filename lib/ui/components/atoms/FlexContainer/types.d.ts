@@ -13,5 +13,7 @@ export type TFlexContainerProps = {
     | 'space-between'
     | 'space-around';
   padding?: string;
+  position?: 'absolute' | 'relative' | 'fixed';
   direction?: 'column' | 'row' | 'row-reverse';
+  width?: string | number;
 };

@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled, { keyframes } from 'styled-components';
+import { TLoadingProps } from './types';
 
 const Animation = keyframes`
   0% { transform: rotate(0); }
@@ -12,9 +13,7 @@ export const SpinnerContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const Spinner = styled(FontAwesomeIcon)<{
-  color?: 'primary' | 'secondary';
-}>`
-  color: ${({ theme, color }) => theme.colors[color || 'primary'].main};
+export const Spinner = styled(FontAwesomeIcon)<Pick<TLoadingProps, 'color'>>`
+  color: ${({ theme, color }) => theme.colors.text[color || 'primary']};
   animation: ${Animation} 1s infinite;
 `;

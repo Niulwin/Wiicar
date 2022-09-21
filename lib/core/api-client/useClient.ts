@@ -34,8 +34,8 @@ export const useMutation = <T, R = Record<string, unknown>>(
   key: string,
   path: string,
   options?: {
-    onSuccess: (resData: R) => void;
-    onError: (err: any) => void;
+    onSuccess?: (resData?: R) => void;
+    onError?: (err?: any) => void;
   }
 ): UseMutationResult<{ data: R }, { error: boolean }, T> => {
   const translate = useTranslate();
@@ -50,13 +50,15 @@ export const useMutation = <T, R = Record<string, unknown>>(
           translate(
             `global.${translate(
               err?.response?.data?.err_code ||
-                err?.message ||
-                'error.occurred_error'
+                (err.response?.status === 500
+                  ? 'error.occurred_error'
+                  : err?.message)
             )}`
           )
         );
       },
-      onSuccess: (resData) => options?.onSuccess(resData)
+      onSuccess: (resData) =>
+        options?.onSuccess ? options?.onSuccess(resData) : undefined
     }
   );
 };

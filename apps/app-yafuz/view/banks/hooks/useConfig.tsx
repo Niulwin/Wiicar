@@ -1,11 +1,13 @@
-import { IMethodPayments, useI18n } from 'core';
+import { IMethodPayments, TPagination, useI18n } from 'core';
 import { useEffect, useState } from 'react';
 import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
 
 export const useConfig = ({
-  translate
+  translate,
+  data
 }: {
   translate: (key: string) => string;
+  data?: TPagination<IMethodPayments>;
 }) => {
   const { language } = useI18n();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
@@ -37,7 +39,7 @@ export const useConfig = ({
         render: () => <ActionTableOptions buttons={['delete']} />
       }
     ]);
-  }, [theme, language]);
+  }, [theme, language, data?.total]);
 
   return { columns };
 };

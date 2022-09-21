@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Loading } from '../Loading';
 import { Typography } from '../Typography';
 import { ContentButton, Icon } from './styled';
 import { TButtonProps } from './types';
@@ -6,21 +7,24 @@ import { TButtonProps } from './types';
 export const Button: FC<TButtonProps> = ({
   onClick,
   title,
+  type,
   children,
   variant,
   color,
   iconLeft,
   style,
   background,
-  size
+  size,
+  loading
 }: TButtonProps) => {
   return (
     <ContentButton
       size={size}
       style={style}
       variant={variant || 'contained'}
-      onClick={onClick}
+      onClick={(e) => (!loading && onClick ? onClick(e) : null)}
       background={background}
+      type={type || 'button'}
     >
       {iconLeft && (
         <Icon
@@ -36,7 +40,7 @@ export const Button: FC<TButtonProps> = ({
         }
         variant="caption"
       >
-        {title || ''}
+        {loading ? <Loading color={color} /> : title || ''}
       </Typography>
       {children}
     </ContentButton>

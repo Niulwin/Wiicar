@@ -7,7 +7,6 @@ export const login = {
   change_language: 'Change language',
   install_metamask: 'Please install metamask',
   forgot_password: 'Forgot password?',
-  invalid_credentials: 'Invalid credentials',
   fields: {
     email: 'User email',
     password: 'Password'

@@ -7,6 +7,8 @@ export const global = {
     Spanish: 'Español',
     English: 'Inglés'
   },
+  cancel: 'Cancelar',
+  accept: 'Aceptar',
   menu_options: {
     home: 'Inicio',
     offers_list: 'Listado de ofertas',
@@ -18,6 +20,11 @@ export const global = {
   },
   error: {
     occurred_error: 'Lo sentimos ha ocurrido un error',
-    session_expired: 'Su sesión ha expirado'
+    session_expired: 'Su sesión ha expirado',
+    invalid_credentials: 'Credenciales inválidas',
+    input: {
+      required: 'Este campo es requerido',
+      numeric: 'Este campo es numérico'
+    }
   }
 };

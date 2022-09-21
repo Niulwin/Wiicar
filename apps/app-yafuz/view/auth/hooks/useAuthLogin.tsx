@@ -28,10 +28,12 @@ export const useAuthLogin = () => {
         throw new Error(t('global.error.occurred_error'));
 
       loginMutate({ address_wallet: resp[0] });
+      setLoading(false);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setLoading(false);
-      message.error(err.message);
+      console.log(err);
+      message.error(err?.message || t('global.error.occurred_error'));
     }
   };
 
