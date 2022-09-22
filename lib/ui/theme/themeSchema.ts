@@ -31,6 +31,10 @@ export type TColors = {
     main: string;
     secondary: string;
   };
+  disabled: {
+    main: string;
+    secondary: string;
+  };
   error: {
     main: string;
     secondary: string;
@@ -78,6 +82,10 @@ export const lightTheme: TDefaultTheme = {
     border: {
       main: '#f1f1f1',
       secondary: '#e57373'
+    },
+    disabled: {
+      main: '#d7baba',
+      secondary: '#d7baba'
     },
     error: {
       main: '#f44336',
@@ -128,6 +136,10 @@ export const darkTheme: TDefaultTheme = {
     border: {
       main: '#c2e0ff14',
       secondary: '#ffffff'
+    },
+    disabled: {
+      main: '#d7baba',
+      secondary: '#d7baba'
     },
     error: {
       main: '#d32f2f',

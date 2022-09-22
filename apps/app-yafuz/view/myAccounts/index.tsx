@@ -13,7 +13,7 @@ import { CreateAccount } from './CreateAccount';
 import { useUserMethodPayments } from './hooks';
 import { useConfig } from './hooks/useConfig';
 
-export const MyAccountsView: FC = () => {
+export const MyAccounts: FC = () => {
   const [showModal, setShowModal] = useState(false);
   const translate = useTranslate();
   const { data, isLoading, refetch } = useUserMethodPayments();
@@ -23,7 +23,7 @@ export const MyAccountsView: FC = () => {
     <Content>
       <Modal
         footer={false}
-        title={translate('offers_list.action_creator')}
+        title={translate('my_accounts.action_creator')}
         isVisible={showModal}
         onCancel={() => setShowModal(false)}
       >

@@ -4,7 +4,7 @@ import { Button, Card, Content, Modal, Table, Typography } from 'ui';
 import { CreateBank } from './CreateBank';
 import { useConfig, useMethodPayments } from './hooks';
 
-export const BanksView: FC = () => {
+export const Banks: FC = () => {
   const [showModal, setShowModal] = useState(false);
   const translate = useTranslate();
   const { data, isLoading, refetch } = useMethodPayments();

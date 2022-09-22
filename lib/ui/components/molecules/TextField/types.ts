@@ -12,6 +12,7 @@ export type TTextField<IFormValues extends object> = {
   register?: UseFormRegister<IFormValues>;
   validate?: {
     required?: boolean;
+    numeric?: boolean;
   };
 };
 

@@ -1,5 +1,6 @@
 export const login = {
   login: 'LogIn',
+  logout: 'logout',
   login_yafuz: 'Yafuz Account Login',
   login_with: 'Or login with',
   successful: 'Login successful',

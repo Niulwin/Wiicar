@@ -4,7 +4,7 @@ import { Content, Typography } from 'ui';
 import { InfoTable } from './components/infoTable';
 import { SectionMenu } from './components/optionMenu';
 
-export const HomeView: FC = () => {
+export const Home: FC = () => {
   const translate = useTranslate();
 
   return (

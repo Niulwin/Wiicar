@@ -28,7 +28,11 @@ export const TextField = <IFormValues extends object>({
         onChange={onChange}
         value={value}
       />
-      <Typography style={{ padding: 2 }} color="error" variant="caption3">
+      <Typography
+        style={{ padding: 2, minHeight: 30 }}
+        color="error"
+        variant="caption3"
+      >
         {error?.type === 'required'
           ? translate(TextFieldValidationsMessage.required)
           : ''}

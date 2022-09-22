@@ -6,6 +6,7 @@ export { InitConfigTable } from 'wvl-virtualized-list';
 
 export const Table = <T extends object>({
   columns,
+  count,
   data,
   loading,
   onFetch,
@@ -17,14 +18,11 @@ export const Table = <T extends object>({
   return (
     <ContentTable>
       <VirtualizedList
+        showEntries={1000}
         banner={false}
         data={data}
         columns={columns}
-        serverSide
         loading={loading}
-        requestAmount={40}
-        missingToMakeRequest={1}
-        onFetch={onFetch}
         orderable
         filterable={false}
         onContextMenu={onContextMenu}

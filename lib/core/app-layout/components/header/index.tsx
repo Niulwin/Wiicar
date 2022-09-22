@@ -11,7 +11,8 @@ import { THeaderProps } from './types';
 export const Header: FC<THeaderProps> = ({
   hiddenLogin,
   currentUser,
-  isSession
+  isSession,
+  logout
 }: THeaderProps) => {
   const translate = useTranslate();
   const router = useRouter();
@@ -64,6 +65,15 @@ export const Header: FC<THeaderProps> = ({
               size="1x"
             />
           </Button>
+          {hiddenLogin ||
+            (isSession && (
+              <Button
+                variant="text"
+                iconLeft="power-off"
+                color="error"
+                onClick={() => logout()}
+              />
+            ))}
         </FlexContainer>
       </Section>
     </Head>

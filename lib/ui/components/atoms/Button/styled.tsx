@@ -4,7 +4,13 @@ import { ButtonSize } from './types';
 
 export const ContentButton = styled.button<{
   variant?: 'text' | 'contained' | 'outlined';
-  background?: 'primary' | 'secondary' | 'error' | 'success' | 'info';
+  background?:
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'success'
+    | 'info'
+    | 'disabled';
   size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
   type?: 'submit' | 'button';
 }>`

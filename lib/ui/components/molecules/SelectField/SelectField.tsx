@@ -19,23 +19,36 @@ export const SelectField = <IFormValues extends object>({
   const translate = useTranslate();
 
   return (
-    <FlexContainer width={width} padding="0" align="flex-start">
+    <FlexContainer
+      width={width}
+      padding="0"
+      justify="flex-start"
+      align="flex-start"
+    >
       <Typography style={{ padding: 5 }} variant="body1">
         {label}
       </Typography>
       <Select
+        defaultValue=""
         {...(register ? register(name, validate) : {})}
         placeholder={placeholder}
         onChange={onChange}
         value={value}
       >
+        <option value="" disabled hidden>
+          {translate('global.choose')}
+        </option>
         {options?.map((x) => (
           <option key={x.value} value={x.value}>
             {x.label}
           </option>
         ))}
       </Select>
-      <Typography style={{ padding: 2 }} color="error" variant="caption3">
+      <Typography
+        style={{ padding: 2, minHeight: 30 }}
+        color="error"
+        variant="caption3"
+      >
         {error?.type === 'required'
           ? translate(SelectFieldValidationsMessage.required)
           : ''}

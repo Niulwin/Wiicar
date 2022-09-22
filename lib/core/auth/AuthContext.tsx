@@ -1,5 +1,6 @@
+import { useRouter } from 'next/router';
 import { createContext, FC, useState } from 'react';
-import { useClient, useLazyQuery } from '../api-client';
+import { useClient, useLazyQuery, useQueryClient } from '../api-client';
 import { TCurrentUser } from '../entities/auth';
 import { TAuthContext, TAuthProviderProps, TTokens } from './types';
 
@@ -8,6 +9,8 @@ export const AuthContext = createContext<TAuthContext>({} as TAuthContext);
 const AuthProvider: FC<TAuthProviderProps> = ({
   children
 }: TAuthProviderProps) => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
   const [tokens, setTokens] = useState<TTokens>({ authorization: undefined });
   const [isSession, setIsSession] = useState(
     () => !!localStorage.getItem('session')
@@ -16,7 +19,9 @@ const AuthProvider: FC<TAuthProviderProps> = ({
   const { mutate: getCurrentUser, data: currentUser } = useLazyQuery<
     null,
     TCurrentUser
-  >('auth.currentUser', 'auth/current-user');
+  >('auth.currentUser', 'auth/current-user', {
+    onError: (err) => err.message === 'jwt expired' && handleLogout()
+  });
 
   const handleLogin = (responseTokens: TTokens, callback: () => void): void => {
     if (!responseTokens.authorization)
@@ -29,6 +34,13 @@ const AuthProvider: FC<TAuthProviderProps> = ({
     callback();
   };
 
+  const handleLogout = () => {
+    queryClient.clear();
+    setIsSession(false);
+    localStorage.removeItem('session');
+    router.push('/auth/login');
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -36,7 +48,8 @@ const AuthProvider: FC<TAuthProviderProps> = ({
         isSession,
         currentUser: currentUser,
         getCurrentUser: () => getCurrentUser(null),
-        handleLogin
+        handleLogin,
+        handleLogout
       }}
     >
       {children}

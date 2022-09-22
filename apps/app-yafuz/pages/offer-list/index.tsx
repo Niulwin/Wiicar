@@ -1,8 +1,19 @@
+import { useTranslate } from 'core';
+import Head from 'next/head';
 import { ReactElement } from 'react';
-import { OfferListView } from '../../view/offerListView';
+import { OfferList } from 'view/offerList';
 
-function OfferList(): ReactElement {
-  return <OfferListView />;
+function OfferListPage(): ReactElement {
+  const translate = useTranslate();
+
+  return (
+    <>
+      <Head>
+        <title>Yafuz - {translate('global.menu_options.offers_list')}</title>
+      </Head>
+      <OfferList />
+    </>
+  );
 }
 
-export default OfferList;
+export default OfferListPage;

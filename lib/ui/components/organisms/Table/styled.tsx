@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ContentTable = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
-  height: 500px;
+  min-height: 500px;
+  height: 80vh;
   width: 100%;
 `;

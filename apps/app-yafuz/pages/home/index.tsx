@@ -1,8 +1,19 @@
+import { useTranslate } from 'core';
+import Head from 'next/head';
 import { ReactElement } from 'react';
-import { HomeView } from '../../view/home';
+import { Home } from 'view/home';
 
-function Home(): ReactElement {
-  return <HomeView />;
+function HomePage(): ReactElement {
+  const translate = useTranslate();
+
+  return (
+    <>
+      <Head>
+        <title>Yafuz - {translate('global.menu_options.home')}</title>
+      </Head>
+      <Home />
+    </>
+  );
 }
 
-export default Home;
+export default HomePage;

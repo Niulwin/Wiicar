@@ -1,21 +1,29 @@
-import { ISales, useI18n } from 'core';
+import { IInvoices, useI18n } from 'core';
 import { useEffect, useState } from 'react';
-import { ActionTableOptions, TTableColumns, Typography, useTheme } from 'ui';
+import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
+import { TUseConfig } from './types';
 
 const STATUS = {
   SELL: 'error',
   ENABLE: 'success',
   PROGRESS: 'info',
-  DISABLED: 'disabled'
+  DISABLED: 'disabled',
+  PAYMENT: 'success',
+  CANCEL_BUYER: 'warning',
+  CANCEL_SELLER: 'warning',
+  APPROVAL: 'info'
 };
 export const useConfig = ({
-  translate
-}: {
-  translate: (key: string) => string;
-}) => {
+  translate,
+  handleCancelBuyer,
+  loadingCancelBuyer,
+  handlePaymentBuyer,
+  loadingPaymentBuyer
+}: TUseConfig) => {
   const { language } = useI18n();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
   const { theme } = useTheme();
+  const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     setColumns([
@@ -23,26 +31,33 @@ export const useConfig = ({
         name: '#',
         width: 40,
         fixed: true,
-        render: (_row: ISales, index: number) => {
+        render: (_row: IInvoices, index: number) => {
           return index + 1;
         }
       },
       {
         name: translate('my_shopping.buyer'),
-        width: 20,
-        render: (row: ISales) => {
-          return `${row?.user?.nombre} ${row?.user?.apellidos}`;
+        width: 15,
+        render: (row: IInvoices) => {
+          return `${row?.buyer?.nombre} ${row?.buyer?.apellidos}`;
+        }
+      },
+      {
+        name: translate('my_shopping.seller'),
+        width: 15,
+        render: (row: IInvoices) => {
+          return `${row?.seller?.nombre} ${row?.seller?.apellidos}`;
         }
       },
       {
         name: translate('my_shopping.method_payment'),
         accessor: 'sale.userMethodPayment.methodPayment.name',
-        width: 20
+        width: 15
       },
       {
         name: translate('my_shopping.price'),
         accessor: 'sale.price',
-        width: 10
+        width: 15
       },
       {
         name: translate('my_shopping.quantity'),
@@ -51,8 +66,8 @@ export const useConfig = ({
       },
       {
         name: translate('my_shopping.status.name'),
-        width: 20,
-        render: (row: ISales) => {
+        width: 15,
+        render: (row: IInvoices) => {
           return (
             <Typography
               align="center"
@@ -66,13 +81,44 @@ export const useConfig = ({
       },
       {
         name: translate('global.actions'),
-        width: 20,
-        render: () => {
-          return <ActionTableOptions buttons={['info', 'delete', 'check']} />;
+        width: 15,
+        render: (item: IInvoices) => {
+          return (
+            <FlexContainer justify="center" direction="row">
+              <Button
+                disabled={item.state !== 'PROGRESS'}
+                loading={invoiceId === item.id && loadingPaymentBuyer}
+                onClick={() => {
+                  setInvoiceId(item.id);
+                  handlePaymentBuyer({ invoiceId: item.id, photo: 'algo.jpg' });
+                }}
+                size="xs"
+                iconLeft="file-upload"
+                variant="contained"
+                background="info"
+                color="light"
+                tooltip={translate('my_shopping.upload_payment_file')}
+              />
+              <Button
+                disabled={item.state !== 'PROGRESS'}
+                loading={invoiceId === item.id && loadingCancelBuyer}
+                onClick={() => {
+                  setInvoiceId(item.id);
+                  handleCancelBuyer({ invoiceId: item.id });
+                }}
+                size="xs"
+                iconLeft="ban"
+                variant="contained"
+                background="error"
+                color="light"
+                tooltip={translate('global.cancel')}
+              />
+            </FlexContainer>
+          );
         }
       }
     ]);
-  }, [theme, language]);
+  }, [theme, language, loadingCancelBuyer, loadingPaymentBuyer]);
 
   return { columns };
 };

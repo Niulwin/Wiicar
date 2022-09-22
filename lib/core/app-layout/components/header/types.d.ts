@@ -4,4 +4,5 @@ export type THeaderProps = {
   hiddenLogin?: boolean;
   isSession: boolean;
   currentUser?: TCurrentUser;
+  logout: () => void;
 };

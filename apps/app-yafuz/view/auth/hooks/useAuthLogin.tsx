@@ -9,10 +9,10 @@ export const useAuthLogin = () => {
   const { handleSessionWithMetamask } = useLogin();
   const { handleLogin: signIn } = useAuth();
 
-  const onSuccess = ({ token }: { token: string }) => {
+  const onSuccess = (resp?: { token: string }) => {
     message.success(t('login.successful'));
     setLoading(false);
-    signIn({ authorization: token }, () => (location.href = '/'));
+    signIn({ authorization: resp?.token }, () => (location.href = '/'));
   };
 
   const { mutate: loginMutate } = useMutation<

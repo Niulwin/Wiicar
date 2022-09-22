@@ -3,5 +3,6 @@ export const offers_list = {
   name: 'User',
   method_payment: 'Method Payment',
   price: 'Price',
-  quantity: 'Quantity'
+  quantity: 'Quantity',
+  buy: 'Buy'
 };

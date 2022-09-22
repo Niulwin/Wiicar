@@ -19,7 +19,7 @@ export class AxiosClient {
     this.urlBase = API_URL;
     this.axiosClient = Axios.create({
       baseURL: API_URL,
-      timeout: 1000,
+      timeout: 5000,
       headers: {
         'Content-Type': 'application/json',
         Accept: '*/*',

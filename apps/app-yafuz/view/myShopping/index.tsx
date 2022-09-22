@@ -1,12 +1,27 @@
 import { IInvoices, useTranslate } from 'core';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { Button, Content, FlexContainer, Table, Typography } from 'ui';
 import { useConfig, useInvoices } from './hooks';
 
-export const MyShoppingView: FC = () => {
-  const { data, isLoading } = useInvoices();
+export const MyShopping: FC = () => {
   const translate = useTranslate();
-  const { columns } = useConfig({ translate });
+  const {
+    data,
+    isLoading,
+    handleCancelBuyer,
+    loadingCancelBuyer,
+    handlePaymentBuyer,
+    loadingPaymentBuyer
+  } = useInvoices({ translate });
+  const router = useRouter();
+  const { columns } = useConfig({
+    translate,
+    handleCancelBuyer,
+    loadingCancelBuyer,
+    handlePaymentBuyer,
+    loadingPaymentBuyer
+  });
 
   return (
     <Content>
@@ -16,7 +31,7 @@ export const MyShoppingView: FC = () => {
         </Typography>
         <Button
           color="light"
-          onClick={() => console.log('w')}
+          onClick={() => router.push('offer-list')}
           title={translate('my_shopping.action_creator')}
           iconLeft="plus"
         />

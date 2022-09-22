@@ -4,11 +4,16 @@ export const my_sales = {
   method_payment: 'Payment method',
   price: 'Price',
   quantity: 'Quantity',
+  approve: 'Approve',
   status: {
     name: 'State',
     SELL: 'Sell',
     ENABLE: 'Available',
     PROGRESS: 'In progress',
-    DISABLED: 'Inactive'
+    DISABLED: 'Inactive',
+    PAYMENT: 'Payment',
+    APPROVAL: 'Approve',
+    CANCEL_BUYER: 'Cancel Buyer',
+    CANCEL_SELLER: 'Cancel Seller'
   }
 };

@@ -14,7 +14,7 @@ export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
   hiddenLogin?: boolean;
 }) => {
   const [showAside] = useState(true);
-  const { isSession, currentUser, ...res } = useAuth();
+  const { isSession, currentUser, handleLogout, ...res } = useAuth();
 
   useEffect(() => {
     isSession && res.getCurrentUser();
@@ -26,12 +26,13 @@ export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
         <Image src="/logo.svg" alt="logo" width={90} height={100} />
       </Logo>
       <Header
+        logout={handleLogout}
         isSession={isSession}
         currentUser={currentUser}
         hiddenLogin={hiddenLogin}
       />
       {!hiddenSidebars && (
-        <SideBar showAside={showAside} isSession={isSession} />
+        <SideBar isSession={isSession} showAside={showAside} />
       )}
       <ChildrenBox>{children}</ChildrenBox>
     </Container>

@@ -15,18 +15,21 @@ export const Button: FC<TButtonProps> = ({
   style,
   background,
   size,
-  loading
+  loading,
+  tooltip,
+  disabled
 }: TButtonProps) => {
   return (
     <ContentButton
+      title={tooltip}
       size={size}
       style={style}
       variant={variant || 'contained'}
-      onClick={(e) => (!loading && onClick ? onClick(e) : null)}
-      background={background}
+      onClick={(e) => (!loading && !disabled && onClick ? onClick(e) : null)}
+      background={disabled ? 'disabled' : background}
       type={type || 'button'}
     >
-      {iconLeft && (
+      {!loading && iconLeft && (
         <Icon
           size="1x"
           icon={iconLeft}

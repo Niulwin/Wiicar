@@ -6,6 +6,7 @@ export interface TTable<T> {
   className?: string;
   columns: TVColumns[];
   data: T[];
+  count?: number;
   loading?: boolean;
   pagination?: boolean;
   onFetch?: (

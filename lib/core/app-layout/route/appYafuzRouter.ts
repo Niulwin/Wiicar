@@ -53,12 +53,5 @@ export const routes: RoutesInterface[] = [
     path: '/banks',
     icon: 'university',
     isPrivate: true
-  },
-  {
-    key: ID,
-    name: 'global.menu_options.my_profile',
-    path: '/profile',
-    icon: 'user-circle',
-    isPrivate: true
   }
 ];

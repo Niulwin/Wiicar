@@ -7,6 +7,7 @@ export type TAuthContext = {
   currentUser?: TCurrentUser;
   getCurrentUser: () => void;
   handleLogin: (tokens: TTokens, callback: () => void) => void;
+  handleLogout: () => void;
 };
 export type TAuthProviderProps = {
   children: JSX.Element | JSX.Element[];

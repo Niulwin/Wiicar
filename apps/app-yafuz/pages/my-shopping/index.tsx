@@ -1,8 +1,21 @@
+import { useTranslate } from 'core';
+import Head from 'next/head';
 import { ReactElement } from 'react';
-import { MyShoppingView } from '../../view/myShopping';
+import { usePrivateRoute } from 'utils/usePrivateRoute';
+import { MyShopping } from 'view/myShopping';
 
-function MyShopping(): ReactElement {
-  return <MyShoppingView />;
+function MyShoppingPage(): ReactElement {
+  const { mount } = usePrivateRoute({ isPrivate: true });
+  const translate = useTranslate();
+
+  return (
+    <>
+      <Head>
+        <title>Yafuz - {translate('global.menu_options.my_shopping')}</title>
+      </Head>
+      {mount ? <MyShopping /> : null};
+    </>
+  );
 }
 
-export default MyShopping;
+export default MyShoppingPage;

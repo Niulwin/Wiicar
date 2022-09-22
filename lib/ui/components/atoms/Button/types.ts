@@ -4,6 +4,8 @@ import { CSSProperties, MouseEventHandler } from 'react';
 export type TButtonProps = {
   style?: CSSProperties;
   loading?: boolean;
+  disabled?: boolean;
+  tooltip?: string;
   type?: 'submit' | 'button';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   iconLeft?: IconProp;

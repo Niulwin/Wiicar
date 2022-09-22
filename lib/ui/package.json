@@ -19,18 +19,17 @@
     "@storybook/manager-webpack5": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
     "babel-loader": "^8.2.5",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
-    "next": "^12.2.5",
-    "react": "^18.2.0",
     "tsconfig": "*",
     "typescript": "^4.5.2"
   },
   "dependencies": {
     "antd": "^4.22.7",
+    "react": "^18.2.0",
     "wvl-virtualized-list": "^1.1.79"
   }
 }

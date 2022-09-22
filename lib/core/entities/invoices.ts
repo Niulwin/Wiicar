@@ -10,8 +10,10 @@ export interface IInvoices {
   salesId: string;
   photo?: string;
   dateCancel?: string;
-  state: string;
-  userId: string;
+  state: 'PROGRESS' | 'CANCEL_BUYER' | 'CANCEL_SELLER' | 'PAYMENT' | 'APPROVAL';
+  buyerId: string;
+  sellerId: string;
   sale: ISales;
-  user: IUser;
+  buyer: IUser;
+  seller: IUser;
 }

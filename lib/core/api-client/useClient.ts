@@ -3,12 +3,14 @@ import {
   useMutation as useReactMutation,
   UseMutationResult,
   useQuery as useReactQuery,
+  useQueryClient as useReactQueryClient,
   UseQueryResult
 } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { message } from 'ui';
 import { useTranslate } from '../i18n/hooks';
 import { QueryClientContext } from './provider';
+export type { UseMutateFunction } from '@tanstack/react-query';
 
 export const useQuery = <TData, TError = Record<string, unknown>>(
   key: string,
@@ -46,6 +48,7 @@ export const useMutation = <T, R = Record<string, unknown>>(
     (args) => axios.post<T, any>({ path, args }).then((res) => res.data),
     {
       onError: (err: any) => {
+        console.log(err);
         message.warn(
           translate(
             `global.${translate(
@@ -67,7 +70,8 @@ export const useLazyQuery = <T, R = Record<string, unknown>>(
   key: string,
   path: string,
   options?: {
-    onSuccess: (resData: R) => void;
+    onSuccess?: (resData: R) => void;
+    onError?: (resData: any) => void;
   }
 ): UseMutationResult<R, { error: boolean }, T> => {
   const translate = useTranslate();
@@ -78,6 +82,8 @@ export const useLazyQuery = <T, R = Record<string, unknown>>(
     () => axios.get<any>(path).then((res) => res.data),
     {
       onError: (err: any) => {
+        options?.onError && options.onError(err);
+
         message.warn(
           translate(
             `global.${translate(
@@ -88,7 +94,7 @@ export const useLazyQuery = <T, R = Record<string, unknown>>(
           )
         );
       },
-      onSuccess: (resData) => options?.onSuccess(resData)
+      onSuccess: (resData) => options?.onSuccess && options?.onSuccess(resData)
     }
   );
 };
@@ -97,4 +103,10 @@ export const useClient = () => {
   const { client: axios } = useContext(QueryClientContext);
 
   return (token: string) => axios.setAuthorization(token);
+};
+
+export const useQueryClient = () => {
+  const queryClient = useReactQueryClient();
+
+  return queryClient;
 };

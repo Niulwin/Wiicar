@@ -1,28 +1,20 @@
-import { IInvoices, useTranslate } from 'core';
+import { ISales, useTranslate } from 'core';
 import { FC, useState } from 'react';
 import { Button, Content, FlexContainer, Modal, Table, Typography } from 'ui';
-import { CreateSale } from './CreateSale';
+import { CreateSale } from 'view/mySales/CreateSale';
 import { useConfig, useSales } from './hooks';
 
-export const MySalesView: FC = () => {
-  const translate = useTranslate();
+export const OfferList: FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const {
-    data,
-    isLoading,
-    refetch,
-    handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
-  } = useSales({ translate });
+  const translate = useTranslate();
+  const { data, isLoading, refetch, handleRequest, loadingRequest } = useSales({
+    translate
+  });
   const { columns } = useConfig({
     translate,
     data,
-    handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
+    handleRequest,
+    loadingRequest
   });
 
   return (
@@ -37,7 +29,7 @@ export const MySalesView: FC = () => {
       </Modal>
       <Content noPadding direction="row" justify="space-between" align="center">
         <Typography variant="h6">
-          <>{translate('global.menu_options.my_sales')} &gt;</>
+          <>{translate('global.menu_options.offers_list')} &gt;</>
         </Typography>
         <Button
           color="light"
@@ -47,7 +39,7 @@ export const MySalesView: FC = () => {
         />
       </Content>
       <FlexContainer padding="0">
-        <Table<IInvoices>
+        <Table<ISales>
           loading={isLoading}
           columns={columns}
           data={data?.data || []}
