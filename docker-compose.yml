@@ -1,11 +1,21 @@
 version: '3.6'
 services:
-  yafuz_frontend:
-    container_name: yafuz_frontend
+  yafuz_app:
+    container_name: app
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./apps/app-yafuz/Dockerfile
+    environment:
+      - API_URL='https://api.dev.yafuzgame.com/'
     ports:
-      - '3000:3000'
-      - '3001:3001'
-    restart: always
+      - '3081:3081'
+  # yafuz_presale:
+  #   container_name: presale
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/presale/Dockerfile
+  #   environment:
+  #     - API_URL='https://api.dev.yafuzgame.com/'
+  #   ports:
+  #     - '3082:3000'
+  #   restart: always

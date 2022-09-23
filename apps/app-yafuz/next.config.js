@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withTM = require('next-transpile-modules')(['ui', 'core']);
+const path = require("path");
 
 module.exports = withTM({
+  output: 'standalone',
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, "../../"),
+  },
   reactStrictMode: true,
   compress: true,
   optimizeFonts: true,
@@ -9,6 +14,6 @@ module.exports = withTM({
     styledComponents: true
   },
   env: {
-    API_URL: process.env.API_URL
+    API_URL: process.env.NEXT_PUBLIC_API_URL
   }
 });
