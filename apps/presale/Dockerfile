@@ -1,4 +1,7 @@
-FROM node:alpine AS builder
+# This Dockerfile is copy-pasted into our main docs at /docs/handbook/deploying-with-docker.
+# Make sure you update both files!
+
+FROM node:16-alpine AS builder
 RUN apk update
 # Set working directory
 WORKDIR /app
@@ -10,13 +13,16 @@ RUN turbo prune --scope=presale --docker
 FROM node:alpine AS installer
 RUN apk update
 WORKDIR /app
+
+# First install the dependencies (as they change less often)
+COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
-COPY --from=builder /app/out/full/ .
-COPY .gitignore .gitignore
-COPY turbo.json turbo.json
-
 RUN yarn install
+
+# Build the project
+COPY --from=builder /app/out/full/ .
+COPY turbo.json turbo.json
 RUN yarn turbo run build --filter=presale
 
 FROM node:alpine AS runner
@@ -32,7 +38,10 @@ COPY --from=installer /app/apps/presale/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=installer --chown=nextjs:nodejs /app/apps/presale/public ./apps/presale/public
 COPY --from=installer --chown=nextjs:nodejs /app/apps/presale/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/presale/.next/static ./apps/presale/.next/static
 
+EXPOSE 3082
+ENV PORT 3082
 CMD node apps/presale/server.js
