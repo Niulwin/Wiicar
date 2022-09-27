@@ -1,22 +1,45 @@
 import { useTranslate } from 'core';
-import { FC } from 'react';
-import { Content, StepsView, Typography } from 'ui';
+import { useRouter } from 'next/router';
+import { FC, useEffect, useState } from 'react';
+import { FlexContainer, StepsView, Typography } from 'ui';
+
+//components
+import { Filled } from './components/filled';
+import { GenerateSale } from './components/generateSale';
+import { PendingPayment } from './components/pendingPayment';
+
+const steps = [
+  {
+    title: 'Pago pendiente',
+    component: (props: any) => <PendingPayment />
+  },
+  {
+    title: '¿Liberar criptomoneda al comprador?',
+    component: (props: any) => <GenerateSale />
+  },
+  {
+    title: 'Completado',
+    component: (props: any) => <Filled />
+  }
+];
 
 export const OrderDetails: FC = () => {
   const translate = useTranslate();
+  const router = useRouter();
+  const [active, setActive] = useState<string>('0');
 
-  const menu = [
-    { title: 'Pago pendiente' },
-    {
-      title: '¿Liberar criptomonedas al comprador?'
-    },
-    { title: 'Completado' }
-  ];
+  const handlePage = (index: number) =>
+    router.push({ pathname: '/order-details', query: { page: index } });
+
+  // Effect query page render
+  useEffect(() => {
+    setActive((router.query.page as string) || '0');
+  });
 
   return (
-    <Content>
-      <Content
-        noPadding
+    <FlexContainer>
+      <FlexContainer
+        padding="0"
         direction="column"
         justify="flex-start"
         align="flex-start"
@@ -24,18 +47,22 @@ export const OrderDetails: FC = () => {
         <Typography variant="h6">
           <>{translate('global.menu_options.order_details')} </>
         </Typography>
-        <StepsView menu={menu} />
-        <Content
-          noPadding
+        <StepsView
+          current={Number(active)}
+          onChange={handlePage}
+          menu={steps}
+        />
+        <FlexContainer
+          padding="0"
           direction="column"
           justify="flex-start"
           align="flex-start"
         >
-          <Typography variant="h6">
-            <>{translate('global.menu_options.order_details')} </>
-          </Typography>
-        </Content>
-      </Content>
-    </Content>
+          {steps?.[Number(router?.query?.page || 0)]?.component({
+            handlePage: (index: any) => handlePage(index)
+          })}
+        </FlexContainer>
+      </FlexContainer>
+    </FlexContainer>
   );
 };

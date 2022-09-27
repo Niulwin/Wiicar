@@ -5,4 +5,6 @@ export type TActionTableOptions = {
   onEdit?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onSuccess?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onCheck?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onChange: (index: number) => Promise<boolean>;
+  current: number;
 };

@@ -16,4 +16,5 @@ export type TFlexContainerProps = {
   position?: 'absolute' | 'relative' | 'fixed';
   direction?: 'column' | 'row' | 'row-reverse';
   width?: string | number;
+  gap?: string;
 };
