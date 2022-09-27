@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, PropsWithChildren } from 'react';
 
 export type TypographyVariant = {
   h1: FC<TTypography>;
@@ -15,8 +15,7 @@ export type TypographyVariant = {
   caption3: FC<TTypography>;
 };
 
-export type TTypography = {
-  children: JSX.Element | JSX.Element[] | string;
+export interface TTypography extends PropsWithChildren {
   variant: keyof TypographyVariant;
   style?: CSSProperties;
   color?:
@@ -30,4 +29,4 @@ export type TTypography = {
     | 'info'
     | 'disabled';
   align?: 'center' | 'left' | 'right';
-};
+}

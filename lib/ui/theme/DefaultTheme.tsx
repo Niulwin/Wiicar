@@ -45,7 +45,8 @@ export const DefaultTheme: FC<{ children: JSX.Element | JSX.Element[] }> = ({
           border: 'none',
           margin: '4px 0',
           borderRadius: '0',
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
+          borderBottom: `1px solid ${theme?.colors.border.main}`
         },
         rowFilterStyles: { border: 'none', margin: '4px 0' },
         cellStyles: { border: 'none' },
@@ -67,7 +68,7 @@ export const DefaultTheme: FC<{ children: JSX.Element | JSX.Element[] }> = ({
           color: theme.colors.text.textPrimary
         },
         rowContentStyles: {
-          height: '50px',
+          height: '100%',
           margin: '10px 0',
           color: theme.colors.text.textPrimary
         },

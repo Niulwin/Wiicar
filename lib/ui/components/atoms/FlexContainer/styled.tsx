@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { TFlexContainerProps } from './types';
+import { GridSystem, TFlexContainerProps } from './types';
 
 export const Flex = styled.div<TFlexContainerProps>`
   display: flex;
-  width: ${({ width }) => width || '100%'};
+  width: ${({ sm, width }) => width || GridSystem[`grid_${sm || '12'}`]};
   padding: ${({ padding }) => padding || '1rem'};
   justify-content: ${({ justify }) => justify || 'center'};
   align-items: ${({ align }) => align || 'center'};
