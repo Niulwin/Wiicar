@@ -18,12 +18,10 @@ export const PendingPayment = () => {
         <Card width="50%" gap="5px" direction="column" align="flex-start">
           <Typography variant="caption">Informacion del vendedor</Typography>
           <FlexContainer padding="0" direction="row" align="flex-start">
-            {[...Array(2)].map((x: any, i: number) => (
-              <FlexContainer key={i} direction="column" align="flex-start">
-                <Typography variant="caption">Cantidad</Typography>
-                <Typography variant="caption">COL 3.000.000</Typography>
-              </FlexContainer>
-            ))}
+            <FlexContainer direction="column" align="flex-start">
+              <Typography variant="caption">Cantidad</Typography>
+              <Typography variant="caption">COL 3.000.000</Typography>
+            </FlexContainer>
           </FlexContainer>
         </Card>
       </FlexContainer>

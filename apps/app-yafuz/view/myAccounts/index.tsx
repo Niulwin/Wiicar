@@ -20,7 +20,7 @@ export const MyAccounts: FC = () => {
   const { columns } = useConfig({ translate, data });
 
   return (
-    <Content>
+    <FlexContainer>
       <Modal
         footer={false}
         title={translate('my_accounts.action_creator')}
@@ -36,7 +36,7 @@ export const MyAccounts: FC = () => {
         <Button
           color="light"
           onClick={() => setShowModal(true)}
-          title={translate('offers_list.action_creator')}
+          title={translate('my_accounts.action_creator')}
           iconLeft="plus"
         />
       </Content>
@@ -49,6 +49,6 @@ export const MyAccounts: FC = () => {
           />
         </Card>
       </FlexContainer>
-    </Content>
+    </FlexContainer>
   );
 };

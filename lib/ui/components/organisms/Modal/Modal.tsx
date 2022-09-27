@@ -2,7 +2,7 @@ import { Modal as ModalContainer } from 'antd';
 import { useTranslate } from 'core/i18n/hooks/useTranslate';
 import { useTheme } from '../../../theme';
 import { Button, FlexContainer } from '../../atoms';
-import { TModalProps } from './types';
+import { ModalSize, TModalProps } from './types';
 
 export const Modal = ({
   title,
@@ -11,7 +11,8 @@ export const Modal = ({
   children,
   isVisible,
   onAccept,
-  onCancel
+  onCancel,
+  size
 }: TModalProps) => {
   const { theme } = useTheme();
 
@@ -23,6 +24,7 @@ export const Modal = ({
       visible={isVisible}
       bodyStyle={{ padding: 0, background: theme?.colors.background.main }}
       onCancel={onCancel}
+      width={ModalSize[size || 'xs']}
     >
       <FlexContainer padding="24px 10px 0 10px">{children}</FlexContainer>
       {footer && (
@@ -39,15 +41,18 @@ export const Modal = ({
 export const ModalFooter = ({
   onCancel,
   onAccept,
-  loading
-}: Pick<TModalProps, 'onAccept' | 'onCancel' | 'loading'>) => {
+  loading,
+  noPadding
+}: Pick<TModalProps, 'onAccept' | 'onCancel' | 'loading'> & {
+  noPadding?: boolean;
+}) => {
   const translate = useTranslate();
 
   return (
     <FlexContainer
       direction="row"
       justify="flex-end"
-      padding="30px 10px 10px 10px"
+      padding={noPadding ? '0' : '30px 10px 10px 10px'}
     >
       <Button
         title={translate('global.cancel')}
