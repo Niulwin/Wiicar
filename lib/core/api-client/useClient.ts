@@ -69,7 +69,7 @@ export const useMutation = <
           translate(
             `${options?.translateErrorPath || global}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
-            }` as number
+            }` as NamespaceTranslate
           )
         );
       },

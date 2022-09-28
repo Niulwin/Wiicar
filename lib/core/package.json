@@ -5,20 +5,7 @@
   "types": "./index.ts",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.ts*",
-    "pre-commit": "lint-staged && tsc --noemit"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn tsc --noemit",
-      "npm run lint",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc --noEmit && lint-staged"
-    }
+    "lint": "eslint *.ts*"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
