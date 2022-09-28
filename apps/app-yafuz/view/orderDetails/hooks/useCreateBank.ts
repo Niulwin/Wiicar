@@ -7,6 +7,7 @@ export const useCreateBank = ({ refetch, setShowModal }: TUseCreteBank) => {
     handleSubmit,
     formState: { errors }
   } = useForm<IMethodPayments>();
+
   const { mutate, isLoading } = useMutation<IMethodPayments>(
     'create-method-payments',
     'method-payments',
