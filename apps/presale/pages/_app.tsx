@@ -56,7 +56,7 @@ function MyApp({
               sidebars={Component.sidebars}
               hiddenSidebars={Component.hiddenSidebars}
             >
-              <Component router={router} {...pageProps} />
+              <Component {...pageProps} />
             </CurrentLayout>
           </DefaultTheme>
         </AuthProvider>
