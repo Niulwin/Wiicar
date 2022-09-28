@@ -1,3 +1,2 @@
 export { useConfig } from './useConfig';
-export { useCreateBank } from './useCreateBank';
-export { useMethodPayments } from './useMethodPayments';
+export { useOrderDetails } from './useOrderDetails';

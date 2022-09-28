@@ -1,8 +1,8 @@
 export const order_details = {
-  action_creator: 'Crear oferta',
-  name: 'Usuario',
-  method_payment: 'Método de pago',
-  price: 'Precio',
-  quantity: 'Cantidad',
-  buy: 'Comprar'
+  pending_payment: 'Pago pendiente',
+  transfer_crypto: '¿Liberar criptomoneda al comprador?',
+  completed: 'Completado',
+  error: {
+    INVOICE_EXPIRED_OR_NOT_FOUND: 'The order has expired or not exist'
+  }
 };

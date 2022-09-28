@@ -16,8 +16,8 @@ export const useAuthLogin = () => {
   };
 
   const { mutate: loginMutate } = useMutation<
-    { address_wallet: string },
-    { token: string }
+    { token: string },
+    { address_wallet: string }
   >('test', 'auth/login', { onSuccess, onError: () => setLoading(false) });
 
   const handleLogin = async () => {
@@ -25,7 +25,7 @@ export const useAuthLogin = () => {
       setLoading(true);
       const resp = await handleSessionWithMetamask();
       if (resp[0] === 'undefined' || resp[0] === 'null')
-        throw new Error(t('global.error.occurred_error'));
+        throw new Error(t('global.errors.OCCURRED_ERROR'));
 
       loginMutate({ address_wallet: resp[0] });
       setLoading(false);
@@ -33,7 +33,7 @@ export const useAuthLogin = () => {
     } catch (err: any) {
       setLoading(false);
       console.log(err);
-      message.error(err?.message || t('global.error.occurred_error'));
+      message.error(err?.message || t('global.errors.OCCURRED_ERROR'));
     }
   };
 

@@ -1,39 +1,19 @@
 import { useTranslate } from 'core';
 import { useRouter } from 'next/router';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { FlexContainer, StepsView, Typography } from 'ui';
-
-//components
-import { Filled } from './components/filled';
-import { GenerateSale } from './components/generateSale';
-import { PendingPayment } from './components/pendingPayment';
-
-const steps = [
-  {
-    title: 'Pago pendiente',
-    component: (props: any) => <PendingPayment />
-  },
-  {
-    title: '¿Liberar criptomoneda al comprador?',
-    component: (props: any) => <GenerateSale />
-  },
-  {
-    title: 'Completado',
-    component: (props: any) => <Filled />
-  }
-];
+import {
+  MethodPaymentInformation,
+  PayInformation,
+  UserInformation
+} from './components';
+import { useOrderDetails } from './hooks';
 
 export const OrderDetails: FC = () => {
   const translate = useTranslate();
-  const router = useRouter();
-  const [active, setActive] = useState<string>('0');
-
-  const handlePage = (index: number) =>
-    router.push({ pathname: '/order-details', query: { page: index } });
-
-  // Effect query page render
-  useEffect(() => {
-    setActive((router.query.page as string) || '0');
+  const { query } = useRouter();
+  const { orderDetail, steps } = useOrderDetails({
+    params: { id: query.id as string, type: query.type as string }
   });
 
   return (
@@ -48,8 +28,9 @@ export const OrderDetails: FC = () => {
           <>{translate('global.menu_options.order_details')} </>
         </Typography>
         <StepsView
-          current={Number(active)}
-          onChange={handlePage}
+          current={
+            steps?.find((step) => step.stage === orderDetail?.state)?.step ?? 1
+          }
           menu={steps}
         />
         <FlexContainer
@@ -58,9 +39,22 @@ export const OrderDetails: FC = () => {
           justify="flex-start"
           align="flex-start"
         >
-          {steps?.[Number(router?.query?.page || 0)]?.component({
-            handlePage: (index: any) => handlePage(index)
-          })}
+          <FlexContainer gap="10px">
+            <FlexContainer gap="5px" padding="0" direction="row">
+              <PayInformation orderDetail={orderDetail} />
+              <UserInformation orderDetail={orderDetail} />
+            </FlexContainer>
+            <MethodPaymentInformation orderDetail={orderDetail} />
+          </FlexContainer>
+
+          <FlexContainer gap="10px" direction="column" align="flex-start">
+            <Typography variant="caption">
+              ¿Que deberia hacer tras recibir el pago?
+            </Typography>
+            <Typography variant="caption">
+              ¿Que deberia hacer si la otra parte no realizo el pago?
+            </Typography>
+          </FlexContainer>
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>

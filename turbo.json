@@ -11,9 +11,11 @@
       "dependsOn": []
     },
     "lint": {
+      "cache": false,
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "precommit": {},
     "dev": {
       "cache": false
     },

@@ -36,10 +36,8 @@ export const useQuery = <
         options?.onError && options?.onError(err);
 
         message.warn(
-          `global.${translate(
-            err?.response?.data?.err_code ||
-              err?.message ||
-              'error.occurred_error'
+          `${options?.translateErrorPath || global}.errors.${translate(
+            err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
           )}`
         );
       }
@@ -69,12 +67,9 @@ export const useMutation = <
       onError: (err: any) => {
         message.warn(
           translate(
-            `global.${translate(
-              err?.response?.data?.err_code ||
-                (err.response?.status === 500
-                  ? 'error.occurred_error'
-                  : err?.message)
-            )}`
+            `${options?.translateErrorPath || global}.errors.${
+              err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
+            }` as 'global'
           )
         );
       },
@@ -98,18 +93,17 @@ export const useLazyQuery = <
 
   return useReactMutation(
     [key],
-    () => axios.get<any>(path, options?.variables).then((res) => res.data),
+    (args: TVariables) =>
+      axios.get<any>(path, args || options?.variables).then((res) => res.data),
     {
       onError: (err: any) => {
         options?.onError && options.onError(err);
 
         message.warn(
           translate(
-            `global.${translate(
-              err?.response?.data?.err_code ||
-                err?.message ||
-                'error.occurred_error'
-            )}`
+            `${options?.translateErrorPath || global}.errors.${
+              err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
+            }` as 'global'
           )
         );
       },

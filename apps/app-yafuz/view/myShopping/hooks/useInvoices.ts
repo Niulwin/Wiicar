@@ -1,17 +1,23 @@
-import { IInvoices, TPagination, useMutation, useQuery } from 'core';
+import {
+  IInvoices,
+  NamespaceTranslate,
+  TPagination,
+  useMutation,
+  useQuery
+} from 'core';
 import { message } from 'ui';
 
 export const useInvoices = ({
   translate
 }: {
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
 }) => {
   const { data, isLoading, refetch } = useQuery<TPagination<IInvoices>>(
     'invoices-shopping',
     'invoices?type=shopping'
   );
   const { mutate: handleCancelBuyer, isLoading: loadingCancelBuyer } =
-    useMutation<{ invoiceId: string }, IInvoices>(
+    useMutation<IInvoices, { invoiceId: string }>(
       'invoice-cancel-buyer',
       'invoices/cancel-buyer',
       {
@@ -22,7 +28,7 @@ export const useInvoices = ({
       }
     );
   const { mutate: handlePaymentBuyer, isLoading: loadingPaymentBuyer } =
-    useMutation<{ invoiceId: string; photo: string }, IInvoices>(
+    useMutation<IInvoices, { invoiceId: string; photo: string }>(
       'invoice-payment-buyer',
       'invoices/payment',
       {

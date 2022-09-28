@@ -16,5 +16,11 @@ export const my_shopping = {
     APPROVAL: 'Approve',
     CANCEL_BUYER: 'Cancel Buyer',
     CANCEL_SELLER: 'Cancel Seller'
+  },
+  errors: {
+    PAYMENT_FILE_DIFFERENT_STATUS:
+      'To charge a purchase payment, the purchase must be in the progress state.',
+    PAYMENT_FILE_EXISTING:
+      'It is not possible to load the payment of the purchase because it has already been loaded previously.'
   }
 };

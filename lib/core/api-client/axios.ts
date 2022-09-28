@@ -58,7 +58,8 @@ export class AxiosClient {
   ): Promise<
     Partial<AxiosResponse<T, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.get(path, args);
+    console.log(args);
+    return this.axiosClient.get(path, { params: args });
   }
 
   /**

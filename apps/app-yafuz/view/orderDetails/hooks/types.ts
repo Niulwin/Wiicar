@@ -1,4 +1,5 @@
-export type TUseCreteBank = {
-  setShowModal: React.Dispatch<boolean>;
-  refetch: () => void;
+export type TUseOrderDetails = {
+  params: TOrderDetailsArgs;
 };
+
+export type TOrderDetailsArgs = { type: string; id: string };

@@ -1,8 +1,8 @@
-import { ISales, TPagination } from 'core';
+import { ISales, NamespaceTranslate, TPagination } from 'core';
 
 export type TUseConfig = {
   data?: TPagination<ISales>;
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
   handleShowRequestOperation: (item: ISales) => void;
 };
 
