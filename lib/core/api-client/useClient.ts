@@ -10,45 +10,63 @@ import { useContext } from 'react';
 import { message } from 'ui';
 import { useTranslate } from '../i18n/hooks';
 import { QueryClientContext } from './provider';
+import { TQueryOptions } from './types';
 export type { UseMutateFunction } from '@tanstack/react-query';
 
-export const useQuery = <TData, TError = Record<string, unknown>>(
+export const useQuery = <
+  TResponse,
+  TVariables = Record<string, unknown>,
+  TError = Record<string, unknown>
+>(
   key: string,
-  path: string
-): UseQueryResult<TData, TError> => {
+  path: string,
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseQueryResult<TResponse, TError> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
-  return useReactQuery([key], () => axios.get(path).then((res) => res.data), {
-    onError: (err: any) => {
-      message.warn(
-        `global.${translate(
-          err?.response?.data?.err_code ||
-            err?.message ||
-            'error.occurred_error'
-        )}`
-      );
+  return useReactQuery(
+    [key],
+    () => axios.get(path, options?.variables).then((res) => res.data),
+    {
+      onSuccess: (res: TResponse) => {
+        options?.onSuccess && options.onSuccess(res);
+      },
+      onError: (err: any) => {
+        options?.onError && options?.onError(err);
+
+        message.warn(
+          `global.${translate(
+            err?.response?.data?.err_code ||
+              err?.message ||
+              'error.occurred_error'
+          )}`
+        );
+      }
     }
-  });
+  );
 };
 
-export const useMutation = <T, R = Record<string, unknown>>(
+export const useMutation = <
+  TResponse = Record<string, unknown>,
+  TVariables = Record<string, unknown>,
+  TError = Record<string, unknown>
+>(
   key: string,
   path: string,
-  options?: {
-    onSuccess?: (resData?: R) => void;
-    onError?: (err?: any) => void;
-  }
-): UseMutationResult<{ data: R }, { error: boolean }, T> => {
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
   return useReactMutation(
     [key],
-    (args) => axios.post<T, any>({ path, args }).then((res) => res.data),
+    (args) =>
+      axios
+        .post<TVariables, any>({ path, args: args || options?.variables })
+        .then((res) => res.data),
     {
       onError: (err: any) => {
-        console.log(err);
         message.warn(
           translate(
             `global.${translate(
@@ -60,26 +78,27 @@ export const useMutation = <T, R = Record<string, unknown>>(
           )
         );
       },
-      onSuccess: (resData) =>
+      onSuccess: (resData: TResponse) =>
         options?.onSuccess ? options?.onSuccess(resData) : undefined
     }
   );
 };
 
-export const useLazyQuery = <T, R = Record<string, unknown>>(
+export const useLazyQuery = <
+  TResponse,
+  TVariables = Record<string, unknown> | undefined,
+  TError = Record<string, unknown> | undefined
+>(
   key: string,
   path: string,
-  options?: {
-    onSuccess?: (resData: R) => void;
-    onError?: (resData: any) => void;
-  }
-): UseMutationResult<R, { error: boolean }, T> => {
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
   return useReactMutation(
     [key],
-    () => axios.get<any>(path).then((res) => res.data),
+    () => axios.get<any>(path, options?.variables).then((res) => res.data),
     {
       onError: (err: any) => {
         options?.onError && options.onError(err);
