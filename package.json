@@ -16,17 +16,12 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "husky install",
     "test": "",
-    "precommit": "turbo run precommit --filter=app-yafuz"
+    "pre-commit": "turbo run pre-commit --filter=app-yafuz"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && prettier --write . && git add -a ."
+      "pre-commit": "yarn pre-commit"
     }
-  },
-  "lint-staged": {
-    "*.{ts}": [
-      "turbo run lint"
-    ]
   },
   "devDependencies": {
     "eslint-config-custom": "*",
