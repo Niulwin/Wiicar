@@ -10,8 +10,7 @@
     "pre-commit": "lint-staged && tsc --noemit"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn tsc --noemit",
+    "./*.{js,jsx,ts,tsx}": [
       "npm run lint",
       "git add"
     ]

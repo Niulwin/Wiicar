@@ -11,7 +11,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn tsc --noemit",
       "npm run lint",
       "git add"
     ]
