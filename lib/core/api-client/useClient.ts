@@ -14,14 +14,14 @@ import { TQueryOptions } from './types';
 export type { UseMutateFunction } from '@tanstack/react-query';
 
 export const useQuery = <
-  TData,
+  TResponse,
   TVariables = Record<string, unknown>,
   TError = Record<string, unknown>
 >(
   key: string,
   path: string,
-  options?: TQueryOptions<TVariables>
-): UseQueryResult<TData, TError> => {
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseQueryResult<TResponse, TError> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
@@ -29,7 +29,12 @@ export const useQuery = <
     [key],
     () => axios.get(path, options?.variables).then((res) => res.data),
     {
+      onSuccess: (res: TResponse) => {
+        options?.onSuccess && options.onSuccess(res);
+      },
       onError: (err: any) => {
+        options?.onError && options?.onError(err);
+
         message.warn(
           `global.${translate(
             err?.response?.data?.err_code ||
@@ -42,23 +47,26 @@ export const useQuery = <
   );
 };
 
-export const useMutation = <T, R = Record<string, unknown>>(
+export const useMutation = <
+  TResponse = Record<string, unknown>,
+  TVariables = Record<string, unknown>,
+  TError = Record<string, unknown>
+>(
   key: string,
   path: string,
-  options?: {
-    onSuccess?: (resData?: R) => void;
-    onError?: (err?: any) => void;
-  }
-): UseMutationResult<{ data: R }, { error: boolean }, T> => {
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
   return useReactMutation(
     [key],
-    (args) => axios.post<T, any>({ path, args }).then((res) => res.data),
+    (args) =>
+      axios
+        .post<TVariables, any>({ path, args: args || options?.variables })
+        .then((res) => res.data),
     {
       onError: (err: any) => {
-        console.log(err);
         message.warn(
           translate(
             `global.${translate(
@@ -70,7 +78,7 @@ export const useMutation = <T, R = Record<string, unknown>>(
           )
         );
       },
-      onSuccess: (resData) =>
+      onSuccess: (resData: TResponse) =>
         options?.onSuccess ? options?.onSuccess(resData) : undefined
     }
   );
@@ -83,11 +91,7 @@ export const useLazyQuery = <
 >(
   key: string,
   path: string,
-  options?: {
-    onSuccess?: (resData: TResponse) => void;
-    onError?: (resData: TError) => void;
-    variables?: TVariables;
-  }
+  options?: TQueryOptions<TResponse, TVariables, TError>
 ): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);

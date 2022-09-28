@@ -69,7 +69,7 @@ export class AxiosClient {
     args
   }: {
     path: string;
-    args: T;
+    args?: T;
   }): Promise<
     Partial<AxiosResponse<R, any>> & { error?: boolean; message?: string }
   > {
