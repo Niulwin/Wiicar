@@ -17,8 +17,9 @@ const AuthProvider: FC<TAuthProviderProps> = ({
   );
   const setAuthorization = useClient();
   const { mutate: getCurrentUser, data: currentUser } = useLazyQuery<
-    null,
-    TCurrentUser
+    TCurrentUser | undefined,
+    undefined | null,
+    { message: string }
   >('auth.currentUser', 'auth/current-user', {
     onError: (err) => err.message === 'jwt expired' && handleLogout()
   });

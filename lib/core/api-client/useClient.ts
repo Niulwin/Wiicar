@@ -10,26 +10,36 @@ import { useContext } from 'react';
 import { message } from 'ui';
 import { useTranslate } from '../i18n/hooks';
 import { QueryClientContext } from './provider';
+import { TQueryOptions } from './types';
 export type { UseMutateFunction } from '@tanstack/react-query';
 
-export const useQuery = <TData, TError = Record<string, unknown>>(
+export const useQuery = <
+  TData,
+  TVariables = Record<string, unknown>,
+  TError = Record<string, unknown>
+>(
   key: string,
-  path: string
+  path: string,
+  options?: TQueryOptions<TVariables>
 ): UseQueryResult<TData, TError> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
-  return useReactQuery([key], () => axios.get(path).then((res) => res.data), {
-    onError: (err: any) => {
-      message.warn(
-        `global.${translate(
-          err?.response?.data?.err_code ||
-            err?.message ||
-            'error.occurred_error'
-        )}`
-      );
+  return useReactQuery(
+    [key],
+    () => axios.get(path, options?.variables).then((res) => res.data),
+    {
+      onError: (err: any) => {
+        message.warn(
+          `global.${translate(
+            err?.response?.data?.err_code ||
+              err?.message ||
+              'error.occurred_error'
+          )}`
+        );
+      }
     }
-  });
+  );
 };
 
 export const useMutation = <T, R = Record<string, unknown>>(
@@ -66,20 +76,25 @@ export const useMutation = <T, R = Record<string, unknown>>(
   );
 };
 
-export const useLazyQuery = <T, R = Record<string, unknown>>(
+export const useLazyQuery = <
+  TResponse,
+  TVariables = Record<string, unknown> | undefined,
+  TError = Record<string, unknown> | undefined
+>(
   key: string,
   path: string,
   options?: {
-    onSuccess?: (resData: R) => void;
-    onError?: (resData: any) => void;
+    onSuccess?: (resData: TResponse) => void;
+    onError?: (resData: TError) => void;
+    variables?: TVariables;
   }
-): UseMutationResult<R, { error: boolean }, T> => {
+): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
   return useReactMutation(
     [key],
-    () => axios.get<any>(path).then((res) => res.data),
+    () => axios.get<any>(path, options?.variables).then((res) => res.data),
     {
       onError: (err: any) => {
         options?.onError && options.onError(err);
