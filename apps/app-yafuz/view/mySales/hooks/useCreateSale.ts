@@ -7,7 +7,7 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
     handleSubmit,
     formState: { errors }
   } = useForm<TInputSale>();
-  const { mutate, isLoading } = useMutation<TInputSale, ISales>(
+  const { mutate, isLoading } = useMutation<ISales, TInputSale>(
     'create-sale',
     'sales',
     {

@@ -1,6 +1,7 @@
 export const my_accounts = {
   action_creator: 'Crear cuenta',
   code: 'Código',
+  identification: 'Cédula',
   saving_account: 'Ahorros',
   current_account: 'Corriente',
   method_payment: 'Método de pago',

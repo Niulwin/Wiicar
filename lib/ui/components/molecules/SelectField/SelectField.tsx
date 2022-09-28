@@ -1,4 +1,4 @@
-import { useTranslate } from '../../../../core/i18n/hooks/useTranslate';
+import { NamespaceTranslate, useTranslate } from 'core/';
 import { FlexContainer } from '../../atoms/FlexContainer';
 import { Typography } from '../../atoms/Typography';
 import { Select } from './styled';
@@ -50,7 +50,9 @@ export const SelectField = <IFormValues extends object>({
         variant="caption3"
       >
         {error?.type === 'required'
-          ? translate(SelectFieldValidationsMessage.required)
+          ? translate(
+              SelectFieldValidationsMessage.required as NamespaceTranslate
+            )
           : ''}
       </Typography>
     </FlexContainer>

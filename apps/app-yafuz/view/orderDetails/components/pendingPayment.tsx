@@ -1,25 +1,47 @@
+import { formatCurrency, IInvoices, useTranslate } from 'core';
 import { Card, FlexContainer, Typography } from 'ui';
 
-export const PendingPayment = () => {
+export const PendingPayment = ({
+  orderDetail
+}: {
+  orderDetail?: IInvoices;
+}) => {
+  const translate = useTranslate();
+
   return (
     <FlexContainer gap="10px">
       <FlexContainer gap="5px" padding="0" direction="row">
         <Card width="50%" gap="5px" direction="column" align="flex-start">
-          <Typography variant="caption">Informacion de la orden</Typography>
+          <Typography variant="caption"></Typography>
           <FlexContainer padding="0" direction="row" align="flex-start">
-            {[...Array(3)].map((x: any, i: number) => (
+            {[
+              { title: 'quantity', value: orderDetail?.quantity },
+              {
+                title: 'price',
+                value: `${formatCurrency(orderDetail?.sale?.price)} COP`
+              },
+              {
+                title: 'payment_amount',
+                value: `${formatCurrency(orderDetail?.sale?.price)} COP`
+              }
+              // { title: 'payment_amount', value: orderDetail?.amount }
+            ].map((x, i: number) => (
               <FlexContainer key={i} direction="column" align="flex-start">
-                <Typography variant="caption">Cantidad</Typography>
-                <Typography variant="caption">COL 3.000.000</Typography>
+                <Typography variant="caption">
+                  {translate(`offers_list.${x.title}` as 'offers_list')}
+                </Typography>
+                <Typography variant="caption">{x.value}</Typography>
               </FlexContainer>
             ))}
           </FlexContainer>
         </Card>
         <Card width="50%" gap="5px" direction="column" align="flex-start">
-          <Typography variant="caption">Informacion del vendedor</Typography>
+          <Typography variant="caption">
+            {translate('offers_list.price')}
+          </Typography>
           <FlexContainer padding="0" direction="row" align="flex-start">
             <FlexContainer direction="column" align="flex-start">
-              <Typography variant="caption">Cantidad</Typography>
+              {translate('offers_list.payment_amount')}
               <Typography variant="caption">COL 3.000.000</Typography>
             </FlexContainer>
           </FlexContainer>
@@ -33,7 +55,9 @@ export const PendingPayment = () => {
       >
         <Card gap="5px" direction="row" align="flex-start">
           <FlexContainer padding="0" direction="column" align="flex-start">
-            <Typography variant="caption">Metodo de pago</Typography>
+            <Typography variant="caption">
+              {translate('offers_list.method_payment')}
+            </Typography>
             <Typography variant="caption">Bancolombia S.A</Typography>
           </FlexContainer>
           <FlexContainer padding="0" direction="column">

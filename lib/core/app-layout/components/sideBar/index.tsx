@@ -63,7 +63,7 @@ export const SideBar: FC<{ showAside: boolean; isSession: boolean }> = ({
                           // active={router.pathname === x.path}
                           // showAside={showAside}
                         >
-                          {translate(x.name)}
+                          {translate(x.name as 'global')}
                         </Typography>
                       </NavigationLink>
                     </Tooltip>

@@ -13,8 +13,8 @@ export const useSalesRequest = ({
   const [values, setValues] = useState<ISaleRequest>({} as ISaleRequest);
 
   const { mutate: handleRequest, isLoading: loadingRequest } = useMutation<
-    ISaleRequest,
-    IInvoices
+    IInvoices,
+    ISaleRequest
   >('invoice-request', 'invoices/request', {
     onSuccess: () => onCompleted()
   });

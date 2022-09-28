@@ -14,8 +14,9 @@
     "lint": "turbo run lint",
     "prettier-lint": "prettier --check .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install",
-    "test": ""
+    "postinstall": "husky install",
+    "test": "",
+    "precommit": "turbo run precommit --filter=app-yafuz"
   },
   "husky": {
     "hooks": {
@@ -29,7 +30,7 @@
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "husky": "^8.0.0",
+    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "turbo": "latest",

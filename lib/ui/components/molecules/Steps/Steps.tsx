@@ -8,12 +8,12 @@ export const StepsView = ({ menu, onChange, current }: TActionTableOptions) => {
   return (
     <FlexContainer direction="row">
       <Steps onChange={onChange} size="small" current={current}>
-        {menu.map((x: any, i: number) => (
+        {menu.map((x, i) => (
           <Step
             key={`steps${i}`}
-            title={<Typography variant="subtitle">{x?.title}</Typography>}
+            title={<Typography variant="subtitle">{x.title}</Typography>}
             description={
-              <Typography variant="subtitle">{x?.description}</Typography>
+              <Typography variant="subtitle">{x.description || ''}</Typography>
             }
           />
         ))}

@@ -1,4 +1,9 @@
-import { IUserMethodPayments, TPagination, useI18n } from 'core';
+import {
+  IUserMethodPayments,
+  NamespaceTranslate,
+  TPagination,
+  useI18n
+} from 'core';
 import { useEffect, useState } from 'react';
 import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
 
@@ -6,7 +11,7 @@ export const useConfig = ({
   translate,
   data
 }: {
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
   data?: TPagination<IUserMethodPayments>;
 }) => {
   const { language } = useI18n();

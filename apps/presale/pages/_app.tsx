@@ -41,8 +41,7 @@ const layouts: TLayouts = {
  */
 function MyApp({
   Component,
-  pageProps,
-  router
+  pageProps
 }: TAppPropsWithCustomProps): JSX.Element | JSX.Element[] {
   const CurrentLayout = layouts[(Component?.layout || 'L1') as keyof TLayouts];
 

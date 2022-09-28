@@ -1,6 +1,7 @@
 export const my_accounts = {
   action_creator: 'Create account',
   code: 'code',
+  identification: 'identification card',
   saving_account: 'Saving Account',
   current_account: 'Current Account',
   method_payment: 'Method payment',
