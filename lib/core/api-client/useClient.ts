@@ -8,7 +8,7 @@ import {
 } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { message } from 'ui';
-import { useTranslate } from '../i18n/hooks';
+import { NamespaceTranslate, useTranslate } from '../i18n/hooks';
 import { QueryClientContext } from './provider';
 import { TQueryOptions } from './types';
 export type { UseMutateFunction } from '@tanstack/react-query';
@@ -69,7 +69,7 @@ export const useMutation = <
           translate(
             `${options?.translateErrorPath || global}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
-            }` as 'global'
+            }` as NamespaceTranslate
           )
         );
       },
@@ -103,7 +103,7 @@ export const useLazyQuery = <
           translate(
             `${options?.translateErrorPath || global}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
-            }` as 'global'
+            }` as NamespaceTranslate
           )
         );
       },

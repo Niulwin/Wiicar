@@ -15,7 +15,9 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
-    "precommit": {},
+    "pre-commit": {
+      "dependsOn": ["^build"]
+    },
     "dev": {
       "cache": false
     },
