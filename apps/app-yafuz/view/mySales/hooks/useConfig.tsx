@@ -1,4 +1,5 @@
 import { IInvoices, useI18n } from 'core';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
 import { TUseConfig } from './types';
@@ -17,14 +18,13 @@ export const useConfig = ({
   translate,
   data,
   handleCancelSeller,
-  loadingCancelSeller,
-  handleApproveSeller,
-  loadingApproveSeller
+  loadingCancelSeller
 }: TUseConfig) => {
   const { language } = useI18n();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
   const { theme } = useTheme();
   const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   useEffect(() => {
     setColumns([
@@ -80,18 +80,18 @@ export const useConfig = ({
           return (
             <FlexContainer justify="center" direction="row">
               <Button
-                disabled={item.state !== 'PAYMENT'}
-                loading={invoiceId === item.id && loadingApproveSeller}
+                disabled={item.state !== 'PROGRESS'}
                 onClick={() => {
-                  setInvoiceId(item.id);
-                  handleApproveSeller({ invoiceId: item.id });
+                  router.push(`/order-details/${item.id}?type=seller`);
+                  // setInvoiceId(item.id);
+                  // handleApproveSeller({ invoiceId: item.id });
                 }}
                 size="xs"
                 iconLeft="check-double"
                 variant="contained"
-                background="success"
+                background="info"
                 color="light"
-                tooltip={translate('global.cancel')}
+                title={translate('my_sales.going_transaction')}
               />
               <Button
                 disabled={item.state !== 'PROGRESS'}
@@ -105,7 +105,7 @@ export const useConfig = ({
                 variant="contained"
                 background="error"
                 color="light"
-                tooltip={translate('global.cancel')}
+                title={translate('global.cancel')}
               />
             </FlexContainer>
           );

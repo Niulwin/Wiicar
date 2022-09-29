@@ -84,7 +84,7 @@ export const useLazyQuery = <
   TVariables = Record<string, unknown> | undefined,
   TError = Record<string, unknown> | undefined
 >(
-  key: string,
+  key: string | string[],
   path: string,
   options?: TQueryOptions<TResponse, TVariables, TError>
 ): UseMutationResult<TResponse, TError, TVariables> => {
@@ -96,6 +96,7 @@ export const useLazyQuery = <
     (args: TVariables) =>
       axios.get<any>(path, args || options?.variables).then((res) => res.data),
     {
+      networkMode: 'offlineFirst',
       onError: (err: any) => {
         options?.onError && options.onError(err);
 

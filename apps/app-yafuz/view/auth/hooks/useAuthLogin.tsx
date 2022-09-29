@@ -18,7 +18,7 @@ export const useAuthLogin = () => {
   const { mutate: loginMutate } = useMutation<
     { token: string },
     { address_wallet: string }
-  >('test', 'auth/login', { onSuccess, onError: () => setLoading(false) });
+  >('test', '/auth/login', { onSuccess, onError: () => setLoading(false) });
 
   const handleLogin = async () => {
     try {

@@ -1,5 +1,6 @@
-import { IInvoices, useLazyQuery, useTranslate } from 'core';
+import { IInvoices, useMutation, useTranslate } from 'core';
 import { useEffect, useState } from 'react';
+import { message } from 'ui';
 import { TOrderDetailsArgs, TUseOrderDetails } from './types';
 
 export const useOrderDetails = ({ params }: TUseOrderDetails) => {
@@ -15,19 +16,48 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
     isLoading,
     data: orderDetail,
     mutate: getOrderDetail
-  } = useLazyQuery<IInvoices, Pick<TOrderDetailsArgs, 'type'>>(
-    'invoices-validate',
-    `invoices/validate/${params.id}`,
+  } = useMutation<IInvoices, Pick<TOrderDetailsArgs, 'type'>>(
+    'invoice-validate',
+    `invoices/validate/${params.id}?type=${params.type}`,
     {
       translateErrorPath: 'order_details'
     }
   );
 
+  const { mutate: handleApproveSeller, isLoading: loadingApproveSeller } =
+    useMutation<IInvoices, { invoiceId: string }>(
+      'invoice-approval-seller',
+      'invoices/approval',
+      {
+        onSuccess: () => {
+          getOrderDetail({ type: params.type });
+          message.success(translate('global.success_operation'));
+        }
+      }
+    );
+
+  const { mutate: handlePaymentBuyer, isLoading: loadingPaymentBuyer } =
+    useMutation<IInvoices, { invoiceId: string; photo: string }>(
+      'invoice-payment-buyer',
+      'invoices/payment',
+      {
+        onSuccess: () => {
+          getOrderDetail({ type: params.type });
+          message.success(translate('global.success_operation'));
+        }
+      }
+    );
+
   useEffect(() => {
-    if (params.type)
-      getOrderDetail({
-        type: params.type
-      });
+    if (params.type) getOrderDetail({ type: params.type });
+    const interval = setInterval(
+      () => getOrderDetail({ type: params.type }),
+      60000
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [params.id, params.type]);
 
   useEffect(() => {
@@ -53,6 +83,10 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
   return {
     isLoading,
     orderDetail,
-    steps
+    steps,
+    loadingApproveSeller,
+    handleApproveSeller,
+    handlePaymentBuyer,
+    loadingPaymentBuyer
   };
 };

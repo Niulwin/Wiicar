@@ -7,11 +7,5 @@ export type TUseConfig = {
     unknown,
     { invoiceId: string }
   >;
-  handlePaymentBuyer: UseMutateFunction<
-    IInvoices,
-    unknown,
-    { invoiceId: string; photo: string }
-  >;
   loadingCancelBuyer: boolean;
-  loadingPaymentBuyer: boolean;
 };

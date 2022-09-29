@@ -11,14 +11,13 @@ const STATUS = {
   PAYMENT: 'success',
   CANCEL_BUYER: 'warning',
   CANCEL_SELLER: 'warning',
+  EXPIRED_TIME: 'warning',
   APPROVAL: 'info'
 };
 export const useConfig = ({
   translate,
   handleCancelBuyer,
-  loadingCancelBuyer,
-  handlePaymentBuyer,
-  loadingPaymentBuyer
+  loadingCancelBuyer
 }: TUseConfig) => {
   const { language } = useI18n();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
@@ -87,20 +86,6 @@ export const useConfig = ({
             <FlexContainer justify="center" direction="row">
               <Button
                 disabled={item.state !== 'PROGRESS'}
-                loading={invoiceId === item.id && loadingPaymentBuyer}
-                onClick={() => {
-                  setInvoiceId(item.id);
-                  handlePaymentBuyer({ invoiceId: item.id, photo: 'algo.jpg' });
-                }}
-                size="xs"
-                iconLeft="file-upload"
-                variant="contained"
-                background="info"
-                color="light"
-                tooltip={translate('my_shopping.upload_payment_file')}
-              />
-              <Button
-                disabled={item.state !== 'PROGRESS'}
                 loading={invoiceId === item.id && loadingCancelBuyer}
                 onClick={() => {
                   setInvoiceId(item.id);
@@ -118,7 +103,7 @@ export const useConfig = ({
         }
       }
     ]);
-  }, [theme, language, loadingCancelBuyer, loadingPaymentBuyer]);
+  }, [theme, language, loadingCancelBuyer]);
 
   return { columns };
 };

@@ -27,24 +27,11 @@ export const useInvoices = ({
         }
       }
     );
-  const { mutate: handlePaymentBuyer, isLoading: loadingPaymentBuyer } =
-    useMutation<IInvoices, { invoiceId: string; photo: string }>(
-      'invoice-payment-buyer',
-      'invoices/payment',
-      {
-        onSuccess: () => {
-          refetch();
-          message.success(translate('global.success_operation'));
-        }
-      }
-    );
 
   return {
     data: data,
     isLoading,
     handleCancelBuyer,
-    loadingCancelBuyer,
-    handlePaymentBuyer,
-    loadingPaymentBuyer
+    loadingCancelBuyer
   };
 };
