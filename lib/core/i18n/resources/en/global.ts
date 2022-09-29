@@ -7,6 +7,7 @@ export const global = {
     Spanish: 'Spanish',
     English: 'English'
   },
+  delete: 'Delete',
   cancel: 'Cancel',
   accept: 'Accept',
   choose: 'Choose here',

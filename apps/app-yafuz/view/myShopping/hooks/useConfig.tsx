@@ -96,6 +96,7 @@ export const useConfig = ({
                 variant="contained"
                 background="error"
                 color="light"
+                title={translate('global.cancel')}
                 tooltip={translate('global.cancel')}
               />
             </FlexContainer>

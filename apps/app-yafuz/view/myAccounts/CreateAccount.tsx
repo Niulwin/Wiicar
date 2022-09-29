@@ -56,6 +56,15 @@ export const CreateAccount = ({ setShowModal, refetch }: TUseCreateAccount) => {
           placeholder={translate('my_accounts.code')}
           error={errors.value}
         />
+        <TextField
+          label={translate('my_accounts.identification')}
+          name="identification_card"
+          register={register}
+          validate={{ required: true }}
+          width="49%"
+          placeholder={translate('my_accounts.identification')}
+          error={errors.identification_card}
+        />
       </FlexContainer>
       <ModalFooter loading={isLoading} onCancel={() => setShowModal(false)} />
     </form>
