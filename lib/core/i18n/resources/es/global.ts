@@ -14,7 +14,8 @@ export const global = {
     my_sales: 'Mis ventas',
     my_accounts: 'Mis cuentas',
     my_banks: 'Mis bancos',
-    my_profile: 'My perfil'
+    my_profile: 'My perfil',
+    pack_nft: 'Pack NFT'
   },
   error: {
     occurred_error: 'Lo sentimos ha ocurrido un error',

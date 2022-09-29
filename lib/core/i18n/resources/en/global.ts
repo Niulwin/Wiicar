@@ -14,7 +14,8 @@ export const global = {
     my_sales: 'My sales',
     my_accounts: 'My accounts',
     my_banks: 'My banks',
-    my_profile: 'My profile'
+    my_profile: 'My profile',
+    pack_nft: 'Pack NFT'
   },
   error: {
     occurred_error: `I'm sorry, an ocurred error`,

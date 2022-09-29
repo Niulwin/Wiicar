@@ -5,11 +5,19 @@ import { TCardProps } from './types';
 export const Card: FC<TCardProps> = ({
   onClick,
   children,
-  mHeight,
-  justify
+  size,
+  style,
+  variant,
+  background
 }: TCardProps) => {
   return (
-    <Section justify={justify} mHeight={mHeight} onClick={onClick}>
+    <Section
+      size={size}
+      style={style}
+      variant={variant || 'contained'}
+      onClick={onClick}
+      background={background}
+    >
       {children}
     </Section>
   );
