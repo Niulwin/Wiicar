@@ -11,6 +11,7 @@ export interface IUserMethodPayments {
   state: string;
   typeAccount: string;
   userId: string;
+  identification_card: string;
   value: string;
   methodPayment: IMethodPayments;
 }

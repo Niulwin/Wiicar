@@ -1,4 +1,4 @@
-import { useTranslate } from '../../../../core/i18n/hooks/useTranslate';
+import { NamespaceTranslate, useTranslate } from 'core';
 import { FlexContainer } from '../../atoms/FlexContainer';
 import { Typography } from '../../atoms/Typography';
 import { Input } from './styled';
@@ -26,6 +26,7 @@ export const TextField = <IFormValues extends object>({
         {...(register ? register(name, validate) : {})}
         placeholder={placeholder}
         onChange={onChange}
+        name={name}
         value={value}
       />
       <Typography
@@ -34,7 +35,9 @@ export const TextField = <IFormValues extends object>({
         variant="caption3"
       >
         {error?.type === 'required'
-          ? translate(TextFieldValidationsMessage.required)
+          ? translate(
+              TextFieldValidationsMessage.required as NamespaceTranslate
+            )
           : ''}
       </Typography>
     </FlexContainer>

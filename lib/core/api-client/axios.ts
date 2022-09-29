@@ -53,11 +53,13 @@ export class AxiosClient {
    * Method Get
    */
   public async get<T>(
-    path: string
+    path: string,
+    args?: any
   ): Promise<
     Partial<AxiosResponse<T, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.get(path);
+    console.log(args);
+    return this.axiosClient.get(path, { params: args });
   }
 
   /**
@@ -68,7 +70,7 @@ export class AxiosClient {
     args
   }: {
     path: string;
-    args: T;
+    args?: T;
   }): Promise<
     Partial<AxiosResponse<R, any>> & { error?: boolean; message?: string }
   > {

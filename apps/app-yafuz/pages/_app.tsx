@@ -2,11 +2,17 @@
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { LayoutAuth, LayoutMain, QueryClientProvider, SafeHydrate } from 'core';
+import {
+  LayoutAuth,
+  LayoutMain,
+  numeralConfig,
+  QueryClientProvider,
+  SafeHydrate
+} from 'core';
 import AuthProvider from 'core/auth/AuthContext';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import 'styles/global.css';
 import { DefaultTheme } from 'ui';
 
@@ -45,6 +51,10 @@ function MyApp({
   router
 }: TAppPropsWithCustomProps): JSX.Element | JSX.Element[] {
   const CurrentLayout = layouts[(Component?.layout || 'L1') as keyof TLayouts];
+
+  useEffect(() => {
+    numeralConfig();
+  }, []);
 
   return (
     <SafeHydrate>

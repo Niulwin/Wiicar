@@ -1,19 +1,11 @@
-import { IInvoices, UseMutateFunction } from 'core';
+import { IInvoices, NamespaceTranslate, UseMutateFunction } from 'core';
 
 export type TUseConfig = {
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
   handleCancelBuyer: UseMutateFunction<
-    { data: IInvoices },
-    { error: boolean },
-    { invoiceId: string },
-    unknown
-  >;
-  handlePaymentBuyer: UseMutateFunction<
-    { data: IInvoices },
-    { error: boolean },
-    { invoiceId: string; photo: string },
-    unknown
+    IInvoices,
+    unknown,
+    { invoiceId: string }
   >;
   loadingCancelBuyer: boolean;
-  loadingPaymentBuyer: boolean;
 };

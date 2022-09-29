@@ -5,6 +5,7 @@ export const my_sales = {
   price: 'Precio',
   quantity: 'Cantidad',
   approve: 'Aprobar',
+  going_transaction: 'Ir a la transacción',
   status: {
     name: 'Status',
     SELL: 'Vendido',

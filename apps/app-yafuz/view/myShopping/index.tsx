@@ -6,21 +6,13 @@ import { useConfig, useInvoices } from './hooks';
 
 export const MyShopping: FC = () => {
   const translate = useTranslate();
-  const {
-    data,
-    isLoading,
-    handleCancelBuyer,
-    loadingCancelBuyer,
-    handlePaymentBuyer,
-    loadingPaymentBuyer
-  } = useInvoices({ translate });
+  const { data, isLoading, handleCancelBuyer, loadingCancelBuyer } =
+    useInvoices({ translate });
   const router = useRouter();
   const { columns } = useConfig({
     translate,
     handleCancelBuyer,
-    loadingCancelBuyer,
-    handlePaymentBuyer,
-    loadingPaymentBuyer
+    loadingCancelBuyer
   });
 
   return (

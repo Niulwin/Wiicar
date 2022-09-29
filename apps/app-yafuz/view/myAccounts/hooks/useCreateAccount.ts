@@ -11,8 +11,8 @@ export const useCreateAccount = ({
     formState: { errors }
   } = useForm<TInputUserMethodPayments>();
   const { mutate, isLoading } = useMutation<
-    TInputUserMethodPayments,
-    IUserMethodPayments
+    IUserMethodPayments,
+    TInputUserMethodPayments
   >('user-method-payments-create', 'user-method-payments', {
     onSuccess: () => {
       refetch();

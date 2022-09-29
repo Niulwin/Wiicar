@@ -6,4 +6,5 @@ export type TInputUserMethodPayments = {
   methodPaymentId: string;
   typeAccount: 'Ahorro' | 'Corriente';
   value: string;
+  identification_card: string;
 };

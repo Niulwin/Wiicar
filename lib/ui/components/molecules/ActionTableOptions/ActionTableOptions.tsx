@@ -1,4 +1,5 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { NamespaceTranslate, useTranslate } from 'core';
 import { Fragment } from 'react';
 import { Button, FlexContainer } from 'ui';
 import { TActionTableOptions } from './types';
@@ -13,7 +14,14 @@ const colors = {
   delete: 'error',
   info: 'info'
 };
+const titles = {
+  check: 'accept',
+  delete: 'delete',
+  info: 'view'
+};
 export const ActionTableOptions = ({ buttons }: TActionTableOptions) => {
+  const translate = useTranslate();
+
   return (
     <FlexContainer direction="row">
       {buttons.map((bt, i) => (
@@ -22,6 +30,7 @@ export const ActionTableOptions = ({ buttons }: TActionTableOptions) => {
             size="xs"
             iconLeft={icons[bt] as IconProp}
             variant="contained"
+            title={translate(`global.${titles[bt]}` as NamespaceTranslate)}
             background={colors[bt] as 'success' | 'error' | 'info'}
             color="light"
           />

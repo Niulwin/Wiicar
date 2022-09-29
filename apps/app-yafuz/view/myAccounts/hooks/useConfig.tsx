@@ -1,4 +1,9 @@
-import { IUserMethodPayments, TPagination, useI18n } from 'core';
+import {
+  IUserMethodPayments,
+  NamespaceTranslate,
+  TPagination,
+  useI18n
+} from 'core';
 import { useEffect, useState } from 'react';
 import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
 
@@ -6,7 +11,7 @@ export const useConfig = ({
   translate,
   data
 }: {
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
   data?: TPagination<IUserMethodPayments>;
 }) => {
   const { language } = useI18n();
@@ -25,23 +30,28 @@ export const useConfig = ({
       },
       {
         name: translate('my_accounts.code'),
-        width: 25,
+        width: 20,
         accessor: 'methodPayment.code'
       },
       {
+        name: translate('my_accounts.identification'),
+        width: 20,
+        accessor: 'identification_card'
+      },
+      {
         name: translate('my_accounts.method_payment'),
-        width: 25,
+        width: 20,
         accessor: 'methodPayment.name'
       },
       {
         name: translate('my_accounts.method_payment_type'),
         accessor: 'typeAccount',
-        width: 25
+        width: 20
       },
       {
         name: translate('my_accounts.method_payment_number'),
         accessor: 'value',
-        width: 25
+        width: 20
       },
       {
         name: translate('global.actions'),

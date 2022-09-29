@@ -8,89 +8,103 @@ import {
 } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { message } from 'ui';
-import { useTranslate } from '../i18n/hooks';
+import { NamespaceTranslate, useTranslate } from '../i18n/hooks';
 import { QueryClientContext } from './provider';
+import { TQueryOptions } from './types';
 export type { UseMutateFunction } from '@tanstack/react-query';
 
-export const useQuery = <TData, TError = Record<string, unknown>>(
+export const useQuery = <
+  TResponse,
+  TVariables = Record<string, unknown>,
+  TError = Record<string, unknown>
+>(
   key: string,
-  path: string
-): UseQueryResult<TData, TError> => {
+  path: string,
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseQueryResult<TResponse, TError> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
-  return useReactQuery([key], () => axios.get(path).then((res) => res.data), {
-    onError: (err: any) => {
-      message.warn(
-        `global.${translate(
-          err?.response?.data?.err_code ||
-            err?.message ||
-            'error.occurred_error'
-        )}`
-      );
+  return useReactQuery(
+    [key],
+    () => axios.get(path, options?.variables).then((res) => res.data),
+    {
+      onSuccess: (res: TResponse) => {
+        options?.onSuccess && options.onSuccess(res);
+      },
+      onError: (err: any) => {
+        options?.onError && options?.onError(err);
+
+        message.warn(
+          `${options?.translateErrorPath || global}.errors.${translate(
+            err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
+          )}`
+        );
+      }
     }
-  });
+  );
 };
 
-export const useMutation = <T, R = Record<string, unknown>>(
+export const useMutation = <
+  TResponse = Record<string, unknown>,
+  TVariables = Record<string, unknown>,
+  TError = Record<string, unknown>
+>(
   key: string,
   path: string,
-  options?: {
-    onSuccess?: (resData?: R) => void;
-    onError?: (err?: any) => void;
-  }
-): UseMutationResult<{ data: R }, { error: boolean }, T> => {
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
   return useReactMutation(
     [key],
-    (args) => axios.post<T, any>({ path, args }).then((res) => res.data),
+    (args) =>
+      axios
+        .post<TVariables, any>({ path, args: args || options?.variables })
+        .then((res) => res.data),
     {
       onError: (err: any) => {
-        console.log(err);
         message.warn(
           translate(
-            `global.${translate(
-              err?.response?.data?.err_code ||
-                (err.response?.status === 500
-                  ? 'error.occurred_error'
-                  : err?.message)
-            )}`
+            `${options?.translateErrorPath || global}.errors.${
+              err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
+            }` as NamespaceTranslate
           )
         );
       },
-      onSuccess: (resData) =>
+      onSuccess: (resData: TResponse) =>
         options?.onSuccess ? options?.onSuccess(resData) : undefined
     }
   );
 };
 
-export const useLazyQuery = <T, R = Record<string, unknown>>(
-  key: string,
+export const useLazyQuery = <
+  TResponse,
+  TVariables = Record<string, unknown> | undefined,
+  TError = Record<string, unknown> | undefined
+>(
+  key: string | string[],
   path: string,
-  options?: {
-    onSuccess?: (resData: R) => void;
-    onError?: (resData: any) => void;
-  }
-): UseMutationResult<R, { error: boolean }, T> => {
+  options?: TQueryOptions<TResponse, TVariables, TError>
+): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
 
   return useReactMutation(
     [key],
-    () => axios.get<any>(path).then((res) => res.data),
+    (args: TVariables) =>
+      axios.get<any>(path, args || options?.variables).then((res) => res.data),
     {
+      networkMode: 'offlineFirst',
       onError: (err: any) => {
         options?.onError && options.onError(err);
 
         message.warn(
           translate(
-            `global.${translate(
-              err?.response?.data?.err_code ||
-                err?.message ||
-                'error.occurred_error'
-            )}`
+            `${options?.translateErrorPath || global}.errors.${
+              err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
+            }` as NamespaceTranslate
           )
         );
       },

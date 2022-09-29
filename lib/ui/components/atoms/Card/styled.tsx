@@ -1,16 +1,17 @@
 import styled from 'styled-components';
+import { TCardProps } from './types';
 
-export const Section = styled.div<{ mHeight?: string; justify?: string }>`
+export const Section = styled.div<TCardProps>`
   display: flex;
-  width: 100%;
+  width: ${({ width }) => width || '100%'};
+  gap: ${({ gap }) => gap || '15px'};
   height: auto;
-  padding: 16px;
+  padding: ${({ padding }) => padding || '16px'};
   text-align: center;
   justify-content: ${({ justify }) => justify || 'center'};
   min-height: ${({ mHeight }) => mHeight};
-  gap: 15px;
-  align-items: center;
-  flex-direction: column;
+  align-items: ${({ align }) => align || 'center'};
+  flex-direction: ${({ direction }) => direction || 'column'};
   background-color: ${({ theme }) => theme.colors.background.main};
   border-radius: 5px;
   border: 1px solid ${({ theme }) => theme.colors.border.main};

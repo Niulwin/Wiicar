@@ -41,8 +41,7 @@ const layouts: TLayouts = {
  */
 function MyApp({
   Component,
-  pageProps,
-  router
+  pageProps
 }: TAppPropsWithCustomProps): JSX.Element | JSX.Element[] {
   const CurrentLayout = layouts[(Component?.layout || 'L1') as keyof TLayouts];
 
@@ -56,7 +55,7 @@ function MyApp({
               sidebars={Component.sidebars}
               hiddenSidebars={Component.hiddenSidebars}
             >
-              <Component router={router} {...pageProps} />
+              <Component {...pageProps} />
             </CurrentLayout>
           </DefaultTheme>
         </AuthProvider>

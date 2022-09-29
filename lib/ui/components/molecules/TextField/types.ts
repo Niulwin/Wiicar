@@ -16,7 +16,7 @@ export type TTextField<IFormValues extends object> = {
   };
 };
 
-export enum TextFieldValidationsMessage {
-  required = 'global.error.input.required',
-  number = 'global.error.input.numeric'
-}
+export const TextFieldValidationsMessage = {
+  required: 'global.error.input.required',
+  number: 'global.error.input.numeric'
+};
