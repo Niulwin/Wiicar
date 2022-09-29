@@ -56,7 +56,7 @@ export const lightTheme: TDefaultTheme = {
   key: 'light',
   colors: {
     background: {
-      main: '#ffffff',
+      main: '#fafafa',
       secondary: '#0a1929'
     },
     text: {
