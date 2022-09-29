@@ -16,7 +16,7 @@ export const global = {
     offers_list: 'Listado de ofertas',
     my_shopping: 'Mis compras',
     my_sales: 'Mis ventas',
-    my_accounts: 'Mis cuentas',
+    my_accounts: 'Medios de pago',
     my_banks: 'Mis bancos',
     my_profile: 'My perfil',
     order_details: 'Detalles de ordenes'
