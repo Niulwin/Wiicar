@@ -7,6 +7,7 @@ export const global = {
     Spanish: 'Español',
     English: 'Inglés'
   },
+  delete: 'Eliminar',
   cancel: 'Cancelar',
   accept: 'Aceptar',
   choose: 'Selecciona una opción',
@@ -19,7 +20,8 @@ export const global = {
     my_accounts: 'Medios de pago',
     my_banks: 'Mis bancos',
     my_profile: 'My perfil',
-    order_details: 'Detalles de ordenes'
+    order_details: 'Detalles de ordenes',
+    pack_nft: 'Pack NFT'
   },
   errors: {
     OCCURRED_ERROR: 'Lo sentimos ha ocurrido un error',

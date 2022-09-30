@@ -7,22 +7,13 @@ import { useConfig, useSales } from './hooks';
 export const MySalesView: FC = () => {
   const translate = useTranslate();
   const [showModal, setShowModal] = useState(false);
-  const {
-    data,
-    isLoading,
-    refetch,
-    handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
-  } = useSales({ translate });
+  const { data, isLoading, refetch, handleCancelSeller, loadingCancelSeller } =
+    useSales({ translate });
   const { columns } = useConfig({
     translate,
     data,
     handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
+    loadingCancelSeller
   });
 
   return (

@@ -1,10 +1,11 @@
 export const my_sales = {
   action_creator: 'Sale',
   name: 'User',
-  method_payment: 'Payment method',
+  method_payment: 'Method payment',
   price: 'Price',
   quantity: 'Quantity',
   approve: 'Approve',
+  going_transaction: 'Going to transaction',
   status: {
     name: 'State',
     SELL: 'Sell',

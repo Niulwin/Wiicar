@@ -1,20 +1,41 @@
 import styled from 'styled-components';
-import { TCardProps } from './types';
+import { CardHeightSize, CardWidthSize, TCardProps } from './types';
 
-export const Section = styled.div<TCardProps>`
+type TSection = Pick<
+  TCardProps,
+  | 'align'
+  | 'background'
+  | 'color'
+  | 'direction'
+  | 'gap'
+  | 'justify'
+  | 'mHeight'
+  | 'padding'
+  | 'position'
+  | 'size'
+  | 'variant'
+  | 'width'
+>;
+export const Section = styled.div<TSection>`
   display: flex;
-  width: ${({ width }) => width || '100%'};
   gap: ${({ gap }) => gap || '15px'};
-  height: auto;
   padding: ${({ padding }) => padding || '16px'};
   text-align: center;
   justify-content: ${({ justify }) => justify || 'center'};
   min-height: ${({ mHeight }) => mHeight};
   align-items: ${({ align }) => align || 'center'};
   flex-direction: ${({ direction }) => direction || 'column'};
-  background-color: ${({ theme }) => theme.colors.background.main};
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.colors.border.main};
-  box-shadow: 0px 2px 16px rgb(20 9 51 / 8%);
+  width: ${({ size, width }) => width || CardWidthSize[size || 'auto']};
+  height: ${({ size }) => CardHeightSize[size || 'auto']};
+  box-shadow: 0px 2px 16px rgb(20 9 51 / 15%);
   cursor: pointer;
+  background-color: ${({ variant, theme, background }) =>
+    variant === 'contained'
+      ? theme.colors[background || 'primary'].main
+      : 'transparent'};
+  border: ${({ variant, theme, background }) =>
+    variant === 'outlined'
+      ? `1px solid ${theme.colors[background || 'primary'].main}`
+      : 'none'};
 `;

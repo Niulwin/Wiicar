@@ -1,4 +1,4 @@
-import { formatCurrency, ISales, useTranslate } from 'core';
+import { formatCurrency, IInvoices, ISales, useTranslate } from 'core';
 import { Chip, FlexContainer, ModalFooter, TextField, Typography } from 'ui';
 import { useSalesRequest } from '../hooks';
 
@@ -9,7 +9,7 @@ export const RequestOffer = ({
 }: {
   selectedOffer: ISales;
   onCancel: () => void;
-  onCompleted: () => void;
+  onCompleted: (invoiceResponse: IInvoices) => void;
   isLoading?: boolean;
 }) => {
   const translate = useTranslate();

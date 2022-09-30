@@ -1,4 +1,5 @@
 import { ISales, useTranslate } from 'core';
+import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import { Button, Content, FlexContainer, Modal, Table, Typography } from 'ui';
 import { CreateSale } from 'view/mySales/CreateSale';
@@ -10,6 +11,7 @@ export const OfferList: FC = () => {
   const [showModalBuy, setShowModalBuy] = useState(false);
   const [selectedOffer, setSelectedOffer] = useState({} as ISales);
   const translate = useTranslate();
+  const router = useRouter();
   const { data, isLoading, refetch } = useSales();
   const { columns } = useConfig({
     translate,
@@ -38,9 +40,10 @@ export const OfferList: FC = () => {
         onCancel={() => setShowModalBuy(false)}
       >
         <RequestOffer
-          onCompleted={() => {
+          onCompleted={(invoiceResponse) => {
             refetch();
             setShowModalBuy(false);
+            router.push(`/order-details/${invoiceResponse.id}?type=buyer`);
           }}
           onCancel={() => setShowModalBuy(false)}
           selectedOffer={selectedOffer}

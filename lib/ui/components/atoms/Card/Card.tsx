@@ -12,13 +12,21 @@ export const Card: FC<TCardProps> = ({
   direction,
   position,
   width,
-  gap
+  gap,
+  size,
+  style,
+  variant,
+  background
 }: TCardProps) => {
   return (
     <Section
+      size={size}
+      style={style}
+      variant={variant || 'contained'}
+      onClick={onClick}
+      background={background}
       justify={justify}
       mHeight={mHeight}
-      onClick={onClick}
       gap={gap}
       width={width}
       direction={direction}

@@ -24,11 +24,5 @@ export type TUseConfig = {
     unknown,
     { invoiceId: string }
   >;
-  handleApproveSeller: UseMutateFunction<
-    IInvoices,
-    unknown,
-    { invoiceId: string }
-  >;
   loadingCancelSeller: boolean;
-  loadingApproveSeller: boolean;
 };

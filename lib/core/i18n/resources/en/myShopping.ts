@@ -16,7 +16,8 @@ export const my_shopping = {
     PAYMENT: 'Payment',
     APPROVAL: 'Approve',
     CANCEL_BUYER: 'Cancel Buyer',
-    CANCEL_SELLER: 'Cancel Seller'
+    CANCEL_SELLER: 'Cancel Seller',
+    EXPIRED_TIME: 'Cancel (expired time)'
   },
   errors: {
     PAYMENT_FILE_DIFFERENT_STATUS:

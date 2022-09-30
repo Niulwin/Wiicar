@@ -27,25 +27,12 @@ export const useSales = ({
         }
       }
     );
-  const { mutate: handleApproveSeller, isLoading: loadingApproveSeller } =
-    useMutation<IInvoices, { invoiceId: string }>(
-      'invoice-approval-seller',
-      'invoices/approval',
-      {
-        onSuccess: () => {
-          refetch();
-          message.success(translate('global.success_operation'));
-        }
-      }
-    );
 
   return {
     data: data,
     isLoading,
     refetch,
     handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
+    loadingCancelSeller
   };
 };

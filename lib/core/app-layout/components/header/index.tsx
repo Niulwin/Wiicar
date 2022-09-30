@@ -39,7 +39,7 @@ export const Header: FC<THeaderProps> = ({
                 <Button
                   variant="text"
                   title={translate('login.login')}
-                  onClick={() => router.push('auth/login')}
+                  onClick={() => router.push('/auth/login')}
                 />
                 <Button
                   color="light"

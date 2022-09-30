@@ -16,7 +16,8 @@ export const my_shopping = {
     PAYMENT: 'Pagado',
     APPROVAL: 'Aprobado',
     CANCEL_BUYER: 'Cancelado por el comprador',
-    CANCEL_SELLER: 'Cancelado por el vendedor'
+    CANCEL_SELLER: 'Cancelado por el vendedor',
+    EXPIRED_TIME: 'Cancelado (tiempo expirado)'
   },
   errors: {
     INVALID_CREDENTIALS: 'Credenciales inválidas',

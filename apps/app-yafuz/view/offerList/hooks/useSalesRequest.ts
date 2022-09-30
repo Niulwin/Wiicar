@@ -7,7 +7,7 @@ export const useSalesRequest = ({
   onCompleted,
   selectedOffer
 }: {
-  onCompleted: () => void;
+  onCompleted: (invoiceResponse: IInvoices) => void;
   selectedOffer: ISales;
 }) => {
   const [values, setValues] = useState<ISaleRequest>({} as ISaleRequest);
@@ -16,7 +16,7 @@ export const useSalesRequest = ({
     IInvoices,
     ISaleRequest
   >('invoice-request', 'invoices/request', {
-    onSuccess: () => onCompleted()
+    onSuccess: (invoiceResponse) => onCompleted(invoiceResponse)
   });
 
   const handleSaleRequest = (e: FormEvent) => {
