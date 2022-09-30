@@ -29,7 +29,7 @@ export const useConfig = ({
     setColumns([
       {
         name: '#',
-        width: 40,
+        width: 30,
         fixed: true,
         render: (_row: IInvoices, index: number) => {
           return index + 1;
@@ -37,7 +37,7 @@ export const useConfig = ({
       },
       {
         name: translate('my_shopping.buyer'),
-        width: 15,
+        width: 10,
         render: (row: IInvoices) => {
           return `${row?.buyer?.nombre} ${row?.buyer?.apellidos}`;
         }
@@ -57,11 +57,16 @@ export const useConfig = ({
       {
         name: translate('my_shopping.price'),
         accessor: 'sale.price',
-        width: 15
+        width: 10
       },
       {
         name: translate('my_shopping.quantity'),
         accessor: 'quantity',
+        width: 10
+      },
+      {
+        name: translate('my_shopping.identification_card'),
+        accessor: 'sale.userMethodPayment.identification_card',
         width: 10
       },
       {

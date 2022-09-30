@@ -5,6 +5,7 @@ export const my_shopping = {
   method_payment: 'Payment Method',
   price: 'Price',
   quantity: 'Quantity',
+  identification_card: 'Phone',
   upload_payment_file: 'Upload payment file',
   status: {
     name: 'State',
