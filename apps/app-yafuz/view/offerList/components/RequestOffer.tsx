@@ -1,4 +1,10 @@
-import { formatCurrency, IInvoices, ISales, useTranslate } from 'core';
+import {
+  formatCurrency,
+  formatToNumber,
+  IInvoices,
+  ISales,
+  useTranslate
+} from 'core';
 import { Chip, FlexContainer, ModalFooter, TextField, Typography } from 'ui';
 import { useSalesRequest } from '../hooks';
 
@@ -13,10 +19,12 @@ export const RequestOffer = ({
   isLoading?: boolean;
 }) => {
   const translate = useTranslate();
-  const { handleSaleRequest, isLoading, handleChange } = useSalesRequest({
-    onCompleted,
-    selectedOffer
-  });
+  const { values, handleSaleRequest, isLoading, handleChange } =
+    useSalesRequest({
+      onCompleted,
+      selectedOffer,
+      translate
+    });
 
   return (
     <FlexContainer direction="row">
@@ -59,7 +67,7 @@ export const RequestOffer = ({
             {translate('my_sales.price')}
           </Typography>
           <Typography align="center" variant="body1" color="success">
-            {formatCurrency(selectedOffer?.price || 0)} COP
+            {formatCurrency(selectedOffer?.price || 0)} USDT
           </Typography>
         </FlexContainer>
         <FlexContainer direction="row" justify="flex-start">
@@ -68,10 +76,10 @@ export const RequestOffer = ({
             variant="caption"
             style={{ marginRight: 10 }}
           >
-            {translate('offers_list.available')}
+            {translate('offers_list.available')} YAZ
           </Typography>
           <Typography align="center" variant="body1" color="info">
-            {formatCurrency(selectedOffer?.quantity || 0)}
+            {formatToNumber(selectedOffer?.quantity || 0)}
           </Typography>
         </FlexContainer>
         <FlexContainer direction="row" justify="flex-start" padding="0 1rem">
@@ -99,17 +107,29 @@ export const RequestOffer = ({
         <form style={{ width: '100%' }} onSubmit={handleSaleRequest}>
           <TextField
             width="100%"
-            label={translate('offers_list.quantity')}
+            type="number"
+            label={`${translate('offers_list.will_receive')} YAZ`}
             name="quantity"
+            title={translate('global.errors.input.numeric')}
             onChange={({ target }) =>
-              handleChange({ name: target.name, value: Number(target.value) })
+              handleChange({ name: target.name, value: target.value })
             }
+            value={values.quantity || ''}
           />
-          {/* <TextField
+          <TextField
             width="100%"
-            label={translate('offers_list.will_receive')}
-            name="will_received"
-          /> */}
+            type="number"
+            label={`${translate('offers_list.want_to_pay')} USDT`}
+            name="toPay"
+            title={translate('global.errors.input.numeric')}
+            onChange={({ target }) =>
+              handleChange({
+                name: target.name,
+                value: target.value
+              })
+            }
+            value={values.toPay || ''}
+          />
 
           <ModalFooter noPadding loading={isLoading} onCancel={onCancel} />
         </form>

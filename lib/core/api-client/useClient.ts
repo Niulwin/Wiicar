@@ -36,7 +36,7 @@ export const useQuery = <
         options?.onError && options?.onError(err);
 
         message.warn(
-          `${options?.translateErrorPath || global}.errors.${translate(
+          `${options?.translateErrorPath || 'global'}.errors.${translate(
             err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
           )}`
         );
@@ -67,7 +67,7 @@ export const useMutation = <
       onError: (err: any) => {
         message.warn(
           translate(
-            `${options?.translateErrorPath || global}.errors.${
+            `${options?.translateErrorPath || 'global'}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
             }` as NamespaceTranslate
           )
@@ -102,7 +102,7 @@ export const useLazyQuery = <
 
         message.warn(
           translate(
-            `${options?.translateErrorPath || global}.errors.${
+            `${options?.translateErrorPath || 'global'}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
             }` as NamespaceTranslate
           )

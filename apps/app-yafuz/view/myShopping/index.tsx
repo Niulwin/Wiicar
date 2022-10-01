@@ -1,7 +1,7 @@
 import { IInvoices, useTranslate } from 'core';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { Button, Content, FlexContainer, Table, Typography } from 'ui';
+import { Button, Card, Content, FlexContainer, Table, Typography } from 'ui';
 import { useConfig, useInvoices } from './hooks';
 
 export const MyShopping: FC = () => {
@@ -28,13 +28,15 @@ export const MyShopping: FC = () => {
           iconLeft="plus"
         />
       </Content>
-      <FlexContainer padding="0">
-        <Table<IInvoices>
-          loading={isLoading}
-          columns={columns}
-          data={data?.data || []}
-        />
-      </FlexContainer>
+      <Card>
+        <FlexContainer padding="0">
+          <Table<IInvoices>
+            loading={isLoading}
+            columns={columns}
+            data={data?.data || []}
+          />
+        </FlexContainer>
+      </Card>
     </Content>
   );
 };

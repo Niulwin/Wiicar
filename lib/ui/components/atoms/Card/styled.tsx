@@ -26,16 +26,16 @@ export const Section = styled.div<TSection>`
   align-items: ${({ align }) => align || 'center'};
   flex-direction: ${({ direction }) => direction || 'column'};
   border-radius: 5px;
-  width: ${({ size, width }) => width || CardWidthSize[size || 'auto']};
+  width: ${({ size, width }) => width || CardWidthSize[size || 'fullWidth']};
   height: ${({ size }) => CardHeightSize[size || 'auto']};
   box-shadow: 0px 2px 16px rgb(20 9 51 / 15%);
   cursor: pointer;
   background-color: ${({ variant, theme, background }) =>
     variant === 'contained'
-      ? theme.colors[background || 'primary'].main
+      ? theme.colors[background || 'background'].main
       : 'transparent'};
   border: ${({ variant, theme, background }) =>
     variant === 'outlined'
-      ? `1px solid ${theme.colors[background || 'primary'].main}`
+      ? `1px solid ${theme.colors[background || 'border'].main}`
       : 'none'};
 `;

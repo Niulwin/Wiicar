@@ -1,7 +1,15 @@
 import { ISales, useTranslate } from 'core';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-import { Button, Content, FlexContainer, Modal, Table, Typography } from 'ui';
+import {
+  Button,
+  Card,
+  Content,
+  FlexContainer,
+  Modal,
+  Table,
+  Typography
+} from 'ui';
 import { CreateSale } from 'view/mySales/CreateSale';
 import { RequestOffer } from './components';
 import { useConfig, useSales } from './hooks';
@@ -23,7 +31,7 @@ export const OfferList: FC = () => {
   });
 
   return (
-    <Content>
+    <FlexContainer>
       <Modal
         footer={false}
         title={translate('offers_list.action_creator')}
@@ -61,14 +69,19 @@ export const OfferList: FC = () => {
           iconLeft="plus"
         />
       </Content>
-      <FlexContainer padding="0" style={{ maxWidth: '1220px', margin: 'auto' }}>
-        <Table<ISales>
-          loading={isLoading}
-          columns={columns}
-          data={data?.data || []}
-          count={data?.total}
-        />
-      </FlexContainer>
-    </Content>
+      <Card>
+        <FlexContainer
+          padding="0"
+          style={{ maxWidth: '1220px', margin: 'auto' }}
+        >
+          <Table<ISales>
+            loading={isLoading}
+            columns={columns}
+            data={data?.data || []}
+            count={data?.total}
+          />
+        </FlexContainer>
+      </Card>
+    </FlexContainer>
   );
 };

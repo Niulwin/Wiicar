@@ -17,6 +17,6 @@ export type TSelectField<IFormValues extends object> = {
 };
 
 export const SelectFieldValidationsMessage = {
-  required: 'global.error.input.required',
-  number: 'global.error.input.numeric'
+  required: 'global.errors.input.required',
+  number: 'global.errors.input.numeric'
 };

@@ -14,4 +14,9 @@ export const Flex = styled.div<TFlexContainerProps>`
     css`
       ${position}
     `};
+  ${({ shadow }) =>
+    shadow &&
+    css`
+      box-shadow: 0px 2px 16px rgb(20 9 51 / 15%);
+    `};
 `;

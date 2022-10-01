@@ -27,6 +27,7 @@ export const global = {
     OCCURRED_ERROR: `I'm sorry, an ocurred error`,
     SESSION_EXPIRED: 'Session expired',
     INVALID_CREDENTIALS: 'Invalid credentials',
+    MISSING_FIELDS: 'Missing fields',
     input: {
       required: 'This field is required',
       numeric: 'This field is numeric'

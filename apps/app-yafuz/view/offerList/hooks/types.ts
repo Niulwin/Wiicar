@@ -6,4 +6,8 @@ export type TUseConfig = {
   handleShowRequestOperation: (item: ISales) => void;
 };
 
-export type ISaleRequest = { salesId?: string; quantity?: number };
+export type ISaleRequest = {
+  salesId?: string;
+  quantity?: number;
+  toPay?: number;
+};

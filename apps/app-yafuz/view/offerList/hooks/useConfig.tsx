@@ -86,7 +86,7 @@ export const useConfig = ({
         {
           name: translate('my_sales.price'),
           accessor: 'price',
-          width: 15,
+          width: 20,
           render: (row: ISales) => {
             return (
               <FlexContainer
@@ -98,7 +98,7 @@ export const useConfig = ({
                   {formatCurrency(row?.price || 0)}
                 </Typography>
                 <Typography align="center" variant="caption">
-                  &nbsp; COP
+                  &nbsp; USDT
                 </Typography>
               </FlexContainer>
             );
@@ -144,26 +144,11 @@ export const useConfig = ({
         {
           name: translate('my_sales.method_payment'),
           accessor: 'userMethodPayment.methodPayment.name',
-          width: 15
-        },
-        {
-          name: translate('my_sales.status.name'),
-          width: 15,
-          render: (row: ISales) => {
-            return (
-              <Typography
-                align="center"
-                color={STATUS[row?.state || 'ENABLE'] as 'textPrimary'}
-                variant="caption"
-              >
-                {translate(`my_sales.status.${row?.state}`)}
-              </Typography>
-            );
-          }
+          width: 20
         },
         {
           name: translate('global.actions'),
-          width: 10,
+          width: 15,
           render: (item: ISales) => {
             return (
               <FlexContainer justify="center">

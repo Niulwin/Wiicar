@@ -4,3 +4,4 @@ export { Chip } from './Chip';
 export { SelectField } from './SelectField';
 export * from './Steps';
 export { TextField } from './TextField';
+export { TextFieldControlled } from './TextFieldControlled';
