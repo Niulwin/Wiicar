@@ -16,6 +16,7 @@ export interface TFlexContainerProps extends PropsWithChildren {
   padding?: string;
   width?: string;
   gap?: string;
+  shadow?: boolean;
   position?: 'absolute' | 'relative' | 'fixed';
   direction?: 'column' | 'row' | 'row-reverse';
   sm?: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';

@@ -26,9 +26,10 @@ export const global = {
   errors: {
     OCCURRED_ERROR: 'Lo sentimos ha ocurrido un error',
     SESSION_EXPIRED: 'Su sesión ha expirado',
+    MISSING_FIELDS: 'Campos faltantantes',
     input: {
       required: 'Este campo es requerido',
-      numeric: 'Este campo es numérico'
+      numeric: 'Este campo debe ser numérico'
     }
   }
 };

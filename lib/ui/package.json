@@ -30,6 +30,7 @@
   "dependencies": {
     "antd": "^4.22.7",
     "react": "^18.2.0",
+    "react-hook-form": "^7.36.1",
     "wvl-virtualized-list": "^1.1.79"
   }
 }

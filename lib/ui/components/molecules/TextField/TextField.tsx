@@ -13,7 +13,9 @@ export const TextField = <IFormValues extends object>({
   width,
   register,
   validate,
-  error
+  error,
+  type,
+  title
 }: TTextField<IFormValues>) => {
   const translate = useTranslate();
 
@@ -23,22 +25,35 @@ export const TextField = <IFormValues extends object>({
         {label}
       </Typography>
       <Input
-        {...(register ? register(name, validate) : {})}
+        {...(register
+          ? register(name, {
+              required: {
+                message: TextFieldValidationsMessage.required,
+                value: validate?.required || false
+              },
+              ...(validate?.numeric
+                ? {
+                    pattern: {
+                      message: TextFieldValidationsMessage.number,
+                      value: /^[0-9-.]*$/
+                    }
+                  }
+                : {})
+            })
+          : {})}
         placeholder={placeholder}
         onChange={onChange}
         name={name}
+        type={type}
         value={value}
+        title={title}
       />
       <Typography
         style={{ padding: 2, minHeight: 30 }}
         color="error"
         variant="caption3"
       >
-        {error?.type === 'required'
-          ? translate(
-              TextFieldValidationsMessage.required as NamespaceTranslate
-            )
-          : ''}
+        {error ? translate(error.message as NamespaceTranslate) : ''}
       </Typography>
     </FlexContainer>
   );

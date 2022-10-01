@@ -12,7 +12,8 @@ export const FlexContainer: FC<TFlexContainerProps> = ({
   sm,
   width,
   style,
-  gap
+  gap,
+  shadow
 }: TFlexContainerProps) => {
   return (
     <Flex
@@ -25,6 +26,7 @@ export const FlexContainer: FC<TFlexContainerProps> = ({
       padding={padding}
       position={position}
       style={style}
+      shadow={shadow}
     >
       {children}
     </Flex>

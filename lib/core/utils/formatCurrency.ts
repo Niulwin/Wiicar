@@ -43,3 +43,7 @@ export const numeralConfig = (
 export const formatCurrency = (value?: number): string | number => {
   return value ? numeral(value).format('0,0.00') : 0;
 };
+
+export const formatToNumber = (value?: number): string | number => {
+  return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') : 0;
+};

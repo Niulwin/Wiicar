@@ -1,25 +1,24 @@
 import type { FieldError, Path, UseFormRegister } from 'core/form';
-import { ChangeEventHandler } from 'react';
+import { ChangeEvent, ChangeEventHandler } from 'react';
 
-export type TTextField<IFormValues extends object> = {
+export type TTextFieldControlled<IFormValues extends object, TValue> = {
   placeholder?: string;
   label: string;
   name: Path<IFormValues>;
-  type?: 'number' | 'text';
   width?: string;
-  title?: string;
   error?: FieldError;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  value?: string | number | readonly string[];
+  defaultValue?: any;
   register?: UseFormRegister<IFormValues>;
   validate?: {
     required?: boolean;
     numeric?: boolean;
-    pattern?: RegExp;
   };
+  control?: any;
+  format?: (value: any, event?: ChangeEvent<HTMLInputElement>) => any;
 };
 
-export const TextFieldValidationsMessage = {
+export const TextFieldControlledValidationsMessage = {
   required: 'global.errors.input.required',
   number: 'global.errors.input.numeric'
 };

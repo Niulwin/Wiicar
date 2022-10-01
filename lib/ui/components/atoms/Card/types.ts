@@ -5,7 +5,14 @@ export interface TCardProps extends PropsWithChildren {
   children: JSX.Element | JSX.Element[];
   style?: CSSProperties;
   variant?: 'text' | 'contained' | 'outlined';
-  background?: 'primary' | 'secondary' | 'error' | 'success' | 'info';
+  background?:
+    | 'background'
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'success'
+    | 'info'
+    | 'border';
   size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
   color?:
     | 'primary'

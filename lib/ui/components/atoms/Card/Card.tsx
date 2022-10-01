@@ -22,7 +22,7 @@ export const Card: FC<TCardProps> = ({
     <Section
       size={size}
       style={style}
-      variant={variant || 'contained'}
+      variant={variant || 'outlined'}
       onClick={onClick}
       background={background}
       justify={justify}
