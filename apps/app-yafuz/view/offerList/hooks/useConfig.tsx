@@ -65,11 +65,7 @@ export const useConfig = ({
                     {row?.user?.nombre} {row?.user?.apellidos}
                   </Typography>
                 </FlexContainer>
-                <FlexContainer
-                  direction="row"
-                  justify="flex-start"
-                  padding="5px 0"
-                >
+                <FlexContainer direction="row" justify="center" padding="5px 0">
                   <Typography variant="caption2" color="info">
                     309 &nbsp;
                   </Typography>
@@ -89,18 +85,9 @@ export const useConfig = ({
           width: 20,
           render: (row: ISales) => {
             return (
-              <FlexContainer
-                direction="row"
-                align="flex-end"
-                justify="flex-start"
-              >
-                <Typography align="center" variant="h5">
-                  {formatCurrency(row?.price || 0)}
-                </Typography>
-                <Typography align="center" variant="caption">
-                  &nbsp; USDT
-                </Typography>
-              </FlexContainer>
+              <Typography align="center" variant="h6">
+                {formatCurrency(row?.price || 0)} &nbsp; USDT
+              </Typography>
             );
           }
         },

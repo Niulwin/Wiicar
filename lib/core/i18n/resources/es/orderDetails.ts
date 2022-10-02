@@ -7,6 +7,6 @@ export const order_details = {
     buy: 'Generar solicitud'
   },
   errors: {
-    INVOICE_EXPIRED_OR_NOT_FOUND: 'The order has expired or not exist'
+    INVOICE_EXPIRED_OR_NOT_FOUND: 'La orden ha expirado o no existe'
   }
 };
