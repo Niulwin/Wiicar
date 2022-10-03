@@ -14,22 +14,18 @@
     "lint": "turbo run lint",
     "prettier-lint": "prettier --check .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install",
-    "test": ""
+    "postinstall": "husky install",
+    "test": "",
+    "pre-commit": "turbo run pre-commit --filter=app-yafuz"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && prettier --write . && git add -a ."
+      "pre-commit": "yarn pre-commit"
     }
-  },
-  "lint-staged": {
-    "*.{ts}": [
-      "turbo run lint"
-    ]
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "husky": "^8.0.0",
+    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "turbo": "latest",

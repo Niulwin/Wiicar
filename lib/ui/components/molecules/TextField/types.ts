@@ -5,7 +5,9 @@ export type TTextField<IFormValues extends object> = {
   placeholder?: string;
   label: string;
   name: Path<IFormValues>;
+  type?: 'number' | 'text';
   width?: string;
+  title?: string;
   error?: FieldError;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   value?: string | number | readonly string[];
@@ -13,10 +15,11 @@ export type TTextField<IFormValues extends object> = {
   validate?: {
     required?: boolean;
     numeric?: boolean;
+    pattern?: RegExp;
   };
 };
 
-export enum TextFieldValidationsMessage {
-  required = 'global.error.input.required',
-  number = 'global.error.input.numeric'
-}
+export const TextFieldValidationsMessage = {
+  required: 'global.errors.input.required',
+  number: 'global.errors.input.numeric'
+};

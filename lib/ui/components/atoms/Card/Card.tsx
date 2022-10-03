@@ -6,10 +6,34 @@ export const Card: FC<TCardProps> = ({
   onClick,
   children,
   mHeight,
-  justify
+  justify,
+  align,
+  padding,
+  direction,
+  position,
+  width,
+  gap,
+  size,
+  style,
+  variant,
+  background
 }: TCardProps) => {
   return (
-    <Section justify={justify} mHeight={mHeight} onClick={onClick}>
+    <Section
+      size={size}
+      style={style}
+      variant={variant || 'outlined'}
+      onClick={onClick}
+      background={background}
+      justify={justify}
+      mHeight={mHeight}
+      gap={gap}
+      width={width}
+      direction={direction}
+      align={align}
+      padding={padding}
+      position={position}
+    >
       {children}
     </Section>
   );

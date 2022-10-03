@@ -1,4 +1,9 @@
-import { IMethodPayments, TPagination, useI18n } from 'core';
+import {
+  IMethodPayments,
+  NamespaceTranslate,
+  TPagination,
+  useI18n
+} from 'core';
 import { useEffect, useState } from 'react';
 import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
 
@@ -6,7 +11,7 @@ export const useConfig = ({
   translate,
   data
 }: {
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
   data?: TPagination<IMethodPayments>;
 }) => {
   const { language } = useI18n();
@@ -31,7 +36,12 @@ export const useConfig = ({
       {
         name: translate('bank.name'),
         accessor: 'name',
-        width: 50
+        width: 30
+      },
+      {
+        name: translate('bank.country'),
+        accessor: 'country',
+        width: 20
       },
       {
         name: translate('global.actions'),

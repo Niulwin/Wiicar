@@ -13,7 +13,7 @@ function MyShoppingPage(): ReactElement {
       <Head>
         <title>Yafuz - {translate('global.menu_options.my_shopping')}</title>
       </Head>
-      {mount ? <MyShopping /> : null};
+      {mount ? <MyShopping /> : null}
     </>
   );
 }

@@ -13,7 +13,7 @@ function MyAccountsPage(): ReactElement {
       <Head>
         <title>Yafuz - {translate('global.menu_options.my_banks')}</title>
       </Head>
-      {mount ? <MyAccounts /> : null};
+      {mount ? <MyAccounts /> : null}
     </>
   );
 }

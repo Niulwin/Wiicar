@@ -9,16 +9,24 @@ export const FlexContainer: FC<TFlexContainerProps> = ({
   padding,
   direction,
   position,
-  width
+  sm,
+  width,
+  style,
+  gap,
+  shadow
 }: TFlexContainerProps) => {
   return (
     <Flex
+      gap={gap}
+      sm={sm}
       width={width}
       justify={justify}
       direction={direction}
       align={align}
       padding={padding}
       position={position}
+      style={style}
+      shadow={shadow}
     >
       {children}
     </Flex>

@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
-import { ButtonSize } from './types';
 
 export const ContentButton = styled.button<{
   variant?: 'text' | 'contained' | 'outlined';
@@ -16,19 +15,18 @@ export const ContentButton = styled.button<{
 }>`
   user-select: none;
   display: flex;
-  width: ${({ size }) => ButtonSize[size || 'auto']};
   height: auto;
   padding: 4px 8px;
   margin: 4px;
   text-align: center;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   background-color: ${({ variant, theme, background }) =>
     variant === 'contained'
       ? theme.colors[background || 'primary'].main
       : 'transparent'};
   border-radius: 5px;
-  cursor: pointer;
   border: ${({ variant, theme, background }) =>
     variant === 'outlined'
       ? `1px solid ${theme.colors[background || 'primary'].main}`

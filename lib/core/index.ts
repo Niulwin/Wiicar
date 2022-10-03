@@ -6,3 +6,4 @@ export * from './form';
 export * from './hoc';
 export * from './i18n';
 export * from './i18n/hooks';
+export * from './utils';

@@ -10,6 +10,7 @@ export interface IInvoices {
   salesId: string;
   photo?: string;
   dateCancel?: string;
+  expirationDate?: string;
   state: 'PROGRESS' | 'CANCEL_BUYER' | 'CANCEL_SELLER' | 'PAYMENT' | 'APPROVAL';
   buyerId: string;
   sellerId: string;

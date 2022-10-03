@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withTM = require('next-transpile-modules')(['ui', 'core']);
-const path = require("path");
+const path = require('path');
 
 module.exports = withTM({
+  images: {
+    domains: ['yafuz-bucket.s3.amazonaws.com']
+  },
   output: 'standalone',
   experimental: {
-    outputFileTracingRoot: path.join(__dirname, "../../"),
+    outputFileTracingRoot: path.join(__dirname, '../../')
   },
   reactStrictMode: true,
   compress: true,

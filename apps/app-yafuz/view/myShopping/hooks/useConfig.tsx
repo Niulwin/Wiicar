@@ -1,6 +1,8 @@
 import { IInvoices, useI18n } from 'core';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
+import { formatCurrency } from '../../../../../lib/core/utils/formatCurrency';
 import { TUseConfig } from './types';
 
 const STATUS = {
@@ -11,16 +13,16 @@ const STATUS = {
   PAYMENT: 'success',
   CANCEL_BUYER: 'warning',
   CANCEL_SELLER: 'warning',
+  EXPIRED_TIME: 'warning',
   APPROVAL: 'info'
 };
 export const useConfig = ({
   translate,
   handleCancelBuyer,
-  loadingCancelBuyer,
-  handlePaymentBuyer,
-  loadingPaymentBuyer
+  loadingCancelBuyer
 }: TUseConfig) => {
   const { language } = useI18n();
+  const router = useRouter();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
   const { theme } = useTheme();
   const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
@@ -29,7 +31,7 @@ export const useConfig = ({
     setColumns([
       {
         name: '#',
-        width: 40,
+        width: 30,
         fixed: true,
         render: (_row: IInvoices, index: number) => {
           return index + 1;
@@ -37,7 +39,7 @@ export const useConfig = ({
       },
       {
         name: translate('my_shopping.buyer'),
-        width: 15,
+        width: 10,
         render: (row: IInvoices) => {
           return `${row?.buyer?.nombre} ${row?.buyer?.apellidos}`;
         }
@@ -57,11 +59,19 @@ export const useConfig = ({
       {
         name: translate('my_shopping.price'),
         accessor: 'sale.price',
-        width: 15
+        width: 10,
+        render: (row: IInvoices) => {
+          return formatCurrency(row.sale.price);
+        }
       },
       {
         name: translate('my_shopping.quantity'),
         accessor: 'quantity',
+        width: 10
+      },
+      {
+        name: translate('my_shopping.identification_card'),
+        accessor: 'sale.userMethodPayment.identification_card',
         width: 10
       },
       {
@@ -81,26 +91,24 @@ export const useConfig = ({
       },
       {
         name: translate('global.actions'),
-        width: 15,
+        width: 20,
         render: (item: IInvoices) => {
           return (
             <FlexContainer justify="center" direction="row">
               <Button
-                disabled={item.state !== 'PROGRESS'}
-                loading={invoiceId === item.id && loadingPaymentBuyer}
+                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
                 onClick={() => {
-                  setInvoiceId(item.id);
-                  handlePaymentBuyer({ invoiceId: item.id, photo: 'algo.jpg' });
+                  router.push(`/order-details/${item.id}?type=buyer`);
                 }}
                 size="xs"
-                iconLeft="file-upload"
+                iconLeft="check-double"
                 variant="contained"
                 background="info"
                 color="light"
-                tooltip={translate('my_shopping.upload_payment_file')}
+                title={translate('my_sales.going_transaction')}
               />
               <Button
-                disabled={item.state !== 'PROGRESS'}
+                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
                 loading={invoiceId === item.id && loadingCancelBuyer}
                 onClick={() => {
                   setInvoiceId(item.id);
@@ -111,6 +119,7 @@ export const useConfig = ({
                 variant="contained"
                 background="error"
                 color="light"
+                title={translate('global.cancel')}
                 tooltip={translate('global.cancel')}
               />
             </FlexContainer>
@@ -118,7 +127,7 @@ export const useConfig = ({
         }
       }
     ]);
-  }, [theme, language, loadingCancelBuyer, loadingPaymentBuyer]);
+  }, [theme, language, loadingCancelBuyer]);
 
   return { columns };
 };

@@ -56,11 +56,11 @@ export const lightTheme: TDefaultTheme = {
   key: 'light',
   colors: {
     background: {
-      main: '#ffffff',
+      main: '#fafafa',
       secondary: '#0a1929'
     },
     text: {
-      primary: '#FF5300',
+      primary: '#e8540d',
       secondary: '#7367f0',
       textPrimary: '#666666',
       textSecondary: '#ffffff',
@@ -72,7 +72,7 @@ export const lightTheme: TDefaultTheme = {
       disabled: 'f44336'
     },
     primary: {
-      main: '#f44336',
+      main: '#e8540d',
       secondary: '#7367f0'
     },
     secondary: {
@@ -126,7 +126,7 @@ export const darkTheme: TDefaultTheme = {
       disabled: 'f44336'
     },
     primary: {
-      main: '#f44336',
+      main: '#e8540d',
       secondary: '#7367f0'
     },
     secondary: {

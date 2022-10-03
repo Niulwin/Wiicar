@@ -1,4 +1,9 @@
-import { IInvoices, TPagination, UseMutateFunction } from 'core';
+import {
+  IInvoices,
+  NamespaceTranslate,
+  TPagination,
+  UseMutateFunction
+} from 'core';
 
 export type TUseCreteSale = {
   setShowModal: React.Dispatch<boolean>;
@@ -13,19 +18,11 @@ export type TInputSale = {
 
 export type TUseConfig = {
   data?: TPagination<IInvoices>;
-  translate: (key: string) => string;
+  translate: (key: NamespaceTranslate) => string;
   handleCancelSeller: UseMutateFunction<
-    { data: IInvoices },
-    { error: boolean },
-    { invoiceId: string },
-    unknown
-  >;
-  handleApproveSeller: UseMutateFunction<
-    { data: IInvoices },
-    { error: boolean },
-    { invoiceId: string },
-    unknown
+    IInvoices,
+    unknown,
+    { invoiceId: string }
   >;
   loadingCancelSeller: boolean;
-  loadingApproveSeller: boolean;
 };

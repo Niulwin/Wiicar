@@ -13,7 +13,7 @@ function MySales(): ReactElement {
       <Head>
         <title>Yafuz - {translate('global.menu_options.my_sales')}</title>
       </Head>
-      {mount ? <MySalesView /> : null};
+      {mount ? <MySalesView /> : null}
     </>
   );
 }

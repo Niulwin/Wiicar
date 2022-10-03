@@ -1,28 +1,27 @@
 import { IInvoices, useTranslate } from 'core';
 import { FC, useState } from 'react';
-import { Button, Content, FlexContainer, Modal, Table, Typography } from 'ui';
+import {
+  Button,
+  Card,
+  Content,
+  FlexContainer,
+  Modal,
+  Table,
+  Typography
+} from 'ui';
 import { CreateSale } from './CreateSale';
 import { useConfig, useSales } from './hooks';
 
 export const MySalesView: FC = () => {
   const translate = useTranslate();
   const [showModal, setShowModal] = useState(false);
-  const {
-    data,
-    isLoading,
-    refetch,
-    handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
-  } = useSales({ translate });
+  const { data, isLoading, refetch, handleCancelSeller, loadingCancelSeller } =
+    useSales({ translate });
   const { columns } = useConfig({
     translate,
     data,
     handleCancelSeller,
-    loadingCancelSeller,
-    handleApproveSeller,
-    loadingApproveSeller
+    loadingCancelSeller
   });
 
   return (
@@ -46,14 +45,16 @@ export const MySalesView: FC = () => {
           iconLeft="plus"
         />
       </Content>
-      <FlexContainer padding="0">
-        <Table<IInvoices>
-          loading={isLoading}
-          columns={columns}
-          data={data?.data || []}
-          count={data?.total}
-        />
-      </FlexContainer>
+      <Card>
+        <FlexContainer padding="0">
+          <Table<IInvoices>
+            loading={isLoading}
+            columns={columns}
+            data={data?.data || []}
+            count={data?.total}
+          />
+        </FlexContainer>
+      </Card>
     </Content>
   );
 };

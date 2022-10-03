@@ -20,7 +20,7 @@ const OptionMenu = [
   },
   {
     icon: 'piggy-bank',
-    title: 'Mis cuentas',
+    title: 'Medios de pago',
     route: 'my-accounts'
   },
   {

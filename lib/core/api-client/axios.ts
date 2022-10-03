@@ -53,11 +53,13 @@ export class AxiosClient {
    * Method Get
    */
   public async get<T>(
-    path: string
+    path: string,
+    args?: any
   ): Promise<
     Partial<AxiosResponse<T, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.get(path);
+    console.log(args);
+    return this.axiosClient.get(path, { params: args });
   }
 
   /**
@@ -65,13 +67,16 @@ export class AxiosClient {
    */
   public async post<T, R>({
     path,
-    args
+    args,
+    formData
   }: {
     path: string;
-    args: T;
+    args?: T;
+    formData?: boolean;
   }): Promise<
     Partial<AxiosResponse<R, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.post(path, JSON.stringify(args));
+    console.log(formData, 'formdate');
+    return this.axiosClient.post(path, formData ? args : JSON.stringify(args));
   }
 }

@@ -46,12 +46,12 @@ export const routes: RoutesInterface[] = [
     path: '/my-accounts',
     icon: 'piggy-bank',
     isPrivate: true
-  },
-  {
+  }
+  /*   {
     key: ID,
     name: 'global.menu_options.my_banks',
     path: '/banks',
     icon: 'university',
     isPrivate: true
-  }
+  } */
 ];

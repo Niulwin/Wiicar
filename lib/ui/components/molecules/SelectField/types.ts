@@ -16,7 +16,7 @@ export type TSelectField<IFormValues extends object> = {
   };
 };
 
-export enum SelectFieldValidationsMessage {
-  required = 'global.error.input.required',
-  number = 'global.error.input.numeric'
-}
+export const SelectFieldValidationsMessage = {
+  required: 'global.errors.input.required',
+  number: 'global.errors.input.numeric'
+};

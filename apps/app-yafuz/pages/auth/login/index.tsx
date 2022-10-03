@@ -10,7 +10,7 @@ const LoginPage = () => {
       <Head>
         <title>Yafuz - Login</title>
       </Head>
-      {mount ? <LoginComponent /> : null};
+      {mount ? <LoginComponent /> : null}
     </>
   );
 };
