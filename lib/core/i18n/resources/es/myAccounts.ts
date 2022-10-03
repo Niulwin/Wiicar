@@ -6,5 +6,6 @@ export const my_accounts = {
   current_account: 'Corriente',
   method_payment: 'Medio de pago',
   method_payment_type: 'Tipo de medio de pago',
-  method_payment_number: 'Número de medio de pago'
+  method_payment_number: 'Número de medio de pago',
+  account_type: 'Tipo de cuenta'
 };

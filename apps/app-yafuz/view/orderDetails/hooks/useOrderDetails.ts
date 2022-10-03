@@ -36,17 +36,33 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
       }
     );
 
-  const { mutate: handlePaymentBuyer, isLoading: loadingPaymentBuyer } =
-    useMutation<IInvoices, { invoiceId: string; photo: string }>(
-      'invoice-payment-buyer',
-      'invoices/payment',
-      {
-        onSuccess: () => {
-          getOrderDetail({ type: params.type });
-          message.success(translate('global.success_operation'));
-        }
-      }
-    );
+  const { mutate: paymentBuyer, isLoading: loadingPaymentBuyer } = useMutation<
+    IInvoices,
+    { invoiceId: string; photo: string }
+  >('invoice-payment-buyer', 'invoices/payment', {
+    formData: true,
+    onSuccess: () => {
+      getOrderDetail({ type: params.type });
+      message.success(translate('global.success_operation'));
+    }
+  });
+
+  const handlePaymentBuyer = ({
+    invoiceId,
+    photo
+  }: {
+    invoiceId: string;
+    photo?: File | null;
+  }) => {
+    if (!photo)
+      return message.warn(translate('order_details.errors.FILE_MISSING'));
+
+    const formData = new FormData();
+    formData.append('invoiceId', invoiceId);
+    formData.append('photo', photo);
+
+    paymentBuyer(formData as any);
+  };
 
   useEffect(() => {
     if (params.type) getOrderDetail({ type: params.type });

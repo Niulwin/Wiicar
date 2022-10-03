@@ -52,7 +52,9 @@ export const useMutation = <
 >(
   key: string,
   path: string,
-  options?: TQueryOptions<TResponse, TVariables, TError>
+  options?: TQueryOptions<TResponse, TVariables, TError> & {
+    formData?: boolean;
+  }
 ): UseMutationResult<TResponse, TError, TVariables> => {
   const translate = useTranslate();
   const { client: axios } = useContext(QueryClientContext);
@@ -61,7 +63,11 @@ export const useMutation = <
     [key],
     (args) =>
       axios
-        .post<TVariables, any>({ path, args: args || options?.variables })
+        .post<TVariables, any>({
+          path,
+          args: args || options?.variables,
+          formData: options?.formData
+        })
         .then((res) => res.data),
     {
       onError: (err: any) => {

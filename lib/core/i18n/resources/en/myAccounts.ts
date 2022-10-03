@@ -6,5 +6,6 @@ export const my_accounts = {
   current_account: 'Current Account',
   method_payment: 'Method payment',
   method_payment_type: 'Method payment type',
-  method_payment_number: 'Method number payment'
+  method_payment_number: 'Method number payment',
+  account_type: 'Account_type'
 };

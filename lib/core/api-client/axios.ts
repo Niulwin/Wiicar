@@ -67,13 +67,16 @@ export class AxiosClient {
    */
   public async post<T, R>({
     path,
-    args
+    args,
+    formData
   }: {
     path: string;
     args?: T;
+    formData?: boolean;
   }): Promise<
     Partial<AxiosResponse<R, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.post(path, JSON.stringify(args));
+    console.log(formData, 'formdate');
+    return this.axiosClient.post(path, formData ? args : JSON.stringify(args));
   }
 }

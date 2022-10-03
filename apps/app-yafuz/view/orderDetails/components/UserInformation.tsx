@@ -8,7 +8,7 @@ export const UserInformation = ({
 }) => {
   return (
     <Card width="50%" gap="5px" direction="column" align="flex-start">
-      <FlexContainer direction="column" align="flex-start">
+      <FlexContainer direction="column" align="flex-end">
         <FlexContainer
           direction="row"
           justify="flex-start"
