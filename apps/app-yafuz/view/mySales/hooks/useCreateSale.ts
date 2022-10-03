@@ -11,6 +11,7 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
     'create-sale',
     'sales',
     {
+      translateErrorPath: 'offers_list',
       onSuccess: () => {
         refetch();
         setShowModal(false);

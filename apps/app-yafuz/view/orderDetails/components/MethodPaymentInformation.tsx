@@ -39,7 +39,7 @@ export const MethodPaymentInformation = ({
               {translate('my_accounts.identification')}
             </Typography>
             <Typography variant="caption">
-              {orderDetail?.sale.userMethodPayment.identification_card}
+              {orderDetail?.sale?.userMethodPayment?.identification_card}
             </Typography>
           </FlexContainer>
           <FlexContainer direction="column" align="flex-start">

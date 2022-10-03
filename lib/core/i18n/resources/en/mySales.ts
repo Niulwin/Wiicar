@@ -15,6 +15,7 @@ export const my_sales = {
     PAYMENT: 'Payment',
     APPROVAL: 'Approve',
     CANCEL_BUYER: 'Cancel Buyer',
+    EXPIRED_TIME: 'Expired time',
     CANCEL_SELLER: 'Cancel Seller'
   }
 };

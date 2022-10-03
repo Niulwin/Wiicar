@@ -12,7 +12,8 @@ const STATUS = {
   CANCEL_BUYER: 'warning',
   CANCEL_SELLER: 'warning',
   PAYMENT: 'info',
-  APPROVAL: 'success'
+  APPROVAL: 'success',
+  EXPIRED_TIME: 'warning'
 };
 export const useConfig = ({
   translate,
@@ -80,7 +81,7 @@ export const useConfig = ({
           return (
             <FlexContainer justify="center" direction="row">
               <Button
-                disabled={item.state !== 'PROGRESS'}
+                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
                 onClick={() => {
                   router.push(`/order-details/${item.id}?type=seller`);
                   // setInvoiceId(item.id);
@@ -94,7 +95,7 @@ export const useConfig = ({
                 title={translate('my_sales.going_transaction')}
               />
               <Button
-                disabled={item.state !== 'PROGRESS'}
+                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
                 loading={invoiceId === item.id && loadingCancelSeller}
                 onClick={() => {
                   setInvoiceId(item.id);

@@ -1,6 +1,8 @@
 import { IInvoices, useI18n } from 'core';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
+import { formatCurrency } from '../../../../../lib/core/utils/formatCurrency';
 import { TUseConfig } from './types';
 
 const STATUS = {
@@ -20,6 +22,7 @@ export const useConfig = ({
   loadingCancelBuyer
 }: TUseConfig) => {
   const { language } = useI18n();
+  const router = useRouter();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
   const { theme } = useTheme();
   const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
@@ -56,7 +59,10 @@ export const useConfig = ({
       {
         name: translate('my_shopping.price'),
         accessor: 'sale.price',
-        width: 15
+        width: 10,
+        render: (row: IInvoices) => {
+          return formatCurrency(row.sale.price);
+        }
       },
       {
         name: translate('my_shopping.quantity'),
@@ -80,12 +86,24 @@ export const useConfig = ({
       },
       {
         name: translate('global.actions'),
-        width: 15,
+        width: 20,
         render: (item: IInvoices) => {
           return (
             <FlexContainer justify="center" direction="row">
               <Button
-                disabled={item.state !== 'PROGRESS'}
+                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
+                onClick={() => {
+                  router.push(`/order-details/${item.id}?type=buyer`);
+                }}
+                size="xs"
+                iconLeft="check-double"
+                variant="contained"
+                background="info"
+                color="light"
+                title={translate('my_sales.going_transaction')}
+              />
+              <Button
+                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
                 loading={invoiceId === item.id && loadingCancelBuyer}
                 onClick={() => {
                   setInvoiceId(item.id);

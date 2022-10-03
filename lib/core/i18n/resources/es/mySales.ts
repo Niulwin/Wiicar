@@ -15,6 +15,7 @@ export const my_sales = {
     PAYMENT: 'Pagado',
     APPROVAL: 'Aprobado',
     CANCEL_BUYER: 'Cancelado por el comprador',
-    CANCEL_SELLER: 'Cancelado por el vendedor'
+    CANCEL_SELLER: 'Cancelado por el vendedor',
+    EXPIRED_TIME: 'Cancelado por tiempo expirado'
   }
 };

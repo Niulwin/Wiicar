@@ -1,4 +1,5 @@
 import { useTranslate } from 'core';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { Button, FlexContainer, StepsView, Typography } from 'ui';
@@ -33,6 +34,11 @@ export const OrderDetails: FC = () => {
       >
         <Typography variant="h6">
           <>{translate('global.menu_options.order_details')} </>
+        </Typography>
+        <Typography variant="h6" color="info">
+          <>
+            {moment(orderDetail?.expirationDate).diff(new Date(), 'minute')} min
+          </>
         </Typography>
         <StepsView
           current={
