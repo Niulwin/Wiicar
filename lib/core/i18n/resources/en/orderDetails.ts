@@ -3,8 +3,10 @@ export const order_details = {
   transfer_crypto: 'Release cryptocurrencies',
   completed: 'Completed',
   actions: {
-    accept: 'Accept',
-    buy: 'Request generate'
+    accept: 'Payment received',
+    buy: 'Payment made',
+    upload_receipt: 'Upload receipt',
+    upload_file: 'Upload file'
   },
   errors: {
     INVOICE_EXPIRED_OR_NOT_FOUND: 'La orden ha expirado o no existe'

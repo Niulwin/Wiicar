@@ -36,7 +36,12 @@ export const useConfig = ({
       {
         name: translate('bank.name'),
         accessor: 'name',
-        width: 50
+        width: 30
+      },
+      {
+        name: translate('bank.country'),
+        accessor: 'country',
+        width: 20
       },
       {
         name: translate('global.actions'),

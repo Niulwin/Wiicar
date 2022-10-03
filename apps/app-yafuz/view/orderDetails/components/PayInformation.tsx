@@ -7,7 +7,6 @@ export const PayInformation = ({
   orderDetail?: IInvoices;
 }) => {
   const translate = useTranslate();
-
   return (
     <Card width="50%" gap="5px" direction="column" align="flex-start">
       <Typography variant="caption"></Typography>

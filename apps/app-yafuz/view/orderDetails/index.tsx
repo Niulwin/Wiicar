@@ -7,7 +7,9 @@ import {
   PayInformation,
   UserInformation
 } from './components';
+import { UploadFileS3 } from './components/UploadFile';
 import { useOrderDetails } from './hooks';
+import { useUploadS3 } from './hooks/useUploadS3';
 
 export const OrderDetails: FC = () => {
   const translate = useTranslate();
@@ -22,6 +24,8 @@ export const OrderDetails: FC = () => {
   } = useOrderDetails({
     params: { id: query.id as string, type: query.type as string }
   });
+  const { handleIsOpenModal, showModal, chargeMultiple, multiple } =
+    useUploadS3();
 
   return (
     <FlexContainer>
@@ -46,14 +50,25 @@ export const OrderDetails: FC = () => {
           justify="flex-start"
           align="flex-start"
         >
-          <FlexContainer gap="10px">
+          <FlexContainer
+            padding="0"
+            justify="flex-end"
+            align="flex-end"
+            gap="5px"
+          >
+            <Typography variant="body2" color="textPrimary">
+              id: {orderDetail?.id}
+            </Typography>{' '}
             <FlexContainer gap="5px" padding="0" direction="row">
               <PayInformation orderDetail={orderDetail} />
               <UserInformation orderDetail={orderDetail} />
             </FlexContainer>
-            <MethodPaymentInformation orderDetail={orderDetail} />
+            <MethodPaymentInformation
+              multiple={multiple}
+              orderDetail={orderDetail}
+              chargeMultiple={chargeMultiple}
+            />
           </FlexContainer>
-
           <FlexContainer gap="5px" padding="0" direction="row">
             <FlexContainer
               sm="6"
@@ -115,6 +130,10 @@ export const OrderDetails: FC = () => {
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>
+      <UploadFileS3
+        isVisible={showModal}
+        handleIsOpenModal={handleIsOpenModal}
+      />
     </FlexContainer>
   );
 };
