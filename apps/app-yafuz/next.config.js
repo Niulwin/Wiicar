@@ -4,7 +4,11 @@ const path = require('path');
 
 module.exports = withTM({
   images: {
-    domains: ['yafuz-bucket.s3.amazonaws.com']
+    domains: [
+      'yafuz-bucket.s3.amazonaws.com',
+      'localhost:3081',
+      'app.dev.yafuzgame.com'
+    ]
   },
   output: 'standalone',
   experimental: {

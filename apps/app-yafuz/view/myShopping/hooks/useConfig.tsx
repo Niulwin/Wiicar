@@ -61,17 +61,12 @@ export const useConfig = ({
         accessor: 'sale.price',
         width: 10,
         render: (row: IInvoices) => {
-          return formatCurrency(row.sale.price);
+          return formatCurrency(row?.sale?.price);
         }
       },
       {
         name: translate('my_shopping.quantity'),
         accessor: 'quantity',
-        width: 10
-      },
-      {
-        name: translate('my_shopping.identification_card'),
-        accessor: 'sale.userMethodPayment.identification_card',
         width: 10
       },
       {
