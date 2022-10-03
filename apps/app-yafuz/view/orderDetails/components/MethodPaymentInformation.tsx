@@ -88,21 +88,24 @@ export const MethodPaymentInformation = ({
             id="upload"
             type="file"
             hidden
+            accept="image/png,image/jpeg,image/jpg"
             data-ignore
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               chargeMultiple(e);
             }}
           />
           <FlexContainer direction="column" align="center">
-            {multiple?.file ||
-              (orderDetail?.photo && (
-                <Image
-                  width={300}
-                  height={300}
-                  src={multiple?.file || orderDetail?.photo}
-                  alt={translate('order_details.proof_of_payment')}
-                />
-              ))}
+            <Typography variant="caption">
+              {translate('order_details.proof_of_payment')}
+            </Typography>{' '}
+            {(multiple?.file || orderDetail?.photo) && (
+              <Image
+                width={300}
+                height={300}
+                src={multiple?.file || (orderDetail?.photo as string)}
+                alt={translate('order_details.proof_of_payment')}
+              />
+            )}
           </FlexContainer>
         </FlexContainer>
       </Card>
