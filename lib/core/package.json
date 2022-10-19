@@ -19,7 +19,8 @@
     "react-i18next": "^11.18.4",
     "tsconfig": "*",
     "typescript": "^4.5.2",
-    "ui": "*"
+    "ui": "*",
+    "libphonenumber-js": "^1.10.14"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.3.4",

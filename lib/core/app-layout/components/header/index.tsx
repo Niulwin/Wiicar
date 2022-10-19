@@ -44,6 +44,7 @@ export const Header: FC<THeaderProps> = ({
                 <Button
                   color="light"
                   variant="contained"
+                  onClick={() => router.push('/auth/register')}
                   title={translate('login.sign_up')}
                 />
               </>

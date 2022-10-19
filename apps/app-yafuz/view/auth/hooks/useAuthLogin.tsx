@@ -1,5 +1,5 @@
 import { useAuth, useMutation, useTranslate } from 'core';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { message } from 'ui';
 import { useLogin } from './useLogin';
 
@@ -8,6 +8,9 @@ export const useAuthLogin = () => {
   const [loading, setLoading] = useState(false);
   const { handleSessionWithMetamask } = useLogin();
   const { handleLogin: signIn } = useAuth();
+  const [values, setValues] = useState<{ email?: string; password?: string }>(
+    {}
+  );
 
   const onSuccess = (resp?: { token: string }) => {
     message.success(t('login.successful'));
@@ -17,7 +20,7 @@ export const useAuthLogin = () => {
 
   const { mutate: loginMutate } = useMutation<
     { token: string },
-    { address_wallet: string }
+    { address_wallet?: string; email?: string; password?: string }
   >('test', '/auth/login', { onSuccess, onError: () => setLoading(false) });
 
   const handleLogin = async () => {
@@ -32,13 +35,30 @@ export const useAuthLogin = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setLoading(false);
-      console.log(err);
       message.error(err?.message || t('global.errors.OCCURRED_ERROR'));
     }
   };
 
+  const handleGeneralLogin = async () => {
+    try {
+      setLoading(true);
+      loginMutate({ email: values.email, password: values.password });
+      setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      setLoading(false);
+      message.error(err?.message || t('global.errors.OCCURRED_ERROR'));
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setValues({ ...values, [e.target.name]: e.target.value });
+
   return {
     handleLogin,
-    loading
+    handleGeneralLogin,
+    loading,
+    values,
+    handleChange
   };
 };

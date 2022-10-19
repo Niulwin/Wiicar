@@ -12,13 +12,6 @@ import {
 import { TUseConfig } from './types';
 import { useTableStyle } from './useTableStyle';
 
-const STATUS = {
-  SELL: 'error',
-  ENABLE: 'success',
-  PROGRESS: 'info',
-  DISABLED: 'disabled',
-  CANCEL_BUYER: 'warning'
-};
 export const useConfig = ({
   translate,
   data,
@@ -142,7 +135,7 @@ export const useConfig = ({
                 <Button
                   disabled={item.state !== 'ENABLE'}
                   onClick={() => handleShowRequestOperation(item)}
-                  size="xs"
+                  size="small"
                   variant="contained"
                   background="success"
                   color="light"

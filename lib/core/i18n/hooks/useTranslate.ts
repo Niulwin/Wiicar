@@ -50,9 +50,10 @@ type Paths<T, D extends number = 10> = [D] extends [never]
 export const useTranslate = () => {
   const { t } = useTranslation();
 
-  t('');
-
-  return (key: Paths<typeof translation>): string => t(key);
+  return (
+    key: Paths<typeof translation>,
+    interpolate?: Record<string, unknown>
+  ): string => t(key, interpolate);
 };
 
 export type NamespaceTranslate = Paths<typeof translation>;

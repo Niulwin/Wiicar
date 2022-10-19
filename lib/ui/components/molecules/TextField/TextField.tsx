@@ -1,59 +1,80 @@
 import { NamespaceTranslate, useTranslate } from 'core';
+import { useMemo } from 'react';
 import { FlexContainer } from '../../atoms/FlexContainer';
 import { Typography } from '../../atoms/Typography';
-import { Input } from './styled';
-import { TextFieldValidationsMessage, TTextField } from './types';
+import { InputTextField } from '../InputTextField';
+import { NumberCurrencyField } from '../NumberCurrencyField';
+import { PhoneNumberField } from '../PhoneNumberField';
+import { TTextField } from './types';
 
 export const TextField = <IFormValues extends object>({
   placeholder,
   label,
   name,
-  onChange,
-  value,
   width,
   register,
   validate,
   error,
   type,
-  title
+  title,
+  defaultValue,
+  control,
+  countryCode = 'CO',
+  afterChange
 }: TTextField<IFormValues>) => {
   const translate = useTranslate();
+  const errorMessage = useMemo(() => {
+    const err = error?.message?.split('%');
+    return {
+      key: err?.[0],
+      interpolation: err?.[1],
+      value: err?.[2]
+    };
+  }, [error?.message]);
 
   return (
     <FlexContainer width={width} padding="0" align="flex-start">
       <Typography style={{ padding: 5 }} variant="body1">
         {label}
       </Typography>
-      <Input
-        {...(register
-          ? register(name, {
-              required: {
-                message: TextFieldValidationsMessage.required,
-                value: validate?.required || false
-              },
-              ...(validate?.numeric
-                ? {
-                    pattern: {
-                      message: TextFieldValidationsMessage.number,
-                      value: /^[0-9-.]*$/
-                    }
-                  }
-                : {})
-            })
-          : {})}
-        placeholder={placeholder}
-        onChange={onChange}
-        name={name}
-        type={type}
-        value={value}
-        title={title}
-      />
+      {type === 'phone' ? (
+        <PhoneNumberField
+          placeholder={placeholder}
+          name={name}
+          defaultValue={defaultValue}
+          title={title}
+          control={control}
+          countryCode={countryCode}
+        />
+      ) : type === 'currency' ? (
+        <NumberCurrencyField
+          placeholder={placeholder}
+          name={name}
+          defaultValue={defaultValue}
+          title={title}
+          control={control}
+          afterChange={afterChange}
+        />
+      ) : (
+        <InputTextField
+          placeholder={placeholder}
+          name={name}
+          register={register}
+          validate={validate}
+          type={type}
+          title={title}
+        />
+      )}
       <Typography
         style={{ padding: 2, minHeight: 30 }}
         color="error"
         variant="caption3"
       >
-        {error ? translate(error.message as NamespaceTranslate) : ''}
+        {error
+          ? translate(errorMessage.key as NamespaceTranslate, {
+              [errorMessage.interpolation as string]: errorMessage.value
+            })
+          : ''}
       </Typography>
     </FlexContainer>
   );

@@ -13,7 +13,7 @@ export const ContentOptions = styled.div`
   width: 100%;
   grid-gap: 10px;
   padding: 0.5em;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;

@@ -23,7 +23,9 @@ export class AxiosClient {
       headers: {
         'Content-Type': 'application/json',
         Accept: '*/*',
-        Authorization: `Bearer ${this.authorization}`
+        ...(this.authorization
+          ? { Authorization: `Bearer ${this.authorization}` }
+          : {})
       }
     });
   }
@@ -58,7 +60,6 @@ export class AxiosClient {
   ): Promise<
     Partial<AxiosResponse<T, any>> & { error?: boolean; message?: string }
   > {
-    console.log(args);
     return this.axiosClient.get(path, { params: args });
   }
 
@@ -76,7 +77,6 @@ export class AxiosClient {
   }): Promise<
     Partial<AxiosResponse<R, any>> & { error?: boolean; message?: string }
   > {
-    console.log(formData, 'formdate');
     return this.axiosClient.post(path, formData ? args : JSON.stringify(args));
   }
 }

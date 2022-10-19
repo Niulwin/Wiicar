@@ -1,7 +1,14 @@
-import { IInvoices, NamespaceTranslate, useMutation } from 'core';
+import { joiResolver } from '@hookform/resolvers/joi';
+import {
+  IInvoices,
+  NamespaceTranslate,
+  SubmitHandler,
+  useForm,
+  useMutation
+} from 'core';
 import { ISales } from 'core/entities';
-import { FormEvent, useEffect, useState } from 'react';
-import { message } from 'ui';
+import { useEffect } from 'react';
+import { salesSchema } from './schema.joi';
 import { ISaleRequest } from './types';
 
 export const useSalesRequest = ({
@@ -13,9 +20,14 @@ export const useSalesRequest = ({
   selectedOffer: ISales;
   translate: (key: NamespaceTranslate) => string;
 }) => {
-  const [values, setValues] = useState<ISaleRequest>({
-    quantity: 0,
-    toPay: 0
+  const {
+    watch,
+    setValue,
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm<ISaleRequest>({
+    resolver: joiResolver(salesSchema)
   });
 
   const { mutate: handleRequest, isLoading: loadingRequest } = useMutation<
@@ -25,43 +37,29 @@ export const useSalesRequest = ({
     onSuccess: (invoiceResponse) => onCompleted(invoiceResponse),
     translateErrorPath: 'offers_list'
   });
-
-  const handleSaleRequest = (e: FormEvent) => {
-    e.preventDefault();
-    if (!values.quantity)
-      return message.warn(translate('global.errors.MISSING_FIELDS'));
-
-    handleRequest({
-      quantity: values.quantity,
-      salesId: values.salesId
-    });
-  };
-
   useEffect(() => {
-    selectedOffer.id && setValues({ salesId: selectedOffer.id });
+    selectedOffer.id && setValue('salesId', selectedOffer.id);
   }, [selectedOffer]);
 
-  const handleChange = ({ name, value }: { name: string; value: string }) => {
-    if (name === 'quantity') {
-      setValues({
-        ...values,
-        quantity: +value,
-        toPay: selectedOffer.price * +value
-      });
-      return;
-    }
-
-    setValues({
-      ...values,
-      toPay: +value,
-      quantity: +value / selectedOffer.price
+  const onSubmit: SubmitHandler<ISaleRequest> = (data) =>
+    handleRequest({
+      quantity: data.quantity,
+      salesId: data.salesId
     });
+
+  const afterChangeQuantity = (value?: number) => {
+    setValue('toPay', selectedOffer.price * +(value ?? 0));
   };
 
+  const afterChangeToPay = (value?: number) =>
+    setValue('quantity', +(value ?? 0) / selectedOffer.price);
+
   return {
-    values,
-    handleChange,
+    afterChangeQuantity,
+    afterChangeToPay,
+    control,
+    errors,
     isLoading: loadingRequest,
-    handleSaleRequest: handleSaleRequest
+    handleSaleRequest: handleSubmit(onSubmit)
   };
 };

@@ -87,7 +87,7 @@ export const useConfig = ({
                   // setInvoiceId(item.id);
                   // handleApproveSeller({ invoiceId: item.id });
                 }}
-                size="xs"
+                size="normal"
                 iconLeft="check-double"
                 variant="contained"
                 background="info"
@@ -101,7 +101,7 @@ export const useConfig = ({
                   setInvoiceId(item.id);
                   handleCancelSeller({ invoiceId: item.id });
                 }}
-                size="xs"
+                size="small"
                 iconLeft="ban"
                 variant="contained"
                 background="error"
