@@ -19,12 +19,18 @@ export const RequestOffer = ({
   isLoading?: boolean;
 }) => {
   const translate = useTranslate();
-  const { values, handleSaleRequest, isLoading, handleChange } =
-    useSalesRequest({
-      onCompleted,
-      selectedOffer,
-      translate
-    });
+  const {
+    handleSaleRequest,
+    isLoading,
+    control,
+    errors,
+    afterChangeQuantity,
+    afterChangeToPay
+  } = useSalesRequest({
+    onCompleted,
+    selectedOffer,
+    translate
+  });
 
   return (
     <FlexContainer direction="row">
@@ -107,28 +113,23 @@ export const RequestOffer = ({
         <form style={{ width: '100%' }} onSubmit={handleSaleRequest}>
           <TextField
             width="100%"
-            type="number"
+            type="currency"
             label={`${translate('offers_list.will_receive')} YAZ`}
             name="quantity"
             title={translate('global.errors.input.numeric')}
-            onChange={({ target }) =>
-              handleChange({ name: target.name, value: target.value })
-            }
-            value={values.quantity || ''}
+            control={control}
+            error={errors.quantity}
+            afterChange={afterChangeQuantity}
           />
           <TextField
             width="100%"
-            type="number"
+            type="currency"
             label={`${translate('offers_list.want_to_pay')} USDT`}
             name="toPay"
             title={translate('global.errors.input.numeric')}
-            onChange={({ target }) =>
-              handleChange({
-                name: target.name,
-                value: target.value
-              })
-            }
-            value={values.toPay || ''}
+            control={control}
+            error={errors.toPay}
+            afterChange={afterChangeToPay}
           />
 
           <ModalFooter noPadding loading={isLoading} onCancel={onCancel} />

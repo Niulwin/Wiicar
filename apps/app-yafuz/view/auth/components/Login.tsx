@@ -1,41 +1,40 @@
 import { useTranslate } from 'core';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-import { Button, Loading, Typography, useTheme } from 'ui';
+import { Button, FlexContainer, Loading, Typography, useTheme } from 'ui';
 import { useAuthLogin } from '../hooks/useAuthLogin';
-import {
-  Body,
-  BoxInput,
-  ButtonMetamask,
-  Container,
-  Icon,
-  ImgInfo,
-  Input
-} from './styled';
+import { Body, BoxInput, ButtonMetamask, Icon, ImgInfo, Input } from './styled';
 
 export const LoginComponent: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const router = useRouter();
   const { theme } = useTheme();
   const t = useTranslate();
-  const { handleLogin, loading } = useAuthLogin();
+  const { handleLogin, loading, values, handleChange, handleGeneralLogin } =
+    useAuthLogin();
 
   return (
-    <Container>
+    <FlexContainer>
       <>
         {/* <ButtonBack onClick={() => router.back()}>{t('global.back')}</ButtonBack> */}
-        <Body>
+        <Body width="400px">
           <Image src="/logo.svg" alt="logo" width={150} height={100} />
 
           <Typography variant="body1">{t('login.login_yafuz')}</Typography>
           <BoxInput>
-            <Input placeholder={t('login.fields.email')} />
+            <Input
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              placeholder={t('login.fields.email')}
+            />
             <Icon icon="at" />
           </BoxInput>
           <BoxInput>
             <Input
+              name="password"
+              value={values.password}
+              onChange={handleChange}
               type={isVisible ? 'text' : 'password'}
               placeholder={t('login.fields.password')}
             />
@@ -56,13 +55,14 @@ export const LoginComponent: FC = () => {
             </a>
           </Link>
           <Button
+            loading={loading}
             style={{
               width: '100%',
               padding: '.5rem',
               justifyContent: 'center'
             }}
             title={t('login.login')}
-            onClick={() => router.push('/home')}
+            onClick={handleGeneralLogin}
             variant="contained"
             color="light"
           />
@@ -79,8 +79,19 @@ export const LoginComponent: FC = () => {
               />
             )}
           </ButtonMetamask>
+          <Link href="/auth/register">
+            <a
+              style={{
+                textDecoration: 'underline',
+                color: theme?.colors.secondary.secondary,
+                fontSize: 14
+              }}
+            >
+              {t('login.sign_up_yafuz_link')}
+            </a>
+          </Link>
         </Body>
       </>
-    </Container>
+    </FlexContainer>
   );
 };

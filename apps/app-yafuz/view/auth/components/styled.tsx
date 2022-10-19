@@ -1,23 +1,43 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  padding: 1rem;
-  width: 100vw;
+export const FormContainer = styled.div`
+  width: 100%;
+  z-index: 10;
+  position: relative;
   background-color: ${({ theme }) => theme.colors.background.main};
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 10px;
 `;
 
-export const Body = styled.div`
+export const Body = styled.div<{ width?: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
   height: 100%;
-  min-width: 400px;
+  min-width: ${({ width }) => width || '700px'};
   margin-top: 4rem;
   gap: 20px;
+`;
+export const BackgroundBorderPrimary = styled.div`
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: 20%;
+  background-color: ${({ theme }) => theme.colors.primary.main};
+`;
+export const BackgroundBorderSecondary = styled.div`
+  position: absolute;
+  top: calc(20% - 10px);
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(80% + 20px);
+  background-color: ${({ theme }) => theme.colors.border.main};
 `;
 
 export const ButtonBack = styled.button`

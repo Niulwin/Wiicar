@@ -24,12 +24,22 @@ export const global = {
     pack_nft: 'Pack NFT'
   },
   errors: {
+    INVALID_CREDENTIALS: 'Credenciales inválidas',
     OCCURRED_ERROR: 'Lo sentimos ha ocurrido un error',
     SESSION_EXPIRED: 'Su sesión ha expirado',
     MISSING_FIELDS: 'Campos faltantantes',
+    NOT_AUTHORIZED: 'Usuario no autorizado',
     input: {
       required: 'Este campo es requerido',
       numeric: 'Este campo debe ser numérico'
     }
+  },
+  validations: {
+    required: 'Este campo es requerido',
+    string: 'Este campo debe ser string',
+    number: 'Este campo debe ser numérico',
+    email: 'El formato de email no es válido',
+    min: 'Este campo debe tener mínimo {{min}} caracteres',
+    max: 'Este campo debe tener máximo {{max}} caracteres'
   }
 };

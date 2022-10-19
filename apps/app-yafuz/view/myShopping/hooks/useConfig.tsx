@@ -95,7 +95,7 @@ export const useConfig = ({
                 onClick={() => {
                   router.push(`/order-details/${item.id}?type=buyer`);
                 }}
-                size="xs"
+                size="normal"
                 iconLeft="check-double"
                 variant="contained"
                 background="info"
@@ -109,7 +109,7 @@ export const useConfig = ({
                   setInvoiceId(item.id);
                   handleCancelBuyer({ invoiceId: item.id });
                 }}
-                size="xs"
+                size="small"
                 iconLeft="ban"
                 variant="contained"
                 background="error"

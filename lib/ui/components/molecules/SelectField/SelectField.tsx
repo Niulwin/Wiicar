@@ -8,8 +8,6 @@ export const SelectField = <IFormValues extends object>({
   placeholder,
   label,
   name,
-  onChange,
-  value,
   width,
   register,
   validate,
@@ -32,8 +30,6 @@ export const SelectField = <IFormValues extends object>({
         defaultValue=""
         {...(register ? register(name, validate) : {})}
         placeholder={placeholder}
-        onChange={onChange}
-        value={value}
       >
         <option value="" disabled hidden>
           {translate('global.choose')}

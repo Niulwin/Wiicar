@@ -27,7 +27,7 @@ export const ActionTableOptions = ({ buttons }: TActionTableOptions) => {
       {buttons.map((bt, i) => (
         <Fragment key={`bt-${i}`}>
           <Button
-            size="xs"
+            size="small"
             iconLeft={icons[bt] as IconProp}
             variant="contained"
             title={translate(`global.${titles[bt]}` as NamespaceTranslate)}
