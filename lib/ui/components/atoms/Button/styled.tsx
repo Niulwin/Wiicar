@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
+import { ButtonSize } from './types';
 
 export const ContentButton = styled.button<{
   variant?: 'text' | 'contained' | 'outlined';
@@ -21,6 +22,7 @@ export const ContentButton = styled.button<{
   text-align: center;
   align-items: center;
   justify-content: center;
+  width: ${({ size }) => ButtonSize[size || 'auto']};
   cursor: pointer;
   background-color: ${({ variant, theme, background }) =>
     variant === 'contained'

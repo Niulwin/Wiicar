@@ -1,1 +1,1 @@
-export { LoginComponent } from './components/Login';
+export { LoginComponent, RegisterComponent } from './components';

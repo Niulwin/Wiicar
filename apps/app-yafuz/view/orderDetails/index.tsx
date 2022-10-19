@@ -110,7 +110,7 @@ export const OrderDetails: FC = () => {
                     onClick={() =>
                       handleApproveSeller({ invoiceId: orderDetail?.id })
                     }
-                    size="xs"
+                    size="large"
                     iconLeft="check-double"
                     variant="contained"
                     background="primary"
@@ -130,7 +130,7 @@ export const OrderDetails: FC = () => {
                         photo: multipleCharge
                       })
                     }
-                    size="xs"
+                    size="large"
                     iconLeft="check-double"
                     variant="contained"
                     background="primary"

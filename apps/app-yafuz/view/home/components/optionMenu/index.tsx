@@ -22,11 +22,6 @@ const OptionMenu = [
     icon: 'piggy-bank',
     title: 'Medios de pago',
     route: 'my-accounts'
-  },
-  {
-    icon: 'university',
-    title: 'Bancos',
-    route: 'banks'
   }
 ];
 

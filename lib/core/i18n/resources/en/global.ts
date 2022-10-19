@@ -28,9 +28,18 @@ export const global = {
     SESSION_EXPIRED: 'Session expired',
     INVALID_CREDENTIALS: 'Invalid credentials',
     MISSING_FIELDS: 'Missing fields',
+    NOT_AUTHORIZED: 'User not authorized',
     input: {
       required: 'This field is required',
       numeric: 'This field is numeric'
     }
+  },
+  validations: {
+    required: 'This field is required',
+    string: 'This field must be a string',
+    number: 'This field must be a number',
+    email: 'The email format is not valid',
+    min: 'This field must have min {{min}} characters',
+    max: 'This field must have max {{max}} characters'
   }
 };

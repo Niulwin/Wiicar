@@ -1,17 +1,19 @@
-import type { FieldError, Path, UseFormRegister } from 'core/form';
-import { ChangeEventHandler } from 'react';
+import { NamespaceCountryCode } from 'core';
+import type { Control, FieldError, Path, UseFormRegister } from 'core/form';
 
 export type TTextField<IFormValues extends object> = {
   placeholder?: string;
   label: string;
   name: Path<IFormValues>;
-  type?: 'number' | 'text';
+  type?: 'number' | 'text' | 'phone' | 'password' | 'currency';
   width?: string;
   title?: string;
   error?: FieldError;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  value?: string | number | readonly string[];
+  countryCode?: NamespaceCountryCode;
+  defaultValue?: any;
+  afterChange?: (value?: number) => void;
   register?: UseFormRegister<IFormValues>;
+  control?: Control<IFormValues>;
   validate?: {
     required?: boolean;
     numeric?: boolean;
