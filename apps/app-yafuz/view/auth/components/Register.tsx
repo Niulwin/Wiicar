@@ -6,12 +6,13 @@ import { FC } from 'react';
 import {
   Button,
   FlexContainer,
+  message,
   SelectField,
   TextField,
   Typography,
   useTheme
 } from 'ui';
-import { useRegister } from '../hooks/';
+import { useLogin, useRegister } from '../hooks/';
 import {
   BackgroundBorderPrimary,
   BackgroundBorderSecondary,
@@ -32,12 +33,14 @@ export const RegisterComponent: FC = () => {
     dataCountries,
     isLoading,
     countryCode,
-    dataSponsor
+    dataSponsor,
+    handleMetamaskCode
   } = useRegister({
     translate: t,
     sponsorId: router.query?.sponsorId as string,
     onSuccess: () => router.push('/auth/login')
   });
+  const { handleSessionWithMetamask } = useLogin();
 
   return (
     <FlexContainer>
@@ -130,14 +133,6 @@ export const RegisterComponent: FC = () => {
                     error={errors.email}
                   />
                   <TextField
-                    name="address_wallet"
-                    label={t('login.fields.wallet')}
-                    width="100%"
-                    placeholder={t('login.fields.wallet')}
-                    register={register}
-                    error={errors.address_wallet}
-                  />
-                  <TextField
                     name="password"
                     type="password"
                     label={t('login.fields.password')}
@@ -146,14 +141,36 @@ export const RegisterComponent: FC = () => {
                     register={register}
                     error={errors.password}
                   />
-                  {/* <TextField
-                    onBlur={() => }
+                  <TextField
                     type="password"
-                    name="password"
+                    name="confirmPassword"
                     label={t('login.fields.confirm_password')}
                     width="100%"
                     placeholder={t('login.fields.confirm_password')}
-                  /> */}
+                    register={register}
+                    error={errors.confirmPassword}
+                  />
+                  <Button
+                    type="button"
+                    variant="outlined"
+                    size="fullWidth"
+                    onClick={() =>
+                      handleSessionWithMetamask()
+                        .then((r) => handleMetamaskCode(r[0]))
+                        .catch((err) => message.error(err?.message))
+                    }
+                    title="Vincula tu billetera metamaks"
+                  />
+                  <TextField
+                    noLabel
+                    disabled={true}
+                    name="address_wallet"
+                    label={t('login.fields.wallet')}
+                    width="100%"
+                    placeholder={t('login.fields.wallet')}
+                    register={register}
+                    error={errors.address_wallet}
+                  />
                 </FlexContainer>
               </FlexContainer>
               <Button

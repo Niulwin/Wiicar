@@ -69,7 +69,7 @@ export const lightTheme: TDefaultTheme = {
       warning: '#e57373',
       info: '#90caf9',
       success: '#66bb6a',
-      disabled: 'f44336'
+      disabled: '#bfbfbf'
     },
     primary: {
       main: '#e8540d',
@@ -84,8 +84,8 @@ export const lightTheme: TDefaultTheme = {
       secondary: '#e57373'
     },
     disabled: {
-      main: '#d7baba',
-      secondary: '#d7baba'
+      main: '#bfbfbf',
+      secondary: '#bfbfbf'
     },
     error: {
       main: '#f44336',
@@ -123,7 +123,7 @@ export const darkTheme: TDefaultTheme = {
       warning: '#f57c00',
       info: '#90caf9',
       success: '#388e3c',
-      disabled: 'f44336'
+      disabled: '#bfbfbf'
     },
     primary: {
       main: '#e8540d',
@@ -138,8 +138,8 @@ export const darkTheme: TDefaultTheme = {
       secondary: '#ffffff'
     },
     disabled: {
-      main: '#d7baba',
-      secondary: '#d7baba'
+      main: '#bfbfbf',
+      secondary: '#bfbfbf'
     },
     error: {
       main: '#d32f2f',

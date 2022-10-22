@@ -30,6 +30,7 @@ export const useRegister = ({
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors }
   } = useForm<IUser>({
     resolver: joiResolver(userSchema(countryCode))
@@ -49,7 +50,7 @@ export const useRegister = ({
     TPagination<ICountry>
   >('all-countries', 'countries');
   const {
-    mutate: mutateSponsor,
+    mutate: getSponsor,
     data: dataSponsor,
     isLoading: isLoadingSponsor
   } = useLazyQuery<{
@@ -73,8 +74,12 @@ export const useRegister = ({
   }, [watchCountry]);
 
   useEffect(() => {
-    if (sponsorId) mutateSponsor({});
+    if (sponsorId) getSponsor({});
   }, [sponsorId]);
+
+  const handleMetamaskCode = (code: string) => {
+    setValue('address_wallet', code);
+  };
 
   return {
     handleSubmit: handleSubmit(onSubmit),
@@ -86,6 +91,7 @@ export const useRegister = ({
     isLoadingCountry,
     countryCode,
     dataSponsor,
-    isLoadingSponsor
+    isLoadingSponsor,
+    handleMetamaskCode
   };
 };
