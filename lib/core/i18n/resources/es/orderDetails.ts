@@ -5,6 +5,8 @@ export const order_details = {
   proof_of_payment: 'Proof of payment',
   actions: {
     accept: 'Pago recibido',
+    not_payment: 'Pago no recibido',
+    cancel: 'Cancelar venta',
     buy: 'Pago realizado',
     upload_receipt: 'Cargar comprobante',
     upload_file: 'Subir archivo'

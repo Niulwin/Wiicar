@@ -66,7 +66,7 @@ export const lightTheme: TDefaultTheme = {
       textSecondary: '#ffffff',
       light: '#ffffff',
       error: '#f44336',
-      warning: '#e57373',
+      warning: '#ffb74d',
       info: '#90caf9',
       success: '#66bb6a',
       disabled: '#bfbfbf'
@@ -114,7 +114,7 @@ export const darkTheme: TDefaultTheme = {
       secondary: '#ffffff'
     },
     text: {
-      primary: '#0A1929',
+      primary: '#e8540d',
       secondary: '#7367f0',
       textPrimary: '#ffffff',
       textSecondary: '#1e2329',

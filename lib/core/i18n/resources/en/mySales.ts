@@ -13,7 +13,7 @@ export const my_sales = {
     PROGRESS: 'In progress',
     DISABLED: 'Inactive',
     PAYMENT: 'Payment',
-    APPROVAL: 'Approve',
+    APPROVAL: 'Finished',
     CANCEL_BUYER: 'Cancel Buyer',
     EXPIRED_TIME: 'Expired time',
     CANCEL_SELLER: 'Cancel Seller'
