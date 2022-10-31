@@ -56,6 +56,14 @@ export const MethodPaymentInformation = ({
           </FlexContainer>
           <FlexContainer direction="column" align="flex-start">
             <Typography variant="caption">
+              {translate('offers_list.phone_number')}
+            </Typography>
+            <Typography variant="caption">
+              {orderDetail?.sale?.user?.celular}
+            </Typography>
+          </FlexContainer>
+          <FlexContainer direction="column" align="flex-start">
+            <Typography variant="caption">
               {translate('my_accounts.identification')}
             </Typography>
             <Typography variant="caption">

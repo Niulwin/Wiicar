@@ -1,6 +1,8 @@
 export const offers_list = {
   action_creator: 'Crear oferta',
   name: 'Usuario',
+  phone_number: 'Número de teléfono',
+  email: 'Correo',
   method_payment: 'Método de pago',
   method_payments: 'Métodos de pago',
   price: 'Precio',
@@ -11,8 +13,10 @@ export const offers_list = {
   limit: 'Límite',
   limit_payment_time: 'Tiempo límite de pago',
   term_and_conditions: 'Términos y condiciones',
-  want_to_pay: 'Quiero pagar',
-  will_receive: 'Recibiré',
+  want_to_pay: 'Monto a pagar',
+  will_receive: 'Monto a recibir',
+  verify_amount_to_pay:
+    'Por favor, verifique siempre el monto a pagar antes de continuar',
   errors: {
     ORDER_IN_PROGRESS:
       'Tienes una compra en progreso, no es posible hacer otra compra hasta que la compra en progreso sea confirmada o cancelada.',

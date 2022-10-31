@@ -18,6 +18,7 @@ export const Table = <T extends object>({
   return (
     <ContentTable>
       <VirtualizedList
+        widthColMode={window.screen.width < 1280 ? 'rest' : 'no-rest'}
         showEntries={1000}
         banner={false}
         data={data}

@@ -8,6 +8,8 @@ export type TTextField<IFormValues extends object> = {
   type?: 'number' | 'text' | 'phone' | 'password' | 'currency';
   width?: string;
   title?: string;
+  disabled?: boolean;
+  noLabel?: boolean;
   error?: FieldError;
   countryCode?: NamespaceCountryCode;
   defaultValue?: any;

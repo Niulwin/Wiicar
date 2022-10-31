@@ -19,7 +19,9 @@ export const PayInformation = ({
           },
           {
             title: 'payment_amount',
-            value: `${formatCurrency(orderDetail?.sale?.price)} COP`
+            value: `${formatCurrency(
+              (orderDetail?.sale?.price ?? 0) * (orderDetail?.quantity ?? 0)
+            )} COP`
           }
           // { title: 'payment_amount', value: orderDetail?.amount }
         ].map((x, i: number) => (
