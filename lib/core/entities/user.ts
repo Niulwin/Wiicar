@@ -10,6 +10,7 @@ export interface IUser {
   estado: true;
   nombre: string;
   password: string;
+  confirmPassword: string;
   patrocinador?: string;
   role: string;
   token?: string;

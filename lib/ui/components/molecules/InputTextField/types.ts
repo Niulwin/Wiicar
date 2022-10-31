@@ -2,6 +2,7 @@ import type { Path, UseFormRegister } from 'core/form';
 
 export type TInputTextField<IFormValues extends object> = {
   placeholder?: string;
+  disabled?: boolean;
   name: Path<IFormValues>;
   type?: 'number' | 'text' | 'password' | 'phone' | 'currency';
   title?: string;

@@ -20,7 +20,9 @@ export const TextField = <IFormValues extends object>({
   defaultValue,
   control,
   countryCode = 'CO',
-  afterChange
+  afterChange,
+  disabled,
+  noLabel
 }: TTextField<IFormValues>) => {
   const translate = useTranslate();
   const errorMessage = useMemo(() => {
@@ -34,9 +36,11 @@ export const TextField = <IFormValues extends object>({
 
   return (
     <FlexContainer width={width} padding="0" align="flex-start">
-      <Typography style={{ padding: 5 }} variant="body1">
-        {label}
-      </Typography>
+      {!noLabel && (
+        <Typography style={{ padding: 5 }} variant="body1">
+          {label}
+        </Typography>
+      )}
       {type === 'phone' ? (
         <PhoneNumberField
           placeholder={placeholder}
@@ -57,6 +61,7 @@ export const TextField = <IFormValues extends object>({
         />
       ) : (
         <InputTextField
+          disabled={disabled}
           placeholder={placeholder}
           name={name}
           register={register}

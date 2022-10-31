@@ -38,15 +38,8 @@ export const useConfig = ({
         }
       },
       {
-        name: translate('my_shopping.buyer'),
-        width: 10,
-        render: (row: IInvoices) => {
-          return `${row?.buyer?.nombre} ${row?.buyer?.apellidos}`;
-        }
-      },
-      {
         name: translate('my_shopping.seller'),
-        width: 15,
+        width: 20,
         render: (row: IInvoices) => {
           return `${row?.seller?.nombre} ${row?.seller?.apellidos}`;
         }
@@ -86,37 +79,39 @@ export const useConfig = ({
       },
       {
         name: translate('global.actions'),
-        width: 20,
+        width: 30,
         render: (item: IInvoices) => {
           return (
             <FlexContainer justify="center" direction="row">
-              <Button
-                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
-                onClick={() => {
-                  router.push(`/order-details/${item.id}?type=buyer`);
-                }}
-                size="normal"
-                iconLeft="check-double"
-                variant="contained"
-                background="info"
-                color="light"
-                title={translate('my_sales.going_transaction')}
-              />
-              <Button
-                disabled={item.state !== 'PROGRESS' && item.state !== 'PAYMENT'}
-                loading={invoiceId === item.id && loadingCancelBuyer}
-                onClick={() => {
-                  setInvoiceId(item.id);
-                  handleCancelBuyer({ invoiceId: item.id });
-                }}
-                size="small"
-                iconLeft="ban"
-                variant="contained"
-                background="error"
-                color="light"
-                title={translate('global.cancel')}
-                tooltip={translate('global.cancel')}
-              />
+              {item.state === 'PROGRESS' && (
+                <>
+                  <Button
+                    onClick={() => {
+                      router.push(`/order-details/${item.id}?type=buyer`);
+                    }}
+                    size="normal"
+                    iconLeft="check-double"
+                    variant="contained"
+                    background="info"
+                    color="light"
+                    title={translate('my_sales.going_transaction')}
+                  />
+                  <Button
+                    loading={invoiceId === item.id && loadingCancelBuyer}
+                    onClick={() => {
+                      setInvoiceId(item.id);
+                      handleCancelBuyer({ invoiceId: item.id });
+                    }}
+                    size="small"
+                    iconLeft="ban"
+                    variant="contained"
+                    background="error"
+                    color="light"
+                    title={translate('global.cancel')}
+                    tooltip={translate('global.cancel')}
+                  />
+                </>
+              )}
             </FlexContainer>
           );
         }

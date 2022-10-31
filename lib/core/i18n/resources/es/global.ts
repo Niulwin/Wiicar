@@ -40,6 +40,8 @@ export const global = {
     number: 'Este campo debe ser numérico',
     email: 'El formato de email no es válido',
     min: 'Este campo debe tener mínimo {{min}} caracteres',
-    max: 'Este campo debe tener máximo {{max}} caracteres'
+    max: 'Este campo debe tener máximo {{max}} caracteres',
+    password_confirm: 'Las contraseñas deben ser iguales',
+    phone_number: 'El número de tlf no es válido'
   }
 };

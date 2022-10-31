@@ -1,10 +1,12 @@
 import { IInvoices, useMutation, useTranslate } from 'core';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { message } from 'ui';
 import { TOrderDetailsArgs, TUseOrderDetails } from './types';
 
 export const useOrderDetails = ({ params }: TUseOrderDetails) => {
   const translate = useTranslate();
+  const router = useRouter();
   const [steps, setSteps] = useState<
     {
       step: number;
@@ -46,6 +48,30 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
       message.success(translate('global.success_operation'));
     }
   });
+
+  const { mutate: handleCancelSeller, isLoading: loadingCancelSeller } =
+    useMutation<IInvoices, { invoiceId: string; paymentNotReceived?: boolean }>(
+      'invoice-cancel-seller',
+      'invoices/cancel-seller',
+      {
+        onSuccess: () => {
+          router.push('/my-sales');
+          message.success(translate('global.success_operation'));
+        }
+      }
+    );
+
+  const { mutate: handleCancelBuyer, isLoading: loadingCancelBuyer } =
+    useMutation<IInvoices, { invoiceId: string }>(
+      'invoice-cancel-buyer',
+      'invoices/cancel-buyer',
+      {
+        onSuccess: () => {
+          router.push('/my-shopping');
+          message.success(translate('global.success_operation'));
+        }
+      }
+    );
 
   const handlePaymentBuyer = ({
     invoiceId,
@@ -103,6 +129,10 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
     loadingApproveSeller,
     handleApproveSeller,
     handlePaymentBuyer,
-    loadingPaymentBuyer
+    loadingPaymentBuyer,
+    handleCancelSeller,
+    loadingCancelSeller,
+    handleCancelBuyer,
+    loadingCancelBuyer
   };
 };

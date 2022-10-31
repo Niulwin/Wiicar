@@ -8,7 +8,8 @@ export const InputTextField = <IFormValues extends FieldValues>({
   register,
   validate,
   type,
-  title
+  title,
+  disabled
 }: TInputTextField<IFormValues>) => {
   return (
     <Input
@@ -28,6 +29,7 @@ export const InputTextField = <IFormValues extends FieldValues>({
               : {})
           })
         : {})}
+      disabled={disabled}
       placeholder={placeholder}
       name={name}
       type={type}

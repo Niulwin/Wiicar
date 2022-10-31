@@ -26,6 +26,7 @@ export interface TTypography extends PropsWithChildren {
     | 'light'
     | 'error'
     | 'success'
+    | 'warning'
     | 'info'
     | 'disabled';
   align?: 'center' | 'left' | 'right';

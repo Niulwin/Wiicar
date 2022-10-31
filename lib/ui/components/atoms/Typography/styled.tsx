@@ -8,6 +8,7 @@ type TProps = {
     | 'light'
     | 'error'
     | 'success'
+    | 'warning'
     | 'info'
     | 'disabled';
   align?: 'center' | 'left' | 'right';

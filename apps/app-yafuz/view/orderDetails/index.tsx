@@ -21,7 +21,11 @@ export const OrderDetails: FC = () => {
     handleApproveSeller,
     loadingApproveSeller,
     handlePaymentBuyer,
-    loadingPaymentBuyer
+    loadingPaymentBuyer,
+    handleCancelSeller,
+    loadingCancelSeller,
+    loadingCancelBuyer,
+    handleCancelBuyer
   } = useOrderDetails({
     params: { id: query.id as string, type: query.type as string }
   });
@@ -85,21 +89,62 @@ export const OrderDetails: FC = () => {
             <FlexContainer
               sm="6"
               gap="10px"
-              direction="column"
-              align="flex-start"
+              direction="row"
+              justify="flex-start"
             >
-              <Typography variant="caption">
-                ¿Que deberia hacer tras recibir el pago?
-              </Typography>
-              <Typography variant="caption">
-                ¿Que deberia hacer si la otra parte no realizo el pago?
-              </Typography>
+              {query.type === 'buyer' &&
+                orderDetail?.id &&
+                orderDetail.state === 'PROGRESS' && (
+                  <Button
+                    loading={loadingCancelBuyer}
+                    onClick={() =>
+                      handleCancelBuyer({ invoiceId: orderDetail?.id })
+                    }
+                    size="large"
+                    iconLeft="cancel"
+                    variant="outlined"
+                    background="error"
+                    title={translate('order_details.actions.cancel')}
+                  />
+                )}
+              {query.type === 'seller' &&
+                orderDetail?.id &&
+                orderDetail.state === 'PAYMENT' && (
+                  <>
+                    <Button
+                      loading={loadingCancelSeller}
+                      onClick={() =>
+                        handleCancelSeller({ invoiceId: orderDetail?.id })
+                      }
+                      size="large"
+                      iconLeft="cancel"
+                      variant="outlined"
+                      background="error"
+                      title={translate('order_details.actions.cancel')}
+                    />
+                    <Button
+                      loading={loadingCancelSeller}
+                      onClick={() =>
+                        handleCancelSeller({
+                          invoiceId: orderDetail?.id,
+                          paymentNotReceived: true
+                        })
+                      }
+                      size="large"
+                      iconLeft="warning"
+                      variant="contained"
+                      background="primary"
+                      color="light"
+                      title={translate('order_details.actions.not_payment')}
+                    />
+                  </>
+                )}
             </FlexContainer>
             <FlexContainer
               sm="6"
               gap="10px"
-              direction="column"
-              align="flex-start"
+              direction="row"
+              justify="flex-start"
             >
               {query.type === 'seller' &&
                 orderDetail?.id &&
@@ -113,7 +158,7 @@ export const OrderDetails: FC = () => {
                     size="large"
                     iconLeft="check-double"
                     variant="contained"
-                    background="primary"
+                    background="info"
                     color="light"
                     title={translate('order_details.actions.accept')}
                   />

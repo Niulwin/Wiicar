@@ -70,22 +70,26 @@ export const RequestOffer = ({
             variant="caption"
             style={{ marginRight: 10 }}
           >
-            {translate('my_sales.price')}
+            {translate('offers_list.available')} YAZ
           </Typography>
-          <Typography align="center" variant="body1" color="success">
-            {formatCurrency(selectedOffer?.price || 0)} USDT
+          <Typography align="center" variant="body1" color="info">
+            {formatToNumber(selectedOffer?.quantity || 0)}
           </Typography>
         </FlexContainer>
-        <FlexContainer direction="row" justify="flex-start">
+        <FlexContainer
+          style={{ paddingTop: 0, marginBottom: 45 }}
+          direction="row"
+          justify="flex-start"
+        >
           <Typography
             align="center"
             variant="caption"
             style={{ marginRight: 10 }}
           >
-            {translate('offers_list.available')} YAZ
+            {translate('my_sales.price')}
           </Typography>
-          <Typography align="center" variant="body1" color="info">
-            {formatToNumber(selectedOffer?.quantity || 0)}
+          <Typography align="center" variant="body1" color="success">
+            {formatCurrency(selectedOffer?.price || 0)} USDT
           </Typography>
         </FlexContainer>
         <FlexContainer direction="row" justify="flex-start" padding="0 1rem">
@@ -133,6 +137,9 @@ export const RequestOffer = ({
           />
 
           <ModalFooter noPadding loading={isLoading} onCancel={onCancel} />
+          <Typography align="center" variant="caption3" color="warning">
+            {translate('offers_list.verify_amount_to_pay')}
+          </Typography>
         </form>
       </FlexContainer>
     </FlexContainer>
