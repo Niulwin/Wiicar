@@ -13,15 +13,13 @@ import { ISaleRequest } from './types';
 
 export const useSalesRequest = ({
   onCompleted,
-  selectedOffer,
-  translate
+  selectedOffer
 }: {
   onCompleted: (invoiceResponse: IInvoices) => void;
   selectedOffer: ISales;
   translate: (key: NamespaceTranslate) => string;
 }) => {
   const {
-    watch,
     setValue,
     handleSubmit,
     control,
@@ -43,8 +41,10 @@ export const useSalesRequest = ({
 
   const onSubmit: SubmitHandler<ISaleRequest> = (data) =>
     handleRequest({
-      quantity: data.quantity,
-      salesId: data.salesId
+      variables: {
+        quantity: data.quantity,
+        salesId: data.salesId
+      }
     });
 
   const afterChangeQuantity = (value?: number) => {

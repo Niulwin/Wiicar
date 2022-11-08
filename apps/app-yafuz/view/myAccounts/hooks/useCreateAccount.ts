@@ -21,7 +21,7 @@ export const useCreateAccount = ({
   });
 
   const onSubmit: SubmitHandler<TInputUserMethodPayments> = (data) =>
-    mutate(data);
+    mutate({ variables: data });
 
   return {
     handleSubmit: handleSubmit(onSubmit),

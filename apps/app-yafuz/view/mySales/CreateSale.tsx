@@ -1,15 +1,25 @@
 import { useTranslate } from 'core';
+import { useEffect } from 'react';
 import { FlexContainer, ModalFooter, SelectField, TextField } from 'ui';
 import { useUserMethodPayments } from 'view/myAccounts/hooks';
 import { TUseCreteSale, useCreateSale } from './hooks';
 
-export const CreateSale = ({ setShowModal, refetch }: TUseCreteSale) => {
+export const CreateSale = ({
+  setShowModal,
+  refetch,
+  initialValues
+}: TUseCreteSale) => {
   const translate = useTranslate();
-  const { errors, handleSubmit, isLoading, register } = useCreateSale({
+  const { errors, handleSubmit, isLoading, register, reset } = useCreateSale({
     setShowModal,
-    refetch
+    refetch,
+    initialValues
   });
   const { data } = useUserMethodPayments();
+
+  useEffect(() => {
+    reset(initialValues);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} style={{ width: '100%' }}>

@@ -54,29 +54,62 @@ export class AxiosClient {
   /**
    * Method Get
    */
-  public async get<T>(
-    path: string,
-    args?: any
-  ): Promise<
+  public async get<T, Q>({
+    path,
+    params,
+    query
+  }: {
+    path: string;
+    params?: string[];
+    query?: Q;
+  }): Promise<
     Partial<AxiosResponse<T, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.get(path, { params: args });
+    // Query query
+    const p = params ? `/${params?.join('/')}` : '';
+    return this.axiosClient.get(`${path}${p}`, { params: query });
   }
 
   /**
    * Method Post
    */
-  public async post<T, R>({
+  public async httpMethod<T, R, Q>({
     path,
     args,
+    query,
+    params,
+    method,
     formData
   }: {
     path: string;
     args?: T;
+    query?: Q;
+    params?: string[];
+    method?: 'PUT' | 'POST' | 'DELETE' | 'PATCH';
     formData?: boolean;
   }): Promise<
     Partial<AxiosResponse<R, any>> & { error?: boolean; message?: string }
   > {
-    return this.axiosClient.post(path, formData ? args : JSON.stringify(args));
+    // Query query
+    const p = params ? `/${params?.join('/')}` : '';
+
+    // PATCH METHOD
+    if (method === 'PATCH')
+      return this.axiosClient.patch(
+        `${path}${p}`,
+        formData ? args : JSON.stringify(args),
+        { params: query }
+      );
+    // DELETE METHOD
+    else if (method === 'DELETE') return this.axiosClient.delete(`${path}${p}`);
+    // PUT METHOD
+    else if (method === 'PUT') return this.axiosClient.delete(`${path}${p}`);
+
+    // POST METHOD
+    return this.axiosClient.post(
+      `${path}${p}`,
+      formData ? args : JSON.stringify(args),
+      { params: query }
+    );
   }
 }

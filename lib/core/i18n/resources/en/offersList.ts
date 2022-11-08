@@ -1,5 +1,10 @@
 export const offers_list = {
   action_creator: 'Create offer',
+  actions: {
+    create: 'Create offer',
+    edit: 'Edit',
+    delete: 'Delete'
+  },
   name: 'User',
   phone_number: 'Number phone',
   email: 'Email',

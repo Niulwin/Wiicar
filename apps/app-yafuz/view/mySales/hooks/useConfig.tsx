@@ -81,7 +81,7 @@ export const useConfig = ({
         render: (item: IInvoices) => {
           return (
             <FlexContainer justify="center" direction="row">
-              {item.state === 'PROGRESS' && (
+              {(item.state === 'PROGRESS' || item.state === 'PAYMENT') && (
                 <>
                   <Button
                     onClick={() => {
@@ -100,7 +100,7 @@ export const useConfig = ({
                     loading={invoiceId === item.id && loadingCancelSeller}
                     onClick={() => {
                       setInvoiceId(item.id);
-                      handleCancelSeller({ invoiceId: item.id });
+                      handleCancelSeller({ variables: { invoiceId: item.id } });
                     }}
                     size="small"
                     iconLeft="ban"

@@ -6,5 +6,6 @@ export type TQueryOptions<
   onSuccess?: (resData: TResponse) => void;
   onError?: (resData: TError) => void;
   variables?: TVariables;
+  params?: string[];
   translateErrorPath?: string;
 };

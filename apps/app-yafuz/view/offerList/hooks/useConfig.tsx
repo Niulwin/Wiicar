@@ -104,7 +104,7 @@ export const useConfig = ({
                     {formatCurrency(row.quantity)}
                   </Typography>
                 </FlexContainer>
-                <FlexContainer
+                {/* <FlexContainer
                   direction="row"
                   align="flex-end"
                   justify="space-between"
@@ -116,7 +116,7 @@ export const useConfig = ({
                   <Typography align="center" variant="body1">
                     (pronto) - (pronto)
                   </Typography>
-                </FlexContainer>
+                </FlexContainer> */}
               </>
             );
           }

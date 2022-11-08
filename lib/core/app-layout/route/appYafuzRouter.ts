@@ -1,7 +1,4 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { nanoid } from 'nanoid';
-
-const ID = nanoid(20);
 
 export interface RoutesInterface {
   key: string;
@@ -13,42 +10,49 @@ export interface RoutesInterface {
 }
 export const routes: RoutesInterface[] = [
   {
-    key: ID,
+    key: '1',
     name: 'global.menu_options.home',
     path: '/home',
     icon: 'home',
     isPrivate: false
   },
   {
-    key: ID,
+    key: '2',
     name: 'global.menu_options.offers_list',
     path: '/offer-list',
     icon: 'list',
     isPrivate: false
   },
   {
-    key: ID,
+    key: '3',
+    name: 'global.menu_options.my_offers',
+    path: '/my-offers',
+    icon: 'money-bill',
+    isPrivate: true
+  },
+  {
+    key: '4',
     name: 'global.menu_options.my_shopping',
     path: '/my-shopping',
     icon: 'shopping-cart',
     isPrivate: true
   },
   {
-    key: ID,
+    key: '4',
     name: 'global.menu_options.my_sales',
     path: '/my-sales',
     icon: 'exchange',
     isPrivate: true
   },
   {
-    key: ID,
+    key: '5',
     name: 'global.menu_options.my_accounts',
     path: '/my-accounts',
     icon: 'piggy-bank',
     isPrivate: true
   }
   /*   {
-    key: ID,
+    key: '6',
     name: 'global.menu_options.my_banks',
     path: '/banks',
     icon: 'university',
