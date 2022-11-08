@@ -2,7 +2,8 @@ import { Tooltip } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-import { Typography } from 'ui';
+import { Button, message, Typography } from 'ui';
+import { TCurrentUser } from '../../../entities/auth';
 import { useTranslate } from '../../../i18n/hooks';
 import { routes, RoutesInterface } from '../../route';
 import {
@@ -13,12 +14,18 @@ import {
   OptionMenu
 } from './styled';
 
-export const SideBar: FC<{ showAside: boolean; isSession: boolean }> = ({
+export const SideBar: FC<{
+  showAside: boolean;
+  isSession: boolean;
+  user?: TCurrentUser;
+}> = ({
   showAside,
-  isSession
+  isSession,
+  user
 }: {
   showAside: boolean;
   isSession: boolean;
+  user?: TCurrentUser;
 }) => {
   const router = useRouter();
   const translate = useTranslate();
@@ -73,6 +80,26 @@ export const SideBar: FC<{ showAside: boolean; isSession: boolean }> = ({
             )
         )}
       </Content>
+
+      <Button
+        variant="outlined"
+        onClick={() => {
+          const link = `https://app.dev.yafuzgame.com/auth/register/${user?.id}`;
+          navigator.clipboard.writeText(link);
+          message.success(
+            translate('global.user.referral_link_copied', { copy_link: link })
+          );
+        }}
+      >
+        <Typography
+          variant="caption"
+          color={'textPrimary'}
+          // active={router.pathname === x.path}
+          // showAside={showAside}
+        >
+          {translate('global.user.referral_link')}
+        </Typography>
+      </Button>
     </ContainerAside>
   );
 };

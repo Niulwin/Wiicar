@@ -20,7 +20,7 @@ export const userSchema = (countryCode: NamespaceCountryCode) =>
       .messages({ 'any.only': 'global.validations.password_confirm' }),
     nombre: Joi.string().required().messages(messages),
     apellidos: Joi.string().required().messages(messages),
-    address_wallet: Joi.string().required().messages(messages),
+    address_wallet: Joi.string().messages(messages),
     celular: Joi.string()
       .required()
       .custom((value, helper) =>

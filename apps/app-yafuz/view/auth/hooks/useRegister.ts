@@ -63,7 +63,7 @@ export const useRegister = ({
   );
 
   const onSubmit: SubmitHandler<IUser> = (data) => {
-    mutate(data);
+    mutate({ variables: data });
   };
 
   useEffect(() => {

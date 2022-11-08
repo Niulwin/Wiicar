@@ -28,6 +28,7 @@ export const Button: FC<TButtonProps> = ({
       onClick={(e) => (!loading && !disabled && onClick ? onClick(e) : null)}
       background={disabled ? 'disabled' : background}
       type={type || 'button'}
+      iconLeft={!!iconLeft}
     >
       {!loading && iconLeft && (
         <Icon

@@ -48,7 +48,7 @@ const AuthProvider: FC<TAuthProviderProps> = ({
         tokens,
         isSession,
         currentUser: currentUser,
-        getCurrentUser: () => getCurrentUser(null),
+        getCurrentUser: () => getCurrentUser({}),
         handleLogin,
         handleLogout
       }}

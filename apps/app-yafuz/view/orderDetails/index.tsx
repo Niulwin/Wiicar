@@ -98,7 +98,9 @@ export const OrderDetails: FC = () => {
                   <Button
                     loading={loadingCancelBuyer}
                     onClick={() =>
-                      handleCancelBuyer({ invoiceId: orderDetail?.id })
+                      handleCancelBuyer({
+                        variables: { invoiceId: orderDetail?.id }
+                      })
                     }
                     size="large"
                     iconLeft="cancel"
@@ -114,7 +116,9 @@ export const OrderDetails: FC = () => {
                     <Button
                       loading={loadingCancelSeller}
                       onClick={() =>
-                        handleCancelSeller({ invoiceId: orderDetail?.id })
+                        handleCancelSeller({
+                          variables: { invoiceId: orderDetail?.id }
+                        })
                       }
                       size="large"
                       iconLeft="cancel"
@@ -126,8 +130,10 @@ export const OrderDetails: FC = () => {
                       loading={loadingCancelSeller}
                       onClick={() =>
                         handleCancelSeller({
-                          invoiceId: orderDetail?.id,
-                          paymentNotReceived: true
+                          variables: {
+                            invoiceId: orderDetail?.id,
+                            paymentNotReceived: true
+                          }
                         })
                       }
                       size="large"
@@ -153,7 +159,9 @@ export const OrderDetails: FC = () => {
                     // disabled={item.state !== 'PROGRESS'}
                     loading={loadingApproveSeller}
                     onClick={() =>
-                      handleApproveSeller({ invoiceId: orderDetail?.id })
+                      handleApproveSeller({
+                        variables: { invoiceId: orderDetail?.id }
+                      })
                     }
                     size="large"
                     iconLeft="check-double"

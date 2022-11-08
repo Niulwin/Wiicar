@@ -14,14 +14,19 @@ export const global = {
   success_operation: 'Operación exitosa',
   menu_options: {
     home: 'Inicio',
+    my_offers: 'Mis ofertas',
     offers_list: 'Listado de ofertas',
     my_shopping: 'Mis compras',
     my_sales: 'Mis ventas',
     my_accounts: 'Medios de pago',
     my_banks: 'Mis bancos',
-    my_profile: 'My perfil',
+    my_profile: 'Mi perfil',
     order_details: 'Detalles de ordenes',
     pack_nft: 'Pack NFT'
+  },
+  user: {
+    referral_link: 'Copia tu Link de Referido',
+    referral_link_copied: 'Link copiado con éxito {{copy_link}}'
   },
   errors: {
     INVALID_CREDENTIALS: 'Credenciales inválidas',

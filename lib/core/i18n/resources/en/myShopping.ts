@@ -14,7 +14,7 @@ export const my_shopping = {
     PROGRESS: 'In progress',
     DISABLED: 'Inactive',
     PAYMENT: 'Payment',
-    APPROVAL: 'Approve',
+    APPROVAL: 'Finished',
     CANCEL_BUYER: 'Cancel Buyer',
     CANCEL_SELLER: 'Cancel Seller',
     EXPIRED_TIME: 'Cancel (expired time)'

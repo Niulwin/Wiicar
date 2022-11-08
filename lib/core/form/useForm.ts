@@ -14,7 +14,8 @@ export const useForm = <TInputs extends object>(paramsForm?: {
     formState,
     control,
     getValues,
-    setValue
+    setValue,
+    reset
   } = useReactHookForm<TInputs>({
     ...paramsForm
   });
@@ -26,7 +27,8 @@ export const useForm = <TInputs extends object>(paramsForm?: {
     watch,
     getValues,
     control,
-    formState
+    formState,
+    reset
   };
 };
 

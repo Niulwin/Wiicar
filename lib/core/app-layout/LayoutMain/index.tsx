@@ -32,7 +32,11 @@ export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
         hiddenLogin={hiddenLogin}
       />
       {!hiddenSidebars && (
-        <SideBar isSession={isSession} showAside={showAside} />
+        <SideBar
+          isSession={isSession}
+          showAside={showAside}
+          user={currentUser}
+        />
       )}
       <ChildrenBox>{children}</ChildrenBox>
     </Container>

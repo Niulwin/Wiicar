@@ -18,7 +18,8 @@ export const useCreateBank = ({ refetch, setShowModal }: TUseCreteBank) => {
     }
   );
 
-  const onSubmit: SubmitHandler<IMethodPayments> = (data) => mutate(data);
+  const onSubmit: SubmitHandler<IMethodPayments> = (data) =>
+    mutate({ variables: data });
 
   return {
     handleSubmit: handleSubmit(onSubmit),
