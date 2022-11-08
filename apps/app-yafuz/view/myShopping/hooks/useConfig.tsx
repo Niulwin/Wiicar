@@ -1,8 +1,7 @@
-import { IInvoices, useI18n } from 'core';
+import { formatCurrency, IInvoices, useI18n } from 'core';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
-import { formatCurrency } from '../../../../../lib/core/utils/formatCurrency';
 import { TUseConfig } from './types';
 
 const STATUS = {
@@ -10,11 +9,11 @@ const STATUS = {
   ENABLE: 'success',
   PROGRESS: 'info',
   DISABLED: 'disabled',
-  PAYMENT: 'success',
+  PAYMENT: 'info',
   CANCEL_BUYER: 'warning',
   CANCEL_SELLER: 'warning',
   EXPIRED_TIME: 'warning',
-  APPROVAL: 'info'
+  APPROVAL: 'success'
 };
 export const useConfig = ({
   translate,
@@ -83,7 +82,7 @@ export const useConfig = ({
         render: (item: IInvoices) => {
           return (
             <FlexContainer justify="center" direction="row">
-              {item.state === 'PROGRESS' && (
+              {(item.state === 'PROGRESS' || item.state === 'PAYMENT') && (
                 <>
                   <Button
                     onClick={() => {
@@ -100,7 +99,7 @@ export const useConfig = ({
                     loading={invoiceId === item.id && loadingCancelBuyer}
                     onClick={() => {
                       setInvoiceId(item.id);
-                      handleCancelBuyer({ invoiceId: item.id });
+                      handleCancelBuyer({ variables: { invoiceId: item.id } });
                     }}
                     size="small"
                     iconLeft="ban"

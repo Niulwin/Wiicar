@@ -14,6 +14,7 @@ export const global = {
   success_operation: 'Successful operation',
   menu_options: {
     home: 'Home',
+    my_offers: 'My Offers',
     offers_list: 'Offers List',
     my_shopping: 'My Shopping',
     my_sales: 'My sales',
@@ -22,6 +23,10 @@ export const global = {
     my_profile: 'My profile',
     order_details: 'Order details',
     pack_nft: 'Pack NFT'
+  },
+  user: {
+    referral_link: 'Copy your Referral Link',
+    referral_link_copied: 'Link copied successfully {{copy_link}}'
   },
   errors: {
     OCCURRED_ERROR: `I'm sorry, an ocurred error`,

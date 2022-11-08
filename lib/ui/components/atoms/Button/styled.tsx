@@ -13,11 +13,14 @@ export const ContentButton = styled.button<{
     | 'disabled';
   size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
   type?: 'submit' | 'button';
+  iconLeft?: boolean;
 }>`
+  position: relative;
   user-select: none;
   display: flex;
   height: auto;
   padding: 4px 8px;
+  padding: ${({ iconLeft }) => `4px 8px 4px ${iconLeft ? '24px' : '4px'}`};
   margin: 4px;
   text-align: center;
   align-items: center;
@@ -53,4 +56,6 @@ export const Icon = styled(FontAwesomeIcon)<{
   isMargin?: boolean;
 }>`
   color: ${({ color, theme }) => theme.colors.text[color || 'textPrimary']};
+  position: absolute;
+  left: 10px;
 `;

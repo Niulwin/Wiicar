@@ -32,7 +32,11 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
       'invoices/approval',
       {
         onSuccess: () => {
-          getOrderDetail({ type: params.type });
+          getOrderDetail({
+            variables: {
+              type: params.type
+            }
+          });
           message.success(translate('global.success_operation'));
         }
       }
@@ -44,7 +48,7 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
   >('invoice-payment-buyer', 'invoices/payment', {
     formData: true,
     onSuccess: () => {
-      getOrderDetail({ type: params.type });
+      getOrderDetail({ variables: { type: params.type } });
       message.success(translate('global.success_operation'));
     }
   });
@@ -87,13 +91,13 @@ export const useOrderDetails = ({ params }: TUseOrderDetails) => {
     formData.append('invoiceId', invoiceId);
     formData.append('photo', photo);
 
-    paymentBuyer(formData as any);
+    paymentBuyer({ variables: formData } as any);
   };
 
   useEffect(() => {
-    if (params.type) getOrderDetail({ type: params.type });
+    if (params.type) getOrderDetail({ variables: { type: params.type } });
     const interval = setInterval(
-      () => getOrderDetail({ type: params.type }),
+      () => getOrderDetail({ variables: { type: params.type } }),
       60000
     );
 

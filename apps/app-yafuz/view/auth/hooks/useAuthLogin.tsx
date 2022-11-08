@@ -30,7 +30,11 @@ export const useAuthLogin = () => {
       if (resp[0] === 'undefined' || resp[0] === 'null')
         throw new Error(t('global.errors.OCCURRED_ERROR'));
 
-      loginMutate({ address_wallet: resp[0] });
+      loginMutate({
+        variables: {
+          address_wallet: resp[0]
+        }
+      });
       setLoading(false);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -42,7 +46,12 @@ export const useAuthLogin = () => {
   const handleGeneralLogin = async () => {
     try {
       setLoading(true);
-      loginMutate({ email: values.email, password: values.password });
+      loginMutate({
+        variables: {
+          email: values.email,
+          password: values.password
+        }
+      });
       setLoading(false);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
