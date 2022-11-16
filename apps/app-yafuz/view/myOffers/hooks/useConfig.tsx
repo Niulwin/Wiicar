@@ -1,8 +1,17 @@
-import { ISales, useI18n } from 'core';
+import { formatCurrency, ISales, useI18n } from 'core';
 import { useEffect, useState } from 'react';
-import { Button, FlexContainer, TTableColumns, useTheme } from 'ui';
+import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
+import { useTableStyle } from 'view/offerList/hooks';
 import { TUseConfig } from './types';
 import { useMyOffers } from './useMyOffers';
+
+const chipColors = {
+  bank_transfer: 'success',
+  certified_turn: 'primary',
+  crypto_wallet: 'textPrimary',
+  virtual_wallet: 'secondary',
+  internal_balance: 'info'
+};
 
 export const useConfig = ({ translate }: TUseConfig) => {
   const { language } = useI18n();
@@ -17,6 +26,7 @@ export const useConfig = ({ translate }: TUseConfig) => {
       offerId: saleSelected.id,
       handleShowModal: setShowModal
     });
+  useTableStyle({ keyDeps: [theme, data?.total] });
 
   useEffect(() => {
     setColumns([
@@ -31,19 +41,62 @@ export const useConfig = ({ translate }: TUseConfig) => {
       {
         name: translate('offers_list.price'),
         width: 30,
-        accessor: 'price'
+        accessor: 'price',
+        render: (row: ISales) => (
+          <>
+            {formatCurrency(row.price, '0,00[.]00000')}{' '}
+            {row?.exchangeCurrency?.prefix}
+          </>
+        )
       },
       {
-        name: translate('offers_list.quantity'),
+        name: translate('offers_list.quantity_offer'),
         accessor: 'quantity',
-        width: 30
+        width: 30,
+        render: (row: ISales) => (
+          <>{formatCurrency(row.quantity, '0,00[.]00000')} YAZ</>
+        )
       },
       {
         name: translate('offers_list.method_payment'),
         width: 40,
-        render: (row: ISales) => (
-          <>{row.userMethodPayment?.methodPayment?.name}</>
-        )
+        render: (row: ISales) => {
+          const umps =
+            row.user?.usermethodpayment?.map(
+              (item) => item.methodPayment?.halfAccount
+            ) || [];
+
+          const umpsDistinct = [...new Set(umps?.map((x) => x))];
+
+          return (
+            <FlexContainer
+              direction="row"
+              style={{ flexWrap: 'wrap' }}
+              padding="8px 0"
+            >
+              {umpsDistinct?.map((item, index) => (
+                <Typography
+                  key={`${item}-${index}`}
+                  align="center"
+                  color="light"
+                  variant="caption3"
+                  style={{
+                    color: theme?.colors.text?.[chipColors[item] as 'warning'],
+                    fontWeight: 600,
+                    padding: 5,
+                    background: `${
+                      theme?.colors.text?.[chipColors[item] as 'warning']
+                    }25`,
+                    borderRadius: 8,
+                    margin: 4
+                  }}
+                >
+                  {translate(`bank.half_account_enum.${item}`)}
+                </Typography>
+              ))}
+            </FlexContainer>
+          );
+        }
       },
       {
         name: translate('global.actions'),

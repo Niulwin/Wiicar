@@ -26,6 +26,8 @@ export const LayoutMain: FC<{ children: JSX.Element | JSX.Element[] }> = ({
         <Image src="/logo.svg" alt="logo" width={90} height={100} />
       </Logo>
       <Header
+        changeCurrentExchangeCurrency={res.changeCurrentExchangeCurrency}
+        currentExchangeCurrency={res.currentExchangeCurrency}
         logout={handleLogout}
         isSession={isSession}
         currentUser={currentUser}

@@ -6,6 +6,6 @@ type InputProps = DetailedHTMLProps<
   HTMLInputElement
 >;
 
-export const Input: FC<InputProps> = (props: InputProps) => {
-  return <InputStyled {...(props as any)} />;
-};
+export const Input: FC<InputProps> = (props: InputProps) => (
+  <InputStyled {...(props as any)} />
+);

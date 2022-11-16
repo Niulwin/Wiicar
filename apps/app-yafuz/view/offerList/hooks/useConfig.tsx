@@ -12,6 +12,14 @@ import {
 import { TUseConfig } from './types';
 import { useTableStyle } from './useTableStyle';
 
+const chipColors = {
+  bank_transfer: 'success',
+  certified_turn: 'primary',
+  crypto_wallet: 'textPrimary',
+  virtual_wallet: 'secondary',
+  internal_balance: 'info'
+};
+
 export const useConfig = ({
   translate,
   data,
@@ -79,52 +87,69 @@ export const useConfig = ({
           render: (row: ISales) => {
             return (
               <Typography align="center" variant="h6">
-                {formatCurrency(row?.price || 0)} &nbsp; USDT
+                {formatCurrency(row?.price || 0)} &nbsp;{' '}
+                {row?.exchangeCurrency?.prefix}
               </Typography>
             );
           }
         },
         {
-          name: translate('my_sales.quantity'),
+          name: translate('offers_list.quantity'),
           accessor: 'quantity',
           width: 25,
           render: (row: ISales) => {
             return (
               <>
-                <FlexContainer
-                  direction="row"
-                  align="flex-end"
-                  justify="space-between"
-                  padding="5px 30px"
-                >
-                  <Typography align="center" variant="caption2">
-                    {translate('offers_list.available')}: &nbsp;
-                  </Typography>
+                <FlexContainer direction="row">
                   <Typography align="center" variant="body1">
-                    {formatCurrency(row.quantity)}
+                    {formatCurrency(row.quantity)} YAZ
                   </Typography>
                 </FlexContainer>
-                {/* <FlexContainer
-                  direction="row"
-                  align="flex-end"
-                  justify="space-between"
-                  padding="5px 30px"
-                >
-                  <Typography align="center" variant="caption2">
-                    {translate('offers_list.limit')}: &nbsp;
-                  </Typography>
-                  <Typography align="center" variant="body1">
-                    (pronto) - (pronto)
-                  </Typography>
-                </FlexContainer> */}
               </>
             );
           }
         },
         {
           name: translate('my_sales.method_payment'),
-          accessor: 'userMethodPayment.methodPayment.name',
-          width: 20
+          width: 20,
+          render: (row: ISales) => {
+            const umps =
+              row.user?.usermethodpayment?.map(
+                (item) => item.methodPayment?.halfAccount
+              ) || [];
+
+            const umpsDistinct = [...new Set(umps?.map((x) => x))];
+
+            return (
+              <FlexContainer
+                direction="row"
+                style={{ flexWrap: 'wrap' }}
+                padding="8px 0"
+              >
+                {umpsDistinct?.map((item, index) => (
+                  <Typography
+                    key={`${item}-${index}`}
+                    align="center"
+                    color="light"
+                    variant="caption3"
+                    style={{
+                      color:
+                        theme?.colors.text?.[chipColors[item] as 'warning'],
+                      fontWeight: 600,
+                      padding: 5,
+                      background: `${
+                        theme?.colors.text?.[chipColors[item] as 'warning']
+                      }25`,
+                      borderRadius: 8,
+                      margin: 4
+                    }}
+                  >
+                    {translate(`bank.half_account_enum.${item}`)}
+                  </Typography>
+                ))}
+              </FlexContainer>
+            );
+          }
         },
         {
           name: translate('global.actions'),

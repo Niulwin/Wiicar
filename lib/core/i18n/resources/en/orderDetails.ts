@@ -6,7 +6,7 @@ export const order_details = {
   actions: {
     accept: 'Payment received',
     not_payment: 'Payment not received',
-    cancel: 'Cancel sale',
+    cancel: 'Reject purchase',
     buy: 'Payment made',
     upload_receipt: 'Upload receipt',
     upload_file: 'Upload file'

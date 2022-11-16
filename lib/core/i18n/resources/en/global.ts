@@ -9,6 +9,7 @@ export const global = {
   },
   delete: 'Delete',
   cancel: 'Cancel',
+  view: 'View details',
   accept: 'Accept',
   choose: 'Choose here',
   success_operation: 'Successful operation',

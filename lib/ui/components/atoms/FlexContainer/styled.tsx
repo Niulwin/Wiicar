@@ -12,7 +12,7 @@ export const Flex = styled.div<TFlexContainerProps>`
   ${({ position }) =>
     position &&
     css`
-      ${position}
+      position: ${position};
     `};
   ${({ shadow }) =>
     shadow &&

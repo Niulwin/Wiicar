@@ -2,7 +2,8 @@ import React from 'react';
 
 export type TActionTableOptions = {
   buttons: ('info' | 'delete' | 'check')[];
-  onEdit?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onSuccess?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onCheck?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onEdit?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onView?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onSuccess?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onDelete?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };

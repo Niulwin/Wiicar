@@ -16,7 +16,8 @@ export type TInputSale = {
   id?: string;
   price: number;
   quantity: number;
-  userMethodPaymentId: string;
+  region: string;
+  exchangeCurrencyId: string;
 };
 
 export type TUseConfig = {
