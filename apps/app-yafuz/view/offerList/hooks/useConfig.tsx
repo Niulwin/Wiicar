@@ -1,4 +1,4 @@
-import { ISales, useI18n } from 'core';
+import { ISales, NamespaceTranslate, useI18n } from 'core';
 import { formatCurrency } from 'core/utils/';
 import { useEffect, useState } from 'react';
 import {
@@ -12,7 +12,7 @@ import {
 import { TUseConfig } from './types';
 import { useTableStyle } from './useTableStyle';
 
-const chipColors = {
+const chipColors: any = {
   bank_transfer: 'success',
   certified_turn: 'primary',
   crypto_wallet: 'textPrimary',
@@ -118,7 +118,7 @@ export const useConfig = ({
                 (item) => item.methodPayment?.halfAccount
               ) || [];
 
-            const umpsDistinct = [...new Set(umps?.map((x) => x))];
+            const umpsDistinct = [...(new Set(umps?.map((x) => x)) as any)];
 
             return (
               <FlexContainer
@@ -144,7 +144,9 @@ export const useConfig = ({
                       margin: 4
                     }}
                   >
-                    {translate(`bank.half_account_enum.${item}`)}
+                    {translate(
+                      `bank.half_account_enum.${item}` as NamespaceTranslate
+                    )}
                   </Typography>
                 ))}
               </FlexContainer>

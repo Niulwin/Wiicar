@@ -1,11 +1,11 @@
-import { formatCurrency, ISales, useI18n } from 'core';
+import { formatCurrency, ISales, NamespaceTranslate, useI18n } from 'core';
 import { useEffect, useState } from 'react';
 import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
 import { useTableStyle } from 'view/offerList/hooks';
 import { TUseConfig } from './types';
 import { useMyOffers } from './useMyOffers';
 
-const chipColors = {
+const chipColors: any = {
   bank_transfer: 'success',
   certified_turn: 'primary',
   crypto_wallet: 'textPrimary',
@@ -66,7 +66,7 @@ export const useConfig = ({ translate }: TUseConfig) => {
               (item) => item.methodPayment?.halfAccount
             ) || [];
 
-          const umpsDistinct = [...new Set(umps?.map((x) => x))];
+          const umpsDistinct = [...(new Set(umps?.map((x) => x)) as any)];
 
           return (
             <FlexContainer
@@ -81,7 +81,10 @@ export const useConfig = ({ translate }: TUseConfig) => {
                   color="light"
                   variant="caption3"
                   style={{
-                    color: theme?.colors.text?.[chipColors[item] as 'warning'],
+                    color:
+                      theme?.colors.text?.[
+                        chipColors[item as any] as 'warning'
+                      ],
                     fontWeight: 600,
                     padding: 5,
                     background: `${
@@ -91,7 +94,9 @@ export const useConfig = ({ translate }: TUseConfig) => {
                     margin: 4
                   }}
                 >
-                  {translate(`bank.half_account_enum.${item}`)}
+                  {translate(
+                    `bank.half_account_enum.${item}` as NamespaceTranslate
+                  )}
                 </Typography>
               ))}
             </FlexContainer>
