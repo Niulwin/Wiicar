@@ -1,6 +1,7 @@
 export type {
   Control,
   FieldError,
+  FieldErrors,
   FieldValues,
   Path,
   PathValue,

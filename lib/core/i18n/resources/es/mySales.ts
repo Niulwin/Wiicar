@@ -6,6 +6,11 @@ export const my_sales = {
   quantity: 'Cantidad',
   approve: 'Aprobar',
   going_transaction: 'Ir a la transacción',
+  fields: {
+    quantity: 'Cantidad',
+    region: 'Región',
+    exchange_currencies: 'Moneda de intercambio'
+  },
   status: {
     name: 'Status',
     SELL: 'Vendido',

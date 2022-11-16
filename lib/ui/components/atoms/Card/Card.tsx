@@ -21,7 +21,6 @@ export const Card: FC<TCardProps> = ({
   return (
     <Section
       size={size}
-      style={style}
       variant={variant || 'outlined'}
       onClick={onClick}
       background={background}
@@ -33,6 +32,7 @@ export const Card: FC<TCardProps> = ({
       align={align}
       padding={padding}
       position={position}
+      style={style}
     >
       {children}
     </Section>

@@ -31,7 +31,7 @@ export const useConfig = ({
       {
         name: translate('bank.code'),
         accessor: 'code',
-        width: 30
+        width: 15
       },
       {
         name: translate('bank.name'),
@@ -39,9 +39,17 @@ export const useConfig = ({
         width: 30
       },
       {
+        name: translate('bank.half_account'),
+        accessor: 'halfAccount',
+        width: 15,
+        render: (row: IMethodPayments) =>
+          translate(`bank.half_account_enum.${row?.halfAccount}`)
+      },
+      {
         name: translate('bank.country'),
-        accessor: 'country',
-        width: 20
+        width: 20,
+        render: (row: IMethodPayments) =>
+          language === 'es' ? row?.country?.nombre : row?.country?.name
       },
       {
         name: translate('global.actions'),

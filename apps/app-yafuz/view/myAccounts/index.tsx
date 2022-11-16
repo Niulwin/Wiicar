@@ -16,8 +16,22 @@ import { useConfig } from './hooks/useConfig';
 export const MyAccounts: FC = () => {
   const [showModal, setShowModal] = useState(false);
   const translate = useTranslate();
-  const { data, isLoading, refetch } = useUserMethodPayments();
-  const { columns } = useConfig({ translate, data });
+  const {
+    data,
+    isLoading,
+    refetch,
+    handleEdit,
+    clearInitialValues,
+    userMethodPaymentSelected
+  } = useUserMethodPayments();
+  const { columns } = useConfig({
+    translate,
+    data,
+    handleEdit: (row) => {
+      setShowModal(true);
+      handleEdit(row);
+    }
+  });
 
   return (
     <FlexContainer>
@@ -25,9 +39,16 @@ export const MyAccounts: FC = () => {
         footer={false}
         title={translate('my_accounts.action_creator')}
         isVisible={showModal}
-        onCancel={() => setShowModal(false)}
+        onCancel={() => {
+          setShowModal(false);
+          clearInitialValues();
+        }}
       >
-        <CreateAccount setShowModal={setShowModal} refetch={refetch} />
+        <CreateAccount
+          setShowModal={setShowModal}
+          refetch={refetch}
+          initialValue={userMethodPaymentSelected}
+        />
       </Modal>
       <Content noPadding direction="row" justify="space-between" align="center">
         <Typography variant="h6">

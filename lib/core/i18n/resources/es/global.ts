@@ -8,6 +8,7 @@ export const global = {
     English: 'Inglés'
   },
   delete: 'Eliminar',
+  view: 'Ver detalles',
   cancel: 'Cancelar',
   accept: 'Aceptar',
   choose: 'Selecciona una opción',

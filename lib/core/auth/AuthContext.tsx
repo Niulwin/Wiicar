@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { createContext, FC, useState } from 'react';
 import { useClient, useLazyQuery, useQueryClient } from '../api-client';
+import { IExchangeCurrency } from '../entities';
 import { TCurrentUser } from '../entities/auth';
 import { TAuthContext, TAuthProviderProps, TTokens } from './types';
 
@@ -12,6 +13,16 @@ const AuthProvider: FC<TAuthProviderProps> = ({
   const queryClient = useQueryClient();
   const router = useRouter();
   const [tokens, setTokens] = useState<TTokens>({ authorization: undefined });
+  const [currentExchangeCurrency, setCurrentExchangeCurrency] =
+    useState<IExchangeCurrency>(() => {
+      try {
+        const curr = localStorage.getItem('currency');
+        return JSON.parse(curr || '{}') as IExchangeCurrency;
+      } catch {
+        return {} as IExchangeCurrency;
+      }
+    });
+
   const [isSession, setIsSession] = useState(
     () => !!localStorage.getItem('session')
   );
@@ -42,6 +53,11 @@ const AuthProvider: FC<TAuthProviderProps> = ({
     router.push('/auth/login');
   };
 
+  const changeCurrentExchangeCurrency = (value: IExchangeCurrency) => {
+    localStorage.setItem('currency', JSON.stringify(value));
+    setCurrentExchangeCurrency(value);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -50,7 +66,9 @@ const AuthProvider: FC<TAuthProviderProps> = ({
         currentUser: currentUser,
         getCurrentUser: () => getCurrentUser({}),
         handleLogin,
-        handleLogout
+        handleLogout,
+        changeCurrentExchangeCurrency,
+        currentExchangeCurrency
       }}
     >
       {children}

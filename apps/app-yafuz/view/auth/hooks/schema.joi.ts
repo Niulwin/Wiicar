@@ -13,7 +13,7 @@ const messages = {
 
 export const userSchema = (countryCode: NamespaceCountryCode) =>
   Joi.object({
-    password: Joi.string().required().min(5).max(12).messages(messages),
+    password: Joi.string().required().min(5).max(16).messages(messages),
     confirmPassword: Joi.string()
       .valid(Joi.ref('password'))
       .required()

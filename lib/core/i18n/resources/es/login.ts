@@ -13,7 +13,8 @@ export const login = {
   install_metamask: 'Por favor, instala metamask',
   forgot_password: '¿Has olvidado tu contraseña?',
   register_successful: 'Registro exitoso',
-  no_sponsor: 'No estas siendo referido por nadie',
+  no_sponsor:
+    'Sponsor no definido, Yafuz le asignara un sponsor aleatoriamente',
   fields: {
     email: 'Email de usuario',
     wallet: 'Billetera Metamask',
@@ -25,7 +26,8 @@ export const login = {
     sponsor_info: 'Verifica que {{sponsor}} es tu sponsor',
     username: 'Nombre de usuario',
     phone: 'Teléfono',
-    country: 'País'
+    country: 'País',
+    metamask: 'Vincula tu billetera Metamask'
   },
   errors: {
     NOT_SPONSOR: 'No se ha encontrado ningún sponsor con este enlace'

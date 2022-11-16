@@ -146,12 +146,7 @@ export const OrderDetails: FC = () => {
                   </>
                 )}
             </FlexContainer>
-            <FlexContainer
-              sm="6"
-              gap="10px"
-              direction="row"
-              justify="flex-start"
-            >
+            <FlexContainer sm="6" gap="10px" direction="row" justify="flex-end">
               {query.type === 'seller' &&
                 orderDetail?.id &&
                 orderDetail.state === 'PAYMENT' && (

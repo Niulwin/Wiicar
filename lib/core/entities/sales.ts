@@ -1,4 +1,4 @@
-import { IUserMethodPayments } from './methodPayment';
+import { IExchangeCurrency } from './exchangeCurrency';
 import { IUser } from './user';
 
 export interface ISales {
@@ -9,7 +9,6 @@ export interface ISales {
   quantity: number;
   state: 'SELL' | 'ENABLE' | 'PROGRESS' | 'DISABLED';
   userId: string;
-  userMethodPaymentId: string;
   user: IUser;
-  userMethodPayment: IUserMethodPayments;
+  exchangeCurrency: IExchangeCurrency;
 }

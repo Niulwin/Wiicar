@@ -14,7 +14,14 @@ export const LayoutAuth: FC<{ children: JSX.Element | JSX.Element[] }> = ({
   hiddenLogin?: boolean;
 }) => {
   const [showAside] = useState(true);
-  const { isSession, currentUser, handleLogout, ...res } = useAuth();
+  const {
+    isSession,
+    currentUser,
+    handleLogout,
+    changeCurrentExchangeCurrency,
+    currentExchangeCurrency,
+    ...res
+  } = useAuth();
 
   useEffect(() => {
     isSession && res.getCurrentUser();
@@ -26,6 +33,8 @@ export const LayoutAuth: FC<{ children: JSX.Element | JSX.Element[] }> = ({
         <Image src="/logo.svg" alt="logo" width={90} height={100} />
       </Logo>
       <Header
+        changeCurrentExchangeCurrency={changeCurrentExchangeCurrency}
+        currentExchangeCurrency={currentExchangeCurrency}
         logout={handleLogout}
         isSession={isSession}
         currentUser={currentUser}

@@ -40,8 +40,11 @@ export const numeralConfig = (
   }
 };
 
-export const formatCurrency = (value?: number): string | number => {
-  return value ? numeral(value).format('0,0.00000') : 0;
+export const formatCurrency = (
+  value?: number,
+  format?: string
+): string | number => {
+  return value ? numeral(value).format(format || '0,0.00000') : 0;
 };
 
 export const formatToNumber = (value?: number): string | number => {

@@ -2,7 +2,7 @@ import { useI18n, useTranslate } from 'core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   Button,
   FlexContainer,
@@ -41,6 +41,7 @@ export const RegisterComponent: FC = () => {
     onSuccess: () => router.push('/auth/login')
   });
   const { handleSessionWithMetamask } = useLogin();
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <FlexContainer>
@@ -62,7 +63,7 @@ export const RegisterComponent: FC = () => {
                     name="nombre"
                     label={t('login.fields.first_name')}
                     width="100%"
-                    placeholder={t('login.fields.first_name')}
+                    placeholder="Jane"
                     register={register}
                     error={errors.nombre}
                   />
@@ -70,7 +71,7 @@ export const RegisterComponent: FC = () => {
                     name="apellidos"
                     label={t('login.fields.last_name')}
                     width="100%"
-                    placeholder={t('login.fields.last_name')}
+                    placeholder="Doe"
                     register={register}
                     error={errors.nombre}
                   />
@@ -78,7 +79,6 @@ export const RegisterComponent: FC = () => {
                     name="country"
                     label={t('login.fields.country')}
                     width="100%"
-                    placeholder={t('login.fields.country')}
                     register={register}
                     error={errors.country}
                     options={
@@ -96,7 +96,7 @@ export const RegisterComponent: FC = () => {
                     type="phone"
                     label={t('login.fields.phone')}
                     width="100%"
-                    placeholder={t('login.fields.phone')}
+                    placeholder={'1234567890'}
                     control={control}
                     countryCode={countryCode}
                     error={errors.celular}
@@ -120,7 +120,7 @@ export const RegisterComponent: FC = () => {
                     name="username"
                     label={t('login.fields.username')}
                     width="100%"
-                    placeholder={t('login.fields.username')}
+                    placeholder="JaneDoe123"
                     register={register}
                     error={errors.username}
                   />
@@ -128,18 +128,22 @@ export const RegisterComponent: FC = () => {
                     name="email"
                     label={t('login.fields.email')}
                     width="100%"
-                    placeholder={t('login.fields.email')}
+                    placeholder="jane@doe.com"
                     register={register}
                     error={errors.email}
                   />
                   <TextField
                     name="password"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     label={t('login.fields.password')}
                     width="100%"
                     placeholder={t('login.fields.password')}
                     register={register}
                     error={errors.password}
+                    iconRight={{
+                      name: showPassword ? 'eye-slash' : 'eye',
+                      onClick: () => setShowPassword(!showPassword)
+                    }}
                   />
                   <TextField
                     type="password"
@@ -159,7 +163,7 @@ export const RegisterComponent: FC = () => {
                         .then((r) => handleMetamaskCode(r[0]))
                         .catch((err) => message.error(err?.message))
                     }
-                    title="Vincula tu billetera metamaks"
+                    title={t('login.fields.metamask')}
                   />
                   <TextField
                     noLabel

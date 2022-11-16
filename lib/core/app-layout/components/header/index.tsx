@@ -1,10 +1,12 @@
 import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Button, Select, Typography, useTheme } from 'ui';
+import { IExchangeCurrency } from '../../../entities';
 import { LanguagesSupport } from '../../../i18n';
 import { useI18n, useTranslate } from '../../../i18n/hooks';
+import { useExchangeCurrency } from '../../hooks/useExchangeCurrency';
 import { FlexContainer, Head, Section } from './styled';
 import { THeaderProps } from './types';
 
@@ -12,12 +14,16 @@ export const Header: FC<THeaderProps> = ({
   hiddenLogin,
   currentUser,
   isSession,
-  logout
+  logout,
+  currentExchangeCurrency,
+  changeCurrentExchangeCurrency
 }: THeaderProps) => {
   const translate = useTranslate();
   const router = useRouter();
   const { theme, changeTheme } = useTheme();
   const { changeLanguage, language } = useI18n();
+  const { dataExchangeCurrencies } = useExchangeCurrency();
+
   const [options] = useState([
     {
       value: LanguagesSupport.Spanish,
@@ -28,6 +34,13 @@ export const Header: FC<THeaderProps> = ({
       title: translate('global.language.English')
     }
   ]);
+
+  useEffect(() => {
+    if (!currentExchangeCurrency?.id && dataExchangeCurrencies?.length)
+      changeCurrentExchangeCurrency(
+        dataExchangeCurrencies[0] as IExchangeCurrency
+      );
+  }, [dataExchangeCurrencies]);
 
   return (
     <Head>
@@ -53,6 +66,24 @@ export const Header: FC<THeaderProps> = ({
                 {currentUser?.username || ''}
               </Typography>
             ))}
+          <Select
+            options={
+              dataExchangeCurrencies?.map((exchangeCurrency) => ({
+                title: `${exchangeCurrency.prefix}`,
+                value: exchangeCurrency.id
+              })) || []
+            }
+            value={currentExchangeCurrency?.id}
+            key="asda"
+            defaultValue={currentExchangeCurrency?.id || 'currency'}
+            handleChange={(value) =>
+              changeCurrentExchangeCurrency(
+                dataExchangeCurrencies?.find(
+                  (x) => x.id === value
+                ) as IExchangeCurrency
+              )
+            }
+          />
           <Select
             options={options}
             value={language}

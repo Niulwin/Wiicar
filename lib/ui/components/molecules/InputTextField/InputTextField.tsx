@@ -1,5 +1,5 @@
 import { FieldValues } from 'react-hook-form';
-import { Input } from './styled';
+import { Input } from '../../atoms/Input/styled';
 import { TextFieldValidationsMessage, TInputTextField } from './types';
 
 export const InputTextField = <IFormValues extends FieldValues>({
