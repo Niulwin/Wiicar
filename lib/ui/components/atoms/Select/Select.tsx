@@ -17,6 +17,7 @@ export const Select: FC<TSelectProps> = ({
       defaultValue={defaultValue}
       bordered={false}
       style={style}
+      placeholder="asda"
       onChange={handleChange as any}
       color={
         color || (variant === 'contained' ? 'textSecondary' : 'textPrimary')

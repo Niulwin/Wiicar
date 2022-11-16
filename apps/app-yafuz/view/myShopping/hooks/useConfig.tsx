@@ -53,13 +53,21 @@ export const useConfig = ({
         accessor: 'sale.price',
         width: 10,
         render: (row: IInvoices) => {
-          return formatCurrency(row?.sale?.price);
+          return (
+            <>
+              {formatCurrency(row?.sale?.price, '0,00[.]00000')}{' '}
+              {row?.sale?.exchangeCurrency?.prefix}
+            </>
+          );
         }
       },
       {
         name: translate('my_shopping.quantity'),
         accessor: 'quantity',
-        width: 10
+        width: 10,
+        render: (row: IInvoices) => {
+          return `${row?.quantity} YAZ`;
+        }
       },
       {
         name: translate('my_shopping.status.name'),

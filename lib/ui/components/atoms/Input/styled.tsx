@@ -13,4 +13,13 @@ export const Input = styled.input`
   &:focus {
     border: 2px solid ${({ theme }) => theme.colors.secondary.main};
   }
+  &:disabled {
+    color: ${({ theme }) => theme.colors.text.disabled};
+    cursor: no-drop;
+  }
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text.disabled};
+    opacity: 0.5;
+    cursor: no-drop;
+  }
 `;

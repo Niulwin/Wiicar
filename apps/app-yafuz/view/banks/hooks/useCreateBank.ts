@@ -1,4 +1,12 @@
-import { IMethodPayments, SubmitHandler, useForm, useMutation } from 'core';
+import {
+  ICountry,
+  IMethodPayments,
+  SubmitHandler,
+  TPagination,
+  useForm,
+  useMutation,
+  useQuery
+} from 'core';
 import { TUseCreteBank } from './types';
 
 export const useCreateBank = ({ refetch, setShowModal }: TUseCreteBank) => {
@@ -17,6 +25,9 @@ export const useCreateBank = ({ refetch, setShowModal }: TUseCreteBank) => {
       }
     }
   );
+  const { data: dataCountries, isLoading: isLoadingCountry } = useQuery<
+    TPagination<ICountry>
+  >('all-countries', 'countries');
 
   const onSubmit: SubmitHandler<IMethodPayments> = (data) =>
     mutate({ variables: data });
@@ -25,6 +36,8 @@ export const useCreateBank = ({ refetch, setShowModal }: TUseCreteBank) => {
     handleSubmit: handleSubmit(onSubmit),
     register,
     errors,
-    isLoading
+    isLoading,
+    dataCountries: dataCountries?.data || [],
+    isLoadingCountry
   };
 };

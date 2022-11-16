@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { InitConfigTable } from 'ui';
-import { TDefaultTheme } from '../../../../../lib/ui/theme/themeSchema';
+import { InitConfigTable, TDefaultTheme } from 'ui';
 
 export const useTableStyle = ({
   keyDeps

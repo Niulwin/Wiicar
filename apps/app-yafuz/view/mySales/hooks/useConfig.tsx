@@ -1,4 +1,4 @@
-import { IInvoices, useI18n } from 'core';
+import { formatCurrency, IInvoices, useI18n } from 'core';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, FlexContainer, TTableColumns, Typography, useTheme } from 'ui';
@@ -52,12 +52,23 @@ export const useConfig = ({
       {
         name: translate('my_sales.price'),
         accessor: 'sale.price',
-        width: 15
+        width: 15,
+        render: (row: IInvoices) => {
+          return (
+            <>
+              {formatCurrency(row?.sale?.price, '0,00[.]00000')}{' '}
+              {row?.sale?.exchangeCurrency?.prefix}
+            </>
+          );
+        }
       },
       {
         name: translate('my_sales.quantity'),
         accessor: 'quantity',
-        width: 15
+        width: 15,
+        render: (row: IInvoices) => {
+          return `${row?.quantity} YAZ`;
+        }
       },
       {
         name: translate('my_sales.status.name'),

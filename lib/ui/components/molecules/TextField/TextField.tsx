@@ -5,6 +5,7 @@ import { Typography } from '../../atoms/Typography';
 import { InputTextField } from '../InputTextField';
 import { NumberCurrencyField } from '../NumberCurrencyField';
 import { PhoneNumberField } from '../PhoneNumberField';
+import { Icon } from './styled';
 import { TTextField } from './types';
 
 export const TextField = <IFormValues extends object>({
@@ -22,7 +23,8 @@ export const TextField = <IFormValues extends object>({
   countryCode = 'CO',
   afterChange,
   disabled,
-  noLabel
+  noLabel,
+  iconRight
 }: TTextField<IFormValues>) => {
   const translate = useTranslate();
   const errorMessage = useMemo(() => {
@@ -35,7 +37,12 @@ export const TextField = <IFormValues extends object>({
   }, [error?.message]);
 
   return (
-    <FlexContainer width={width} padding="0" align="flex-start">
+    <FlexContainer
+      width={width}
+      padding="0"
+      align="flex-start"
+      style={{ position: 'relative' }}
+    >
       {!noLabel && (
         <Typography style={{ padding: 5 }} variant="body1">
           {label}
@@ -81,6 +88,9 @@ export const TextField = <IFormValues extends object>({
             })
           : ''}
       </Typography>
+      {iconRight && (
+        <Icon size="1x" icon={iconRight?.name} onClick={iconRight.onClick} />
+      )}
     </FlexContainer>
   );
 };

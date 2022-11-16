@@ -1,4 +1,12 @@
-import { ISales, SubmitHandler, useForm, useMutation } from 'core';
+import {
+  ICountry,
+  ISales,
+  SubmitHandler,
+  TPagination,
+  useForm,
+  useMutation,
+  useQuery
+} from 'core';
 import { TInputSale, TUseCreteSale } from './types';
 
 export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
@@ -6,8 +14,16 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
     register,
     handleSubmit,
     reset,
+    reset: resetSale,
     formState: { errors }
   } = useForm<TInputSale>();
+  const { data: dataBalance } = useQuery<{ balance?: number }>(
+    'my-available-balance',
+    'balance/available'
+  );
+  const { data: dataCountries, isLoading: isLoadingCountry } = useQuery<
+    TPagination<ICountry>
+  >('all-countries', 'countries');
   const { mutate, isLoading } = useMutation<ISales, TInputSale>(
     'create-sale',
     'sales',
@@ -15,6 +31,7 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
       translateErrorPath: 'offers_list',
       onSuccess: () => {
         refetch();
+        resetSale();
         setShowModal(false);
       }
     }
@@ -27,6 +44,7 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
     httpMethod: 'PATCH',
     onSuccess: () => {
       refetch();
+      resetSale;
       setShowModal(false);
     }
   });
@@ -38,7 +56,8 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
           id: data?.id,
           price: Number(data.price),
           quantity: Number(data.quantity),
-          userMethodPaymentId: data.userMethodPaymentId
+          region: data.region,
+          exchangeCurrencyId: data.exchangeCurrencyId
         }
       });
     } else {
@@ -46,7 +65,8 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
         variables: {
           price: Number(data.price),
           quantity: Number(data.quantity),
-          userMethodPaymentId: data.userMethodPaymentId
+          region: data.region,
+          exchangeCurrencyId: data.exchangeCurrencyId
         }
       });
     }
@@ -57,6 +77,9 @@ export const useCreateSale = ({ refetch, setShowModal }: TUseCreteSale) => {
     register,
     errors,
     isLoading: isLoading || isLoadingEdit,
-    reset
+    reset,
+    dataBalance,
+    isLoadingCountry,
+    dataCountries: dataCountries?.data || []
   };
 };

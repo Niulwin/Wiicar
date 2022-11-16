@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Select = styled.select`
+export const Select = styled.select<{ selected?: boolean }>`
   display: flex;
   border: 1px solid ${({ theme }) => theme.colors.border.main};
   background-color: ${({ theme }) => theme.colors.background.main};

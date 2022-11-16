@@ -25,6 +25,7 @@ export const Modal = ({
       bodyStyle={{ padding: 0, background: theme?.colors.background.main }}
       onCancel={onCancel}
       width={ModalSize[size || 'xs']}
+      destroyOnClose
     >
       <FlexContainer padding="24px 10px 0 10px">{children}</FlexContainer>
       {footer && (

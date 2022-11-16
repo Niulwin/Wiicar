@@ -5,14 +5,16 @@ import {
   useI18n
 } from 'core';
 import { useEffect, useState } from 'react';
-import { ActionTableOptions, TTableColumns, useTheme } from 'ui';
+import { ActionTableOptions, FlexContainer, TTableColumns, useTheme } from 'ui';
 
 export const useConfig = ({
   translate,
-  data
+  data,
+  handleEdit
 }: {
   translate: (key: NamespaceTranslate) => string;
   data?: TPagination<IUserMethodPayments>;
+  handleEdit: (row: IUserMethodPayments) => void;
 }) => {
   const { language } = useI18n();
   const [columns, setColumns] = useState<TTableColumns[]>([]);
@@ -24,41 +26,33 @@ export const useConfig = ({
         name: '#',
         width: 40,
         fixed: true,
-        render: (_row: any, index: number) => {
+        render: (_row: IUserMethodPayments, index: number) => {
           return index + 1;
         }
       },
       {
         name: translate('my_accounts.code'),
-        width: 20,
+        width: 50,
         accessor: 'methodPayment.code'
       },
       {
-        name: translate('my_accounts.identification'),
-        width: 20,
-        accessor: 'identification_card'
-      },
-      {
         name: translate('my_accounts.method_payment'),
-        width: 20,
+        width: 50,
         accessor: 'methodPayment.name'
       },
       {
-        name: translate('my_accounts.method_payment_type'),
-        accessor: 'typeAccount',
-        width: 20
-      },
-      {
-        name: translate('my_accounts.method_payment_number'),
-        accessor: 'value',
-        width: 20
-      },
-      {
         name: translate('global.actions'),
-        width: 200,
+        width: 300,
         fixed: true,
-        render: () => {
-          return <ActionTableOptions buttons={['delete']} />;
+        render: (row: IUserMethodPayments) => {
+          return (
+            <FlexContainer justify="center" direction="row">
+              <ActionTableOptions
+                buttons={['info', 'delete']}
+                onView={() => handleEdit(row)}
+              />
+            </FlexContainer>
+          );
         }
       }
     ]);

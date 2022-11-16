@@ -1,4 +1,4 @@
-import { formatCurrency, IInvoices, useTranslate } from 'core';
+import { formatCurrency, IInvoices, useAuth, useTranslate } from 'core';
 import { Card, FlexContainer, Typography } from 'ui';
 
 export const PayInformation = ({
@@ -7,6 +7,8 @@ export const PayInformation = ({
   orderDetail?: IInvoices;
 }) => {
   const translate = useTranslate();
+  const { currentExchangeCurrency } = useAuth();
+
   return (
     <Card width="50%" gap="5px" direction="column" align="flex-start">
       <Typography variant="caption"></Typography>
@@ -15,13 +17,15 @@ export const PayInformation = ({
           { title: 'quantity', value: orderDetail?.quantity },
           {
             title: 'price',
-            value: `${formatCurrency(orderDetail?.sale?.price)} COP`
+            value: `${formatCurrency(orderDetail?.sale?.price)} ${
+              currentExchangeCurrency.prefix
+            }`
           },
           {
             title: 'payment_amount',
             value: `${formatCurrency(
               (orderDetail?.sale?.price ?? 0) * (orderDetail?.quantity ?? 0)
-            )} COP`
+            )} ${currentExchangeCurrency.prefix}`
           }
           // { title: 'payment_amount', value: orderDetail?.amount }
         ].map((x, i: number) => (

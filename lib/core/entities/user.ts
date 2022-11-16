@@ -1,3 +1,5 @@
+import { IUserMethodPayments } from './methodPayment';
+
 export interface IUser {
   id: string;
   MyID: string;
@@ -18,4 +20,5 @@ export interface IUser {
   userTelegram?: string;
   username: string;
   youtube?: string;
+  usermethodpayment?: IUserMethodPayments[];
 }
