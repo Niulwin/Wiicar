@@ -1,7 +1,8 @@
 # This Dockerfile is copy-pasted into our main docs at /docs/handbook/deploying-with-docker.
 # Make sure you update both files!
 
-FROM node:16-alpine AS builder
+FROM node:alpine AS builder
+RUN apk add --no-cache libc6-compat
 RUN apk update
 # Set working directory
 WORKDIR /app
@@ -11,6 +12,7 @@ RUN turbo prune --scope=app-yafuz --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM node:alpine AS installer
+RUN apk add --no-cache libc6-compat
 RUN apk update
 WORKDIR /app
 
