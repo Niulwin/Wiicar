@@ -6,8 +6,8 @@ module.exports = withTM({
   images: {
     domains: [
       'yafuz-bucket.s3.amazonaws.com',
-      'localhost:3081',
-      'app.dev.yafuzgame.com'
+      'localhost:3051',
+      'app.yafuzgame.com'
     ]
   },
   output: 'standalone',

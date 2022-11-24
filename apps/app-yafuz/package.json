@@ -10,7 +10,7 @@
     "pre-commit": "lint-staged && tsc --noemit"
   },
   "lint-staged": {
-    "./*.{js,jsx,ts,tsx}": [
+    "./*.{jsx,ts,tsx}": [
       "npm run lint"
     ]
   },
