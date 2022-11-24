@@ -44,6 +44,6 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/app-yafuz/public ./apps/ap
 COPY --from=installer --chown=nextjs:nodejs /app/apps/app-yafuz/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/app-yafuz/.next/static ./apps/app-yafuz/.next/static
 
-EXPOSE 3081
-ENV PORT 3081
+EXPOSE 3051
+ENV PORT 3051
 CMD node apps/app-yafuz/server.js

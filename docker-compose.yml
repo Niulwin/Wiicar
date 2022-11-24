@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: ./apps/app-yafuz/Dockerfile
     environment:
-      - API_URL='https://api.dev.yafuzgame.com/'
+      - API_URL='https://api.yafuzgame.com/'
     ports:
-      - '3081:3081'
+      - '3051:3051'
   # yafuz_presale:
   #   container_name: presale
   #   build:
