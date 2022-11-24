@@ -84,7 +84,7 @@ export const SideBar: FC<{
       <Button
         variant="outlined"
         onClick={() => {
-          const link = `https://app.dev.yafuzgame.com/auth/register/${user?.id}`;
+          const link = `https://app.yafuzgame.com/auth/register/${user?.id}`;
           navigator.clipboard.writeText(link);
           message.success(
             translate('global.user.referral_link_copied', { copy_link: link })
