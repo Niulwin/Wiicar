@@ -1,14 +1,14 @@
 version: '3.6'
 services:
-  yafuz_app:
-    container_name: app-production
+  yafuz_app_dev:
+    container_name: yafuz_app_dev
     build:
       context: .
-      dockerfile: ./apps/app-yafuz/Dockerfile
+      dockerfile: ./apps/app-yafuz/Dockerfile.dev
     environment:
-      - API_URL='https://api.yafuzgame.com/'
+      - API_URL='https://api.dev.yafuzgame.com/'
     ports:
-      - '3051:3051'
+      - '3081:3081'
   # yafuz_presale:
   #   container_name: presale
   #   build:

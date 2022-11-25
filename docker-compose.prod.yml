@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  yafuz_app_prod:
+    container_name: yafuz_app_prod
+    build:
+      context: .
+      dockerfile: ./apps/app-yafuz/Dockerfile.prod
+    environment:
+      - API_URL='https://api.yafuzgame.com/'
+    ports:
+      - '3051:3051'
+  # yafuz_presale:
+  #   container_name: presale
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/presale/Dockerfile
+  #   environment:
+  #     - API_URL='https://api.dev.yafuzgame.com/'
+  #   ports:
+  #     - '3082:3000'
+  #   restart: always
