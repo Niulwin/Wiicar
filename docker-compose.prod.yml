@@ -1,0 +1,10 @@
+version: '3.6'
+services:
+  wiicar:
+    container_name: wiicar
+    build:
+      context: .
+      dockerfile: ./apps/wiicar/Dockerfile.prod
+    # environment:
+    ports:
+      - '3051:3051'
