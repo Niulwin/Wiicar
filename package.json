@@ -14,6 +14,7 @@
     "lint": "turbo run lint",
     "prettier-lint": "prettier --check .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "postinstall": "husky install",
     "test": "",
     "pre-commit": "turbo run pre-commit --filter=app-wiicar",
     "prepare": "husky install"
