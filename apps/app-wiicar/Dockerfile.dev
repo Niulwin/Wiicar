@@ -8,7 +8,7 @@ RUN apk update
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN turbo prune --scope=wiicar --docker
+RUN turbo prune --scope=app-wiicar --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM node:alpine AS installer
@@ -25,7 +25,7 @@ RUN yarn install
 # Build the project
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
-RUN yarn turbo run build --filter=wiicar
+RUN yarn turbo run build --filter=app-wiicar
 
 FROM node:alpine AS runner
 WORKDIR /app
@@ -35,15 +35,15 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/apps/wiicar/next.config.js .
-COPY --from=installer /app/apps/wiicar/package.json .
+COPY --from=installer /app/apps/app-wiicar/next.config.js .
+COPY --from=installer /app/apps/app-wiicar/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/wiicar/public ./apps/wiicar/public
-COPY --from=installer --chown=nextjs:nodejs /app/apps/wiicar/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/wiicar/.next/static ./apps/wiicar/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/app-wiicar/public ./apps/app-wiicar/public
+COPY --from=installer --chown=nextjs:nodejs /app/apps/app-wiicar/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/app-wiicar/.next/static ./apps/app-wiicar/.next/static
 
 EXPOSE 3081
 ENV PORT 3081
-CMD node apps/wiicar/server.js
+CMD node apps/app-wiicar/server.js

@@ -4,8 +4,6 @@ Wiicar is a project made with turborepo, next, react, and other libraries
 
 ## How to run?
 
-### Develop
-
 Clone wiicar repo
 
 ```
@@ -17,6 +15,8 @@ Navigate to root folder
 ```
 cd wiicar
 ```
+
+### Develop
 
 Run project
 
@@ -24,21 +24,23 @@ Run project
 yarn run dev or yarn --cwd apps/app-wiicar dev
 ```
 
+### Docker
+
+Build docker
+
+```
+docker-compose build
+```
+
+Run Docker
+
+```
+docker-compose up -d
+```
+
 ### Build
 
-Clone wiicar repo
-
-```
-git clone https://github.com/Niulwin/Wiicar.git
-```
-
-Navigate to root folder
-
-```
-cd wiicar
-```
-
-Run project
+Build project
 
 ```
 yarn run build
