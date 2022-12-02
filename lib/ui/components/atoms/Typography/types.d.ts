@@ -30,4 +30,5 @@ export interface TTypography extends PropsWithChildren {
     | 'info'
     | 'disabled';
   align?: 'center' | 'left' | 'right';
+  weight?: '300' | '400' | '500' | '600' | '700' | '800' | '900' | 'bold';
 }

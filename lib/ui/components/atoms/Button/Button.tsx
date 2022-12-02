@@ -12,12 +12,14 @@ export const Button: FC<TButtonProps> = ({
   variant,
   color,
   iconLeft,
+  iconRight,
   style,
   background,
   size,
   loading,
   tooltip,
-  disabled
+  disabled,
+  typographyProps
 }: TButtonProps) => {
   return (
     <ContentButton
@@ -29,24 +31,40 @@ export const Button: FC<TButtonProps> = ({
       background={disabled ? 'disabled' : background}
       type={type || 'button'}
       iconLeft={!!iconLeft}
+      iconRight={!!iconRight}
     >
       {!loading && iconLeft && (
         <Icon
           size="1x"
           icon={iconLeft}
           color={color}
-          style={!title ? { margin: 0 } : { marginRight: 5 }}
+          style={
+            !title ? { margin: 0, left: 10 } : { marginRight: 5, left: 10 }
+          }
         />
       )}
-      <Typography
-        color={
-          color || (variant === 'contained' ? 'textSecondary' : 'textPrimary')
-        }
-        variant="caption"
-      >
-        {loading ? <Loading color={color} /> : title || ''}
-      </Typography>
+      {title && (
+        <Typography
+          color={
+            color || (variant === 'contained' ? 'textSecondary' : 'textPrimary')
+          }
+          variant="caption"
+          {...typographyProps}
+        >
+          {loading ? <Loading color={color} /> : title || ''}
+        </Typography>
+      )}
       {children}
+      {!loading && iconRight && (
+        <Icon
+          size="1x"
+          icon={iconRight}
+          color={color}
+          style={
+            !title ? { margin: 0, right: 10 } : { marginLeft: 5, right: 10 }
+          }
+        />
+      )}
     </ContentButton>
   );
 };

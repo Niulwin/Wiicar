@@ -1,6 +1,5 @@
 export * from './api-client';
 export * from './app-layout';
-export * from './auth';
 export * from './entities';
 export * from './form';
 export * from './hoc';

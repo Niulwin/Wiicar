@@ -8,17 +8,16 @@ export const ChipContainer = styled.div<TContainerStyle>`
   align-items: center;
   justify-content: center;
   padding: 2px;
+  font-size: 16px;
   margin-right: 0.5rem;
-  border-radius: 100%;
+  border-radius: 20px;
   width: ${({ size }) => ChipSize[size || 'xs']};
-  height: ${({ size }) => ChipSize[size || 'xs']};
   min-width: ${({ size }) => ChipSize[size || 'xs']};
-  min-height: ${({ size }) => ChipSize[size || 'xs']};
   max-width: ${({ size }) => ChipSize[size || 'xs']};
   max-height: ${({ size }) => ChipSize[size || 'xs']};
   background-color: ${({ variant, theme, background }) =>
     variant === 'contained'
-      ? theme.colors[background || 'primary'].main
+      ? theme.colors[background || 'primary'].main + '2A'
       : 'transparent'};
   border: ${({ variant, theme, background }) =>
     variant === 'outlined'

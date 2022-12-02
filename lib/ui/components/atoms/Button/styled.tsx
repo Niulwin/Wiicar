@@ -10,17 +10,20 @@ export const ContentButton = styled.button<{
     | 'error'
     | 'success'
     | 'info'
-    | 'disabled';
+    | 'disabled'
+    | 'border';
   size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
   type?: 'submit' | 'button';
   iconLeft?: boolean;
+  iconRight?: boolean;
 }>`
   position: relative;
   user-select: none;
   display: flex;
   height: auto;
   padding: 4px 8px;
-  padding: ${({ iconLeft }) => `4px 8px 4px ${iconLeft ? '24px' : '4px'}`};
+  padding: ${({ iconLeft, iconRight }) =>
+    `4px ${iconLeft ? '24px' : '8px'} 4px ${iconLeft ? '24px' : '4px'}`};
   margin: 4px;
   text-align: center;
   align-items: center;
@@ -31,7 +34,7 @@ export const ContentButton = styled.button<{
     variant === 'contained'
       ? theme.colors[background || 'primary'].main
       : 'transparent'};
-  border-radius: 5px;
+  border-radius: 20px;
   border: ${({ variant, theme, background }) =>
     variant === 'outlined'
       ? `1px solid ${theme.colors[background || 'primary'].main}`
@@ -57,5 +60,4 @@ export const Icon = styled(FontAwesomeIcon)<{
 }>`
   color: ${({ color, theme }) => theme.colors.text[color || 'textPrimary']};
   position: absolute;
-  left: 10px;
 `;

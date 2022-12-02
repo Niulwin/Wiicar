@@ -1,6 +1,6 @@
 {
-  "name": "yafuz",
-  "version": "0.0.0",
+  "name": "wiicar",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -9,14 +9,14 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel --filter=app-yafuz --filter=presale",
-    "start": "turbo run start --parallel --filter=app-yafuz --filter=presale",
+    "dev": "turbo run dev --parallel --filter=app-wiicar",
+    "start": "turbo run start --parallel --filter=app-wiicar",
     "lint": "turbo run lint",
     "prettier-lint": "prettier --check .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "postinstall": "husky install",
     "test": "",
-    "pre-commit": "turbo run pre-commit --filter=app-yafuz"
+    "pre-commit": "turbo run pre-commit --filter=app-wiicar",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {

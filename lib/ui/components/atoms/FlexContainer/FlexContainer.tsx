@@ -13,7 +13,8 @@ export const FlexContainer: FC<TFlexContainerProps> = ({
   width,
   style,
   gap,
-  shadow
+  shadow,
+  className
 }: TFlexContainerProps) => {
   return (
     <Flex
@@ -27,6 +28,7 @@ export const FlexContainer: FC<TFlexContainerProps> = ({
       position={position}
       style={style}
       shadow={shadow}
+      className={className}
     >
       {children}
     </Flex>

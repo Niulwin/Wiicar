@@ -1,6 +1,8 @@
 import { PropsWithChildren } from 'react';
+import { TTypography } from '../../atoms/Typography/types';
 
 export interface TChipProps extends PropsWithChildren {
+  typographyProp?: TTypography;
   title?: string;
   variant?: 'text' | 'contained' | 'outlined';
   background?: 'primary' | 'secondary' | 'error' | 'success' | 'info';

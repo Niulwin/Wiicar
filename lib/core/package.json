@@ -19,8 +19,7 @@
     "react-i18next": "^11.18.4",
     "tsconfig": "*",
     "typescript": "^4.5.2",
-    "ui": "*",
-    "libphonenumber-js": "^1.10.14"
+    "ui": "*"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.3.4",
@@ -30,6 +29,7 @@
     "numeral": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.36.0"
+    "react-hook-form": "^7.36.0",
+    "styled-components": "^5.3.6"
   }
 }

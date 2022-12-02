@@ -60,7 +60,7 @@ export const lightTheme: TDefaultTheme = {
       secondary: '#0a1929'
     },
     text: {
-      primary: '#e8540d',
+      primary: '#E63020',
       secondary: '#7367f0',
       textPrimary: '#666666',
       textSecondary: '#ffffff',
@@ -68,11 +68,11 @@ export const lightTheme: TDefaultTheme = {
       error: '#f44336',
       warning: '#ffb74d',
       info: '#90caf9',
-      success: '#66bb6a',
+      success: '#25D366',
       disabled: '#bfbfbf'
     },
     primary: {
-      main: '#e8540d',
+      main: '#E63020',
       secondary: '#7367f0'
     },
     secondary: {
@@ -80,8 +80,8 @@ export const lightTheme: TDefaultTheme = {
       secondary: '#7367f0'
     },
     border: {
-      main: '#f1f1f1',
-      secondary: '#e57373'
+      main: '#C5CBDA',
+      secondary: '#c2e0ff14'
     },
     disabled: {
       main: '#bfbfbf',
@@ -100,7 +100,7 @@ export const lightTheme: TDefaultTheme = {
       secondary: '#4fc3f7'
     },
     success: {
-      main: '#66bb6a',
+      main: '#25D366',
       light: '#81c784'
     }
   }
@@ -114,7 +114,7 @@ export const darkTheme: TDefaultTheme = {
       secondary: '#ffffff'
     },
     text: {
-      primary: '#e8540d',
+      primary: '#E63020',
       secondary: '#7367f0',
       textPrimary: '#ffffff',
       textSecondary: '#1e2329',
@@ -126,7 +126,7 @@ export const darkTheme: TDefaultTheme = {
       disabled: '#bfbfbf'
     },
     primary: {
-      main: '#e8540d',
+      main: '#E63020',
       secondary: '#7367f0'
     },
     secondary: {

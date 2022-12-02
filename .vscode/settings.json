@@ -2,8 +2,8 @@
   "workbench.colorCustomizations": {
     "titleBar.activeForeground": "#FFF",
     "titleBar.inactiveForeground": "#FFFFFFCC",
-    "titleBar.activeBackground": "#FF5300",
-    "titleBar.inactiveBackground": "#FF5300"
+    "titleBar.activeBackground": "#E63020",
+    "titleBar.inactiveBackground": "#E63020"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
@@ -19,8 +19,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.words": [
-    "presale",
-    "yafuz"
+    "Wiicar",
+    "wiicar",
   ],
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

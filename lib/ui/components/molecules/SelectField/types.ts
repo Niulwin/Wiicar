@@ -1,12 +1,16 @@
+import { NamespaceTranslate } from 'core';
 import type { FieldError, Path, UseFormRegister } from 'core/form';
+import { ChangeEventHandler } from 'react';
 
 export type TSelectField<IFormValues extends object> = {
-  placeholder?: string;
-  label: string;
+  placeholder?: NamespaceTranslate;
+  label?: string;
   name: Path<IFormValues>;
   width?: string;
+  value?: string | number;
+  onChange?: ChangeEventHandler<HTMLSelectElement>;
   error?: FieldError;
-  options: { value: string; label: string }[];
+  options: { value: string | number; label: string }[];
   register?: UseFormRegister<IFormValues>;
   validate?: {
     required?: boolean;

@@ -47,7 +47,7 @@ export const useLazyQuery = <
       onError: (err: any) => {
         options?.onError && options.onError(err);
 
-        message.warn(
+        message.warning(
           translate(
             `${options?.translateErrorPath || 'global'}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'

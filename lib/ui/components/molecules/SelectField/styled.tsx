@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Select = styled.select<{ selected?: boolean }>`
   display: flex;
-  border: 1px solid ${({ theme }) => theme.colors.border.main};
+  border: none;
   background-color: ${({ theme }) => theme.colors.background.main};
   color: ${({ theme }) => theme.colors.text.textPrimary};
   border-radius: 5px;
@@ -11,6 +11,6 @@ export const Select = styled.select<{ selected?: boolean }>`
   padding: 4px 12px;
   width: 100%;
   &:focus {
-    border: 2px solid ${({ theme }) => theme.colors.secondary.main};
+    border: 1px solid ${({ theme }) => theme.colors.primary.main};
   }
 `;

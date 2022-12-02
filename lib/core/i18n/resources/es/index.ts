@@ -1,23 +1,9 @@
-import { bank } from './bank';
+import { cars } from './cars';
 import { global } from './global';
-import { login } from './login';
-import { my_accounts } from './myAccounts';
-import { my_sales } from './mySales';
-import { my_shopping } from './myShopping';
-import { offers_list } from './offersList';
-import { order_details } from './orderDetails';
-import { pack_nft } from './packNft';
 
 export const translation = {
   global,
-  login,
-  bank,
-  offers_list,
-  my_sales,
-  my_accounts,
-  my_shopping,
-  pack_nft,
-  order_details
+  cars
 };
 const SpanishTranslation = { translation };
 

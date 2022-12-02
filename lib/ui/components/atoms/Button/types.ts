@@ -1,18 +1,27 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { CSSProperties, MouseEventHandler } from 'react';
+import { TTypography } from '../Typography/types';
 
 export type TButtonProps = {
   style?: CSSProperties;
+  typographyProps?: Partial<TTypography>;
   loading?: boolean;
   disabled?: boolean;
   tooltip?: string;
   type?: 'submit' | 'button';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   iconLeft?: IconProp;
+  iconRight?: IconProp;
   children?: JSX.Element | JSX.Element[];
   title?: string;
   variant?: 'text' | 'contained' | 'outlined';
-  background?: 'primary' | 'secondary' | 'error' | 'success' | 'info';
+  background?:
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'success'
+    | 'info'
+    | 'border';
   size?: 'xs' | 'small' | 'normal' | 'large' | 'xl' | 'fullWidth' | 'auto';
   color?:
     | 'primary'

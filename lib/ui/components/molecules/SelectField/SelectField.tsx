@@ -13,7 +13,9 @@ export const SelectField = <IFormValues extends object>({
   register,
   validate,
   error,
-  options
+  options,
+  value,
+  onChange
 }: TSelectField<IFormValues>) => {
   const translate = useTranslate();
   const errorMessage = useMemo(() => {
@@ -32,40 +34,37 @@ export const SelectField = <IFormValues extends object>({
       justify="flex-start"
       align="flex-start"
     >
-      <Typography style={{ padding: 5 }} variant="body1">
-        {label}
-      </Typography>
+      {label && (
+        <Typography style={{ padding: 5 }} variant="body1">
+          {label}
+        </Typography>
+      )}
       <Select
-        defaultValue=""
-        {...(register ? register(name, validate) : {})}
-        placeholder={placeholder}
+        value={value || ''}
+        {...(register ? register(name, validate) : { onChange })}
       >
-        <option value="" disabled hidden>
-          {translate('global.choose')}
-        </option>
+        {placeholder && (
+          <option value="" disabled hidden>
+            {translate(placeholder || 'global.choose')}
+          </option>
+        )}
         {options?.map((x) => (
           <option key={x.value} value={x.value}>
             {x.label}
           </option>
         ))}
       </Select>
-      <Typography
-        style={{ padding: 2, minHeight: 30 }}
-        color="error"
-        variant="caption3"
-      >
+      {error && (
         <Typography
           style={{ padding: 2, minHeight: 30 }}
           color="error"
           variant="caption3"
         >
-          {error
-            ? translate(errorMessage.key as NamespaceTranslate, {
-                [errorMessage.interpolation as string]: errorMessage.value
-              })
-            : ''}
+          {translate(errorMessage.key as NamespaceTranslate, {
+            [errorMessage.interpolation as string]: errorMessage.value
+          })}
         </Typography>
-      </Typography>
+      )}
     </FlexContainer>
   );
 };

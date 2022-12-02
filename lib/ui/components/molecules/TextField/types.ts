@@ -1,24 +1,28 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { NamespaceCountryCode } from 'core';
 import type { Control, FieldError, Path, UseFormRegister } from 'core/form';
-import { MouseEvent } from 'react';
+import { ChangeEvent, CSSProperties, MouseEvent } from 'react';
 
 export type TTextField<IFormValues extends object> = {
   placeholder?: string;
-  label: string;
+  label?: string;
+  className?: string;
   iconRight?: {
     name: IconProp;
     onClick?: (ev: MouseEvent<SVGSVGElement>) => void;
+  };
+  style?: CSSProperties;
+  inputProps?: {
+    style?: CSSProperties;
   };
   name: Path<IFormValues>;
   type?: 'number' | 'text' | 'phone' | 'password' | 'currency';
   width?: string;
   title?: string;
   disabled?: boolean;
-  noLabel?: boolean;
   error?: FieldError;
-  countryCode?: NamespaceCountryCode;
   defaultValue?: any;
+  value?: string | number;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   afterChange?: (value?: number) => void;
   register?: UseFormRegister<IFormValues>;
   control?: Control<IFormValues>;

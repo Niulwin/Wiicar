@@ -31,13 +31,14 @@ export const useQuery = <
         })
         .then((res) => res.data),
     {
+      refetchOnWindowFocus: false,
       onSuccess: (res: TResponse) => {
         options?.onSuccess && options.onSuccess(res);
       },
       onError: (err: any) => {
         options?.onError && options?.onError(err);
 
-        message.warn(
+        message.warning(
           `${options?.translateErrorPath || 'global'}.errors.${translate(
             err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
           )}`

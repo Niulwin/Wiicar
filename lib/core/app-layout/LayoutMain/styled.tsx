@@ -6,17 +6,12 @@ export const Container = styled.div<{ hiddenSidebars?: boolean }>`
   height: 100vh;
   width: 100vw;
   transition: 0.5s;
-  grid-template-areas: ${({ hiddenSidebars }) =>
-    !hiddenSidebars
-      ? ` 'logo header' 'aside children' `
-      : `'logo header' 'children children'`};
   grid-template-rows: 72px 1fr;
-  grid-template-columns: ${({ hiddenSidebars }) =>
-    !hiddenSidebars ? 'minmax(min-content, 1px) 4fr' : '230px'};
+  grid-template-columns: 1fr;
+  background-color: ${({ theme }) => theme.colors.background.main};
 `;
 
 export const ChildrenBox = styled.div`
-  grid-area: children;
   display: flex;
   gap: 10px;
   flex: 1;
@@ -34,7 +29,9 @@ export const Logo = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.background.main};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border.main};
   transition: 0.3s;
+  background: url('/logo/logo2x.png') no-repeat center;
+  background-size: 166px 40px;
+  width: 166px;
+  height: 44px;
 `;

@@ -1,1 +1,2 @@
-export * from './appYafuzRouter';
+export * from './appRouter';
+

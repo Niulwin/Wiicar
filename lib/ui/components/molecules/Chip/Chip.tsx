@@ -9,7 +9,8 @@ export const Chip: FC<TChipProps> = ({
   color,
   size,
   title,
-  variant
+  variant,
+  typographyProp
 }: TChipProps) => {
   return (
     <ChipContainer
@@ -18,7 +19,7 @@ export const Chip: FC<TChipProps> = ({
       variant={variant}
       style={{ fontWeight: 'bold' }}
     >
-      <Typography variant="caption3" color={color}>
+      <Typography variant="caption3" color={color} {...typographyProp}>
         {children || title}
       </Typography>
     </ChipContainer>

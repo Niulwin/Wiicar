@@ -49,7 +49,7 @@ export const useMutation = <
         .then((res) => res.data),
     {
       onError: (err: any) => {
-        message.warn(
+        message.warning(
           translate(
             `${options?.translateErrorPath || 'global'}.errors.${
               err?.response?.data?.err_code || err?.message || 'OCCURRED_ERROR'
