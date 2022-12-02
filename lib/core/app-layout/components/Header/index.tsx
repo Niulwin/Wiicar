@@ -2,7 +2,7 @@ import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-import { Button, FlexContainer, Select, useTheme } from 'ui';
+import { Button, FlexContainer, SelectField, useTheme } from 'ui';
 import { LanguagesSupport } from '../../../i18n';
 import { useI18n, useTranslate } from '../../../i18n/hooks';
 import { Logo } from '../../LayoutMain/styled';
@@ -18,11 +18,11 @@ export const Header: FC<THeaderProps> = ({}: THeaderProps) => {
   const [options] = useState([
     {
       value: LanguagesSupport.Spanish,
-      title: translate('global.language.Spanish')
+      label: translate('global.language.Spanish')
     },
     {
       value: LanguagesSupport.English,
-      title: translate('global.language.English')
+      label: translate('global.language.English')
     }
   ]);
 
@@ -43,11 +43,12 @@ export const Header: FC<THeaderProps> = ({}: THeaderProps) => {
           onClick={() => alert('Logout')}
           title={translate('global.logout')}
         />
-        <Select
+        <SelectField
+          width="110px"
           options={options}
+          name="language"
           value={language}
-          defaultValue={language}
-          handleChange={(value) => changeLanguage(value)}
+          onChange={(ev) => changeLanguage(ev.target.value)}
         />
         <Button variant="text" onClick={changeTheme}>
           <FontAwesomeIcon
