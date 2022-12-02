@@ -1,11 +1,15 @@
-import { ICars, useQuery } from 'core';
+import { ICars, useLazyQuery } from 'core';
 import { useEffect, useState } from 'react';
 import { TPaginationParams, usePagination } from './usePagination';
 
 export const useCars = () => {
   const [filter, setFilter] = useState<string>('');
   const [dataCars, setDataCars] = useState<ICars[]>([]);
-  const { data: cars, isLoading } = useQuery<ICars[]>('get-cars', 'get-cars');
+  const {
+    mutate: getCars,
+    data: cars,
+    isLoading
+  } = useLazyQuery<ICars[]>('get-cars', 'get-cars');
 
   const { paginationParams, setPaginationParams } = usePagination();
 
@@ -53,12 +57,37 @@ export const useCars = () => {
     );
   };
 
+  const handleSort = (key: string, direction: 'asc' | 'desc') => {
+    const newFilter = cars?.sort((a, b) => {
+      const wordA = a[key as 'id'] as string | number;
+      const wordB = b[key as 'id'] as string | number;
+
+      if (typeof wordA === 'string')
+        return direction === 'asc'
+          ? wordA.localeCompare(wordB as string)
+          : (wordB as string).localeCompare(wordA);
+
+      return direction === 'asc'
+        ? a[key as 'id'] - b[key as 'id']
+        : b[key as 'id'] - a[key as 'id'];
+    });
+
+    setDataCars(
+      newFilter?.slice(
+        (paginationParams.offset - 1) * paginationParams.limit,
+        paginationParams.limit * paginationParams.offset
+      ) || []
+    );
+  };
+
   return {
     cars: dataCars,
     isLoading,
     paginationParams,
     handlePaginationParams,
     filter,
-    handleFilter
+    handleFilter,
+    handleSort,
+    getCars: () => getCars({})
   };
 };

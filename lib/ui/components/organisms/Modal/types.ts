@@ -1,5 +1,7 @@
+import { NamespaceTranslate } from 'core';
+
 export type TModalProps = {
-  title: string;
+  title: NamespaceTranslate;
   footer?: boolean;
   loading?: boolean;
   isVisible: boolean;

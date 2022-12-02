@@ -6,6 +6,6 @@ export interface ICars {
   kilometer: number;
   transmission: 'automatic' | 'mechanic';
   price: number;
-  type: 'car';
-  provenance: 'used' | 'new';
+  type: 'Automóvil';
+  provenance?: 'used' | 'new';
 }

@@ -1,47 +1,48 @@
+import { NamespaceTranslate } from 'core';
+
 export interface THeaderCell {
-  id: string | number;
-  label: string;
+  id: string;
+  label?: NamespaceTranslate;
 }
 
 export const headerCells: readonly THeaderCell[] = [
   {
     id: 'id',
-    label: 'ID'
+    label: 'cars.table.id'
   },
   {
     id: 'licensePlate',
-    label: 'Placa'
+    label: 'cars.table.license_plate'
   },
   {
     id: 'brand',
-    label: 'Marca'
+    label: 'cars.table.brand'
   },
   {
-    id: 'module',
-    label: 'Modelo'
+    id: 'model',
+    label: 'cars.table.model'
   },
   {
     id: 'kilometer',
-    label: 'Kilometraje'
+    label: 'cars.table.kilometer'
   },
   {
     id: 'transmission',
-    label: 'Transmisión'
+    label: 'cars.table.transmission'
   },
   {
     id: 'type',
-    label: 'Tipo'
+    label: 'cars.table.type'
   },
   {
-    id: 'purchasePrice',
-    label: 'Precio de Compra'
+    id: 'price',
+    label: 'cars.table.price'
   },
   {
     id: 'provenance',
-    label: 'Proveniencia'
+    label: 'cars.table.provenance'
   },
   {
-    id: 'option',
-    label: ''
+    id: 'option'
   }
 ];

@@ -18,12 +18,14 @@ export interface AppBarActionsProps extends TPaginationParams {
   handlePaginationParams: (args: TPaginationParams) => void;
   filter?: string;
   handleFilter: (text: string) => void;
+  getCars: () => void;
 }
 export const AppBarActions = ({
   limit,
   offset,
   totalCount,
   filter,
+  getCars,
   handleFilter,
   handlePaginationParams
 }: AppBarActionsProps) => {
@@ -144,6 +146,7 @@ export const AppBarActions = ({
               title={translate('cars.actions.bulk_upload')}
               variant="text"
               size="fullWidth"
+              onClick={() => getCars()}
               style={{ justifyContent: 'flex-start', marginBottom: 0 }}
             />
             <Button

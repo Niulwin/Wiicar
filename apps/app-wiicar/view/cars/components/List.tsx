@@ -8,30 +8,39 @@ import {
   TableSortLabel
 } from '@mui/material';
 import { formatCurrency, formatToNumber, ICars, useTranslate } from 'core';
-import { useState } from 'react';
-import { Button, FlexContainer, useTheme } from 'ui';
+import { useEffect, useState } from 'react';
+import { Button, FlexContainer, Typography, useTheme } from 'ui';
 import { headerCells } from './headerCells';
 import { RowBody, RowHeader, TableBox } from './styled';
 
 export interface TListProps {
   cars?: ICars[];
+  handleSort: (key: string, direction: 'asc' | 'desc') => void;
 }
-export const List = ({ cars }: TListProps) => {
+export const List = ({ cars, handleSort }: TListProps) => {
   const translate = useTranslate();
   const { theme } = useTheme();
   const [checks, setChecks] = useState<number[]>([]);
   const [sort, setSort] = useState<{
-    key: string | number;
+    key: string;
     direction: 'asc' | 'desc';
   }>({
     key: '',
     direction: 'asc'
   });
 
+  useEffect(() => {
+    if (sort.key) handleSort(sort.key, sort.direction);
+  }, [sort]);
+
   return (
     <FlexContainer
       padding="2rem 3rem"
-      style={{ backgroundColor: `${theme?.colors.border.main}30` }}
+      justify="flex-start"
+      style={{
+        backgroundColor: `${theme?.colors.border.main}30`,
+        height: '80vh'
+      }}
     >
       <TableBox>
         <TableContainer>
@@ -40,36 +49,48 @@ export const List = ({ cars }: TListProps) => {
             size="small"
           >
             <TableHead>
-              <RowHeader>
-                <TableCell width={50}>
-                  <FontAwesomeIcon
-                    icon="square"
-                    size="lg"
-                    color={theme?.colors.disabled.main}
-                  />
-                </TableCell>
-                {headerCells.map((cell) => (
-                  <TableCell key={cell.id} style={{ fontWeight: 600 }}>
-                    <TableSortLabel
-                      active={sort.key === cell.id}
-                      direction={sort.key === cell.id ? sort.direction : 'asc'}
-                      onClick={() =>
-                        setSort({
-                          key: cell.id,
-                          direction:
-                            sort.key === cell.id
-                              ? sort.direction === 'asc'
-                                ? 'desc'
-                                : 'asc'
-                              : 'asc'
-                        })
-                      }
-                    >
-                      {cell.label}
-                    </TableSortLabel>
+              {cars?.length ? (
+                <RowHeader>
+                  <TableCell width={50}>
+                    <FontAwesomeIcon
+                      icon="square"
+                      size="lg"
+                      color={theme?.colors.disabled.main}
+                    />
                   </TableCell>
-                ))}
-              </RowHeader>
+                  {headerCells.map((cell) => (
+                    <TableCell key={cell.id} style={{ fontWeight: 600 }}>
+                      <TableSortLabel
+                        active={sort.key === cell.id}
+                        direction={
+                          sort.key === cell.id ? sort.direction : 'asc'
+                        }
+                        onClick={() =>
+                          setSort({
+                            key: cell.id,
+                            direction:
+                              sort.key === cell.id
+                                ? sort.direction === 'asc'
+                                  ? 'desc'
+                                  : 'asc'
+                                : 'asc'
+                          })
+                        }
+                      >
+                        {cell.label && translate(cell.label)}
+                      </TableSortLabel>
+                    </TableCell>
+                  ))}
+                </RowHeader>
+              ) : (
+                <RowHeader>
+                  <TableCell>
+                    <Typography variant="body1" color="disabled" align="center">
+                      No existen datos para mostrar
+                    </Typography>
+                  </TableCell>
+                </RowHeader>
+              )}
             </TableHead>
             <TableBody>
               {cars?.map((car, index) => (
@@ -103,19 +124,15 @@ export const List = ({ cars }: TListProps) => {
                   <TableCell>{car.id}</TableCell>
                   <TableCell>{car.licensePlate}</TableCell>
                   <TableCell>{car.brand}</TableCell>
-                  <TableCell align="center">{car.model}</TableCell>
-                  <TableCell align="right">
-                    {formatToNumber(car.kilometer)}
-                  </TableCell>
+                  <TableCell>{car.model}</TableCell>
+                  <TableCell>{formatToNumber(car.kilometer)}</TableCell>
                   <TableCell>
                     {car.transmission === 'automatic'
                       ? 'Automática'
                       : 'Mecánica'}
                   </TableCell>
                   <TableCell>{car.type}</TableCell>
-                  <TableCell align="center">
-                    $ {formatCurrency(car.price)}
-                  </TableCell>
+                  <TableCell>$ {formatCurrency(car.price)}</TableCell>
                   <TableCell>
                     <Button
                       size="small"

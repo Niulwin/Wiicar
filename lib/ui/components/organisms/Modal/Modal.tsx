@@ -15,12 +15,13 @@ export const Modal = ({
   size
 }: TModalProps) => {
   const { theme } = useTheme();
+  const translate = useTranslate();
 
   return (
     <ModalContainer
       footer={false}
       style={{ padding: 0, background: theme?.colors.background.main }}
-      title={title}
+      title={translate(title)}
       visible={isVisible}
       bodyStyle={{ padding: 0, background: theme?.colors.background.main }}
       onCancel={onCancel}

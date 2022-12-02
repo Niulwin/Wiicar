@@ -9,8 +9,9 @@ import { List } from './';
 
 export interface TTabsOptions {
   cars?: ICars[];
+  handleSort: (key: string, direction: 'asc' | 'desc') => void;
 }
-export const TabsOptions = ({ cars }: TTabsOptions) => {
+export const TabsOptions = ({ cars, handleSort }: TTabsOptions) => {
   const translate = useTranslate();
 
   return (
@@ -35,7 +36,7 @@ export const TabsOptions = ({ cars }: TTabsOptions) => {
                 &nbsp;&nbsp; {translate('cars.options.preparation')}
               </FlexContainer>
             ),
-            children: <List cars={cars} />
+            children: <List handleSort={handleSort} cars={cars} />
           },
           {
             key: '2',
@@ -50,7 +51,7 @@ export const TabsOptions = ({ cars }: TTabsOptions) => {
                 &nbsp;&nbsp; {translate('cars.options.storage')}
               </FlexContainer>
             ),
-            children: <List cars={cars} />
+            children: <List handleSort={handleSort} cars={cars} />
           },
           {
             key: '3',
@@ -65,7 +66,7 @@ export const TabsOptions = ({ cars }: TTabsOptions) => {
                 &nbsp;&nbsp; {translate('cars.options.for_sale')}
               </FlexContainer>
             ),
-            children: <List cars={cars} />
+            children: <List handleSort={handleSort} cars={cars} />
           },
           {
             key: '4',
@@ -80,7 +81,7 @@ export const TabsOptions = ({ cars }: TTabsOptions) => {
                 &nbsp;&nbsp; {translate('cars.options.sales')}
               </FlexContainer>
             ),
-            children: <List cars={cars} />
+            children: <List handleSort={handleSort} cars={cars} />
           }
         ]}
       />
